@@ -7,6 +7,11 @@ To build the build:
 - run "npm install" to download the 3rd party libs in package.json
 - run "gulp" to browserify them (ie, to create the minified, namespace-armored js/app.js file).
 
+To run the project:
+- run "npm install -g http-server"
+- run "http-server"
+- go to "http://localhost:8080"
+- in the future, since you've already installed http-server you can just run "http-server"
 
 DEVELOPING
 
