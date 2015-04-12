@@ -7,6 +7,11 @@ To build the build:
 - run "npm install" to download the 3rd party libs in package.json
 - run "gulp" to browserify them (ie, to create the minified, namespace-armored js/app.js file).
 
+To run the project:
+- run "npm install -g http-server"
+- run "http-server"
+- go to "http://localhost:8080"
+- in the future, since you've already installed http-server you can just run "http-server"
 
 DEVELOPING
 
@@ -29,6 +34,7 @@ Files:
 - humans.txt - the credits.  Add yourself!
 - index.html - the sole HTML file that serves to convey all of this JS
 - js/app.js - the single JS file that the browser uses, compiled from the other JS files and libraries
+- js/app.min.js - minified version of the js/app.js. Please make sure you run gulp task while making changes to the code
 - node-modules/ - the libraries that are installed by npm.  If the build has run successfully, this folder should contain:
    - crossfilter
    - gulp
