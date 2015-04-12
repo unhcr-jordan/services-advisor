@@ -343,15 +343,11 @@ function render() {
 function renderServiceText(feature, style) {
 
     // Get the partner logo, if any.
-    partnerName = feature.properties.partnerName;
-    var logo = partnerName;
+    var partnerName = feature.properties.partnerName;
     var logoUrl = './src/images/partner/' + partnerName.toLowerCase().replace(' ', '') + '.jpg';
-    var http = new XMLHttpRequest();
-    http.open('HEAD', logoUrl, false);
-    http.send();
-    if (http.status != 404) {
-        logo = '<img src="' + logoUrl + '" alt="' + partnerName + '" />';
-    }
+
+    // we add an onerror callback so that if the image 404's we just set it to display:none
+    var logo = '<img src="' + logoUrl + '" alt="' + partnerName + '" onError="this.onerror=null;this.style.display=\'none\'" />';
 
     // Prepare the office hours output.
     var hours = '<strong>Hours:</strong> ';

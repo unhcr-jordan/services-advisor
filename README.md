@@ -34,6 +34,7 @@ Files:
 - humans.txt - the credits.  Add yourself!
 - index.html - the sole HTML file that serves to convey all of this JS
 - js/app.js - the single JS file that the browser uses, compiled from the other JS files and libraries
+- js/app.min.js - minified version of the js/app.js. Please make sure you run gulp task while making changes to the code
 - node-modules/ - the libraries that are installed by npm.  If the build has run successfully, this folder should contain:
    - crossfilter
    - gulp
