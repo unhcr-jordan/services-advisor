@@ -13,15 +13,14 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
         <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="css/main.css">
         <link rel="stylesheet" href="node_modules/mapbox.js/theme/style.css">
         <link rel="stylesheet" href="css/leaflet.awesome-markers.css">
         <link rel="stylesheet" href="humanfont/assets/css/font-humanitarian.css">
-        <link rel="stylesheet" href="selectusercontrolfont/font.css">
         <link rel="stylesheet" href="node_modules/leaflet.markercluster/dist/MarkerCluster.css">
         <link rel="stylesheet" href="node_modules/leaflet.markercluster/dist/MarkerCluster.Default.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 
 
     </head>
@@ -32,40 +31,97 @@
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
 
-        <main role="main">
-          <div class="col-sm-7">
-            map goes here
+        <nav  id="searchNav" class="navbar navbar-fixed-top">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">UNHCR Services Advisor</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <!--<a class="navbar-brand" href="#">Brand</a>-->
+            </div>
+
+            <div id="navbar" class="navbar-collapse collapse">
+              <form class="navbar-form">
+                <div class="input-group">
+                  <input id="searchInput" name="searchInput" type="text" placeholder="Search" class="form-control">
+                  <div class="input-group-btn">
+                    <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                  </div>
+                </div>
+              </form>
+            </div><!--/.navbar-collapse -->
           </div>
+        </nav>
+
+        <main role="main">
+          <section id="map" class="col-sm-7 hidden-xs"><h3 class="hide">Map</h3></section>
+          <!-- <div id="map" class="col-sm-7"><h1 class="hide">Map placeholder</h1></div> -->
           <div class ="col-xs-12 col-sm-5"> 
             <h1>UNHCR Services Advisor</h1>
+            <h2>Heading 2</h2>
+            <h3>Heading 3</h3>
             <p>
               To find a service, select from the category or region below. Use the filter button above to further refine your search.
             </p>
             <h4>Category</h4>
-            <ul class="list-group">
+            <div class="list-group">
               <a href="#" class="list-group-item">
-                <span class="badge">14</span>
+                <span class="icon glyphicon glyphicon-star-empty"></span>
                 Cras justo odio
+                <span class="badge">14</span>
               </a>
               <a href="#" class="list-group-item">
-                <span class="badge">14</span>
+                <span class="icon glyphicon glyphicon-star-empty"></span>
                 Dapibus ac facilisis in
+                <span class="badge">14</span>
               </a>
               <a href="#" class="list-group-item">
-                <span class="badge">14</span>
+                <span class="icon glyphicon glyphicon-star-empty"></span>
                 Morbi leo risus
+                <span class="badge">14</span>
               </a>
-              <a href="#" class="list-group-item">Porta ac consectetur ac</a>
-              <a href="#" class="list-group-item">Vestibulum at eros</a>
-            </ul>
+              <a href="#" class="list-group-item">
+                <span class="icon glyphicon glyphicon-star-empty"></span>
+                Porta ac consectetur ac
+                <span class="badge"></span>
+              </a>
+              <a href="#" class="list-group-item">
+                <span class="icon glyphicon glyphicon-star-empty"></span>
+                Vestibulum at eros
+                <span class="badge"></span>
+              </a>
+            </div>
             <h4>Region</h4>
-            <ul class="list-group">
-              <a href="#" class="list-group-item">Cras justo odio</a>
-              <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
-              <a href="#" class="list-group-item">Morbi leo risus</a>
-              <a href="#" class="list-group-item">Porta ac consectetur ac</a>
-              <a href="#" class="list-group-item">Vestibulum at eros</a>
-            </ul>
+            <div class="list-group">
+              <a href="#" class="list-group-item">
+                <span class="icon glyphicon glyphicon-star-empty"></span>
+                Cras justo odio
+                <span class="badge"></span>
+              </a>
+              <a href="#" class="list-group-item">
+                <span class="icon glyphicon glyphicon-star-empty"></span>
+                Dapibus ac facilisis in
+                <span class="badge"></span>
+              </a>
+              <a href="#" class="list-group-item">
+                <span class="icon glyphicon glyphicon-star-empty"></span>
+                Morbi leo risus
+                <span class="badge"></span>
+              </a>
+              <a href="#" class="list-group-item">
+                <span class="icon glyphicon glyphicon-star-empty"></span>
+                Porta ac consectetur ac
+                <span class="badge"></span>
+              </a>
+              <a href="#" class="list-group-item">
+                <span class="icon glyphicon glyphicon-star-empty"></span>
+                Vestibulum at eros
+                <span class="badge"></span>
+              </a>
+            </div>
           </div>
         </main>
 
