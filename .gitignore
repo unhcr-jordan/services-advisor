@@ -5,3 +5,4 @@ js/app.js
 css/main.css
 .idea/
 *.iml
+bower_components/
