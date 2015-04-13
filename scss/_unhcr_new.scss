@@ -43,6 +43,10 @@ h3 {
   text-transform: uppercase;
 }
 
+.btn {
+  text-transform: uppercase;
+}
+
 
 /* Utilities */
 .clearfix {
@@ -115,31 +119,34 @@ h3 {
 .leaflet-popup-content .serviceText img { width: 100px; }
 
 /* Sidebar */
-.list-group {
-  :first-child, 
-  :last-child {  
-    border-radius: 0px;
+#serviceList {
+  .list-group {
+    :first-child, 
+    :last-child {  
+      border-radius: 0px;
+    }
+  }
+  .list-group-item {
+    background-color: $grey-light;
+    border: 1px solid white;
+    font-weight: bold;
+    color: black;
+
+    .icon {
+      padding: 3px;
+    }
+
+    .badge {
+    background: none;
+    font-weight: normal;
+    color: black;
+    }
+  }
+
+  #mapButton {
+    float: right;
   }
 }
-.list-group-item {
-  background-color: $grey-light;
-  border: 1px solid white;
-  font-weight: bold;
-  color: black;
-
-  .icon {
-    padding: 3px;
-  }
-
-  .badge {
-  background: none;
-  font-weight: normal;
-  color: black;
-  }
-}
-
-
-
 
 
 
