@@ -3,3 +3,5 @@
 node_modules/*
 js/app.js
 css/main.css
+.idea/
+*.iml
