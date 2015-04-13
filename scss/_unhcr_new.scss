@@ -14,7 +14,7 @@ $orange-dark: #d64a2b;
 $brown-light: #e6c68b;
 $header-bg-color: $grey-dark;
 
-$navbar-height: 70px;
+$navbar-height: 50px;
 
 
 /* Basics */
@@ -57,12 +57,33 @@ h3 {
 #searchNav {
   background-color: $dark-blue;
   min-height: $navbar-height;
+
+  .form-group {
+    //padding: 0px;
+  }
+
+  .btn {
+    text-transform: uppercase;
+    font: 14px "Open Sans";
+    font-weight: lighter;
+    color: white;
+    background-color: $teal;
+    border-radius: 0px;
+    border-width: 0px;
+  }
+
+  .input-group {
+    width: 100%;
+    margin-top: 8px; /* align with Bootstrap's style for buttons*/
+  }
 }
 
 /* Map styles */
 #map {
   height: 100%;
   clear: both;
+
+
 }
 
 /* Map Popup styles */
@@ -109,14 +130,13 @@ h3 {
   .icon {
     padding: 3px;
   }
-}
 
-.list-group-item .badge {
+  .badge {
   background: none;
   font-weight: normal;
   color: black;
+  }
 }
-
 
 
 
