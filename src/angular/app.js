@@ -8,50 +8,81 @@ var servicesAdvisorApp = angular.module('servicesAdvisorApp', ['ngRoute', 'contr
 servicesAdvisorApp.config(['$routeProvider',
     function ($routeProvider) {
         $routeProvider.
+
+            // home is the category/region search page
             when('/', {
                 templateUrl: basePath + 'partials/search.html',
                 controller: 'SearchCtrl'
             }).
-            when('/results/:query', {
+
+            // once a category/region is click on, we display the results
+            when('/results', {
                 templateUrl: basePath + 'partials/search-results.html',
-                controller: 'SearchResultsCtrl'
+                controller: 'ResultsCtrl'
             }).
+
+            // when you click on a specific service in the result list
             when('/services/:serviceId', {
                 templateUrl: basePath + 'partials/service.html',
                 controller: 'ServiceCtrl'
             }).
+
+            // the special filters view
             when('/filters', {
                 templateUrl: basePath + 'partials/filters.html',
                 controller: 'FilterCtrl'
             });
     }]);
+/*** End Routing ***/
+
+
+
+
 
 
 /*** Services ***/
 var services = angular.module('services', ['ngResource']);
+
+/**
+ * Provides the list of services (compiled.json)
+ */
 services.factory('ServicesList', ['$resource', function ($resource) {
     return $resource('src/compiled.json', {}, {
         get: {method: 'GET', isArray: true, cache: true}
     });
 }]);
 
-
+/**
+ * Holds the state of the current search and the current results of that search
+ */
 services.factory('Search', ['ServicesList', function(ServicesList) {
     var allServices = ServicesList.get();
-    var search = null;
+
+    // search will contain the current search params.
+    // ex: { category: 'a', region: 'b', organization: 'c', query: 'd' }
+    var search = {};
 
     return {
         search: search,
         currResults: function () {
-            return allServices; // for now we don't actually filter
+            return allServices; // TODO: implement. Right now we don't return search results, just all the services
         }
     }
 }]);
 
+/*** End Services ***/
 
+
+
+
+
+/*** Controllers ***/
 var controllers = angular.module('controllers', []);
 
-controllers.controller('SearchCtrl', ['$scope', '$http', 'ServicesList', function ($scope, $http, ServicesList) {
+/**
+ * For the category/region search view
+ */
+controllers.controller('SearchCtrl', ['$scope', '$http', 'ServicesList', 'Search', function ($scope, $http, ServicesList, Search) {
 
     ServicesList.get(function (data) {
         $scope.services = data;
@@ -73,4 +104,18 @@ controllers.controller('SearchCtrl', ['$scope', '$http', 'ServicesList', functio
             return index
         });
     });
+
+    $scope.selectCategory = function (category) {
+        Search.search.category = category;
+    }
 }]);
+
+
+/**
+ * For the results view
+ */
+controllers.controller('ResultsCtrl', ['$scope', 'Search', function ($scope, Search) {
+    $scope.results = Search.currResults();
+}]);
+
+/*** End Controllers ***/
