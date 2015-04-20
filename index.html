@@ -5,7 +5,7 @@
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" ng-app="servicesAdvisorApp"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" ng-app="servicesAdvisorApp"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9" ng-app="servicesAdvisorApp"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" ng-app="servicesAdvisorApp"> <!--<![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" class="no-js" ng-app="servicesAdvisorApp"> <!--<![endif]-->
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,55 +14,54 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
         <link rel="stylesheet" href="css/main.css">
         <link rel="stylesheet" href="node_modules/mapbox.js/theme/style.css">
         <link rel="stylesheet" href="css/leaflet.awesome-markers.css">
         <link rel="stylesheet" href="humanfont/assets/css/font-humanitarian.css">
-        <link rel="stylesheet" href="selectusercontrolfont/font.css">
         <link rel="stylesheet" href="node_modules/leaflet.markercluster/dist/MarkerCluster.css">
         <link rel="stylesheet" href="node_modules/leaflet.markercluster/dist/MarkerCluster.Default.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     </head>
 
     <body>
-        <!-- IE7 warning - maybe take this out, it's probably unhelpful in this case -->
-        <!--[if lt IE 7]>
-            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
-        <div ng-view></div>
+        <!-- search navigation bar -->
+        <nav  id="searchNav" class="navbar navbar-fixed-top">
+          <div class="container-fluid">
+            
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">UNHCR Services Advisor</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <!-- <a class="navbar-brand" href="#">UNHCR</a> -->
+            </div>
 
+            <div id="navbar" class="navbar-collapse collapse">
+              <form class="navbar-form" role="search">
+                <button id="filters" type="button" class="btn btn-default navbar-btn col-xs-12 col-md-1 col-md-offset-2">Filters</button>
+                <div class="form-group col-xs-12 col-md-7">
+                  <div class="input-group">
+                    <input id="search" class="form-control" name="search" placeholder="search" autofocus="autofocus" type="text">
+                  </div>
+                </div>
+              </form>
+            </div><!--/.navbar-collapse -->
+
+          </div>
+        </nav>
+
+        <!-- Right navigation bar to select filters -->
         <main role="main">
-          <header class="map-actions clearfix">
-            <div id="search-map">
-              <a href="#map-filters">Search</a>
-            </div>
-            <div id="map-filters" class="filter-contents">
-              <div class="filter" id="activityName">
-                <h4><i class="icon-circle-arrow-right"></i> <span>Activity Category</span></h4>
-              </div>
-              <div class="filter" id="referralRequired">
-                <h4><i class="icon-circle-arrow-right"></i> <span>Referral required?</span></h4>
-              </div>
-              <div class="advanced-search">
-                <h4><i class="icon-circle-arrow-right"></i> <span>Advanced Search</span></h4>
-                <div class="filter" id="partnerName">
-                  <h4><span>Organizations</span></h4>
-                </div>
-                <div class="filter" id="proximity">
-                  <h4><i class="icon-circle-arrow-right"></i> <span>Proximity</span></h4>
-                </div>
-                <div class="filter" id="region">
-                    <h4><i class="icon-circle-arrow-right"></i> <span>Region</span></h4>
-                </div>
-              </div>
-            </div>
-            <div id="map-list-toggler">
-              <span id="mapToggle">Map</span><span id="listToggle">List</span>
-            </div>
-          </header>
-
-          <section id="map"><h3 class="hide">Map</h3></section>
-          <section id="list"></section>
+          <section id="map" class="col-sm-7 hidden-xs"><h3 class="hide">Map</h3></section>
+          <section id="serviceList" class ="col-xs-12 col-sm-5">           
+            <!-- IE7 warning - maybe take this out, it's probably unhelpful in this case -->
+            <!--[if lt IE 7]>
+                <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+            <![endif]-->
+            <div ng-view></div>
+          </section>
         </main>
 
         <!-- Include jquery -->
