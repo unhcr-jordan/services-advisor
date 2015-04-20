@@ -160,7 +160,7 @@ controllers.controller('SearchCtrl', ['$scope', '$http', '$location', 'ServicesL
  */
 controllers.controller('ResultsCtrl', ['$scope', 'Search', function ($scope, Search) {
     $scope.results = Search.currResults()
-
+    
     $scope.getOpeningTime = function(result){
         //define a variable to store the 'opening time'
         var openingTime = null;
@@ -170,9 +170,8 @@ controllers.controller('ResultsCtrl', ['$scope', 'Search', function ($scope, Sea
         if(timeObject){
             // Grabs the key value from the nested object which results in time in string
             openingTime = Object.keys(timeObject)[0];
-        } else {
-            openingTime = 'N/A';
-        }
+        } 
+
         return openingTime;
     }
 
@@ -184,10 +183,29 @@ controllers.controller('ResultsCtrl', ['$scope', 'Search', function ($scope, Sea
         if(timeObject){
             // Grabs the key value from the nested object which results in time in string
             closingTime = Object.keys(timeObject)[0];
-        } else {
-            closingTime = 'N/A';
-        }
+        } 
+
         return closingTime;
+    }
+
+    $scope.getActivityDetails = function(result){
+        //define a variable to store the 'closing time'
+        var activityDetails = null;
+        var activities = result.properties["indicators"];
+        // filters out the activites with zero count first
+        for(key in activities){
+            if(activities[key] === 0){
+               delete activities[key];
+            }
+        }
+        
+        // Run this if the office closing time exists 
+        if(activities){
+            // Grabs the key value from the nested object which results in time in string
+            activityDetails = Object.keys(activities)[0];
+        }
+        
+        return activityDetails;
     }
 }]);
 
