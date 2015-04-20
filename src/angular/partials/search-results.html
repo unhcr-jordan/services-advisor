@@ -1,51 +1,33 @@
-<ul>
-  <li ng-repeat="result in results">
-    <span>{{result}}</span>
-  </li>
+<!-- <ul>
+    <pre>{{ results | json}}</pre>
 </ul>
-
+ -->
 <!-- view when clicked once a category/region is click on -->
 
 <main role="main">
-  <div class="col-sm-7">
-    map goes here
-  </div>
-  <div class ="col-xs-12 col-sm-5"> 
+  <div class ="col-xs-12 col-sm-12"> 
     <button class="btn icon-large icon-angle-left"> back</button>
     <h4>Search Results</h4>
     <ul class="list-group">
 
+    <div ng-repeat="result in results">
       <a href="#" class="list-group-item">
         <div class="row media-body">
-          <h2 class="media-heading">Name on the list</h2>
+          <h2 class="media-heading">{{result.properties.locationName}}</h2>
           <img class="media-object pull-right" src="...">
         </div>
         <div class="row">
           <div class="col-xs-5">
             <h3>Hours</h3>
-          <p> Lorem Ipsum Dolor</p></div>
+          <p> {{ getOpeningTime(result) }} - {{ getClosingTime(result) }} </p></div>
           <div class="col-xs-7">
             <h3>Activity Details</h3>
-          <p> Lorem Ipsum Dolor</p></div>
+          <p> {{}}</p></div>
           <div></div>
         </div>
       </a>
+    </div>
 
-      <a href="#" class="list-group-item">
-        <div class="row media-body">
-          <h2 class="media-heading">Name on the list</h2>
-          <img class="media-object pull-right" src="...">
-        </div>
-        <div class="row">
-          <div class="col-xs-5">
-            <h3>Hours</h3>
-          <p> Lorem Ipsum Dolor</p></div>
-          <div class="col-xs-7">
-            <h3>Activity Details</h3>
-          <p> Lorem Ipsum Dolor</p></div>
-          <div></div>
-        </div>
-      </a>
 
     </ul>
   </div>

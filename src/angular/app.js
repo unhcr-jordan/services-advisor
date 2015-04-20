@@ -114,9 +114,7 @@ var controllers = angular.module('controllers', []);
 controllers.controller('SearchCtrl', ['$scope', '$http', '$location', 'ServicesList', 'Search', function ($scope, $http, $location, ServicesList, Search) {
 
     ServicesList.get(function (data) {
-        $scope.services = data;
         // Here we're going to extract the list of categories and display them in a simple template
-        
         // use an object to collect categories of services since object keys won't allow
         // for duplicates (this basically acts as a set)
         var categories = {};
@@ -126,7 +124,6 @@ controllers.controller('SearchCtrl', ['$scope', '$http', '$location', 'ServicesL
                 categories[category] = true;
             }
         });
-
         // now to get an array of categories we just map over the keys of the object
         $scope.categories = $.map(categories, function (element, index) {
             return index
@@ -162,7 +159,36 @@ controllers.controller('SearchCtrl', ['$scope', '$http', '$location', 'ServicesL
  * For the results view
  */
 controllers.controller('ResultsCtrl', ['$scope', 'Search', function ($scope, Search) {
-    $scope.results = Search.currResults();
+    $scope.results = Search.currResults()
+
+    $scope.getOpeningTime = function(result){
+        //define a variable to store the 'opening time'
+        var openingTime = null;
+
+        var timeObject = result.properties["8. Office Open at"];
+        // Run this if the office opening time exists 
+        if(timeObject){
+            // Grabs the key value from the nested object which results in time in string
+            openingTime = Object.keys(timeObject)[0];
+        } else {
+            openingTime = 'N/A';
+        }
+        return openingTime;
+    }
+
+    $scope.getClosingTime = function(result){
+        //define a variable to store the 'closing time'
+        var closingTime = null;
+        var timeObject = result.properties["9. Office close at"];
+        // Run this if the office closing time exists 
+        if(timeObject){
+            // Grabs the key value from the nested object which results in time in string
+            closingTime = Object.keys(timeObject)[0];
+        } else {
+            closingTime = 'N/A';
+        }
+        return closingTime;
+    }
 }]);
 
 /*** End Controllers ***/
