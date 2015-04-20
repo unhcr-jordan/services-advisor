@@ -1,32 +1,37 @@
-			<h1>UNHCR Services Advisor</h1>
-            <button id="mapButton" type="button" class="btn btn-default">
-              <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> Map
-            </button>
-            <h2>Heading 2</h2>
-            <h3>Heading 3</h3>
-            <p>
-              To find a service, select from the category or region below. Use the filter button above to further refine your search.
-            </p>
-
-            <h4>Category</h4>
-
-            <div class="list-group">
-              <!-- populating the catgories from the SearchCtrl  -->
-              <div ng-repeat="category in categories">
-                <a ng-click="selectCategory(category)" class="list-group-item">
-                  <span class="icon glyphicon glyphicon-star-empty"></span>
-                  {{category}}
-                  <span class="badge">14</span>
-                </a>
-              </div>
+      <div class="row">
+        <h1>UNHCR Services Advisor</h1>
+        <button id="mapButton" type="button" class="btn btn-default">
+          <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> Map
+        </button>
+        <h2>Heading 2</h2>
+        <h3>Heading 3</h3>
+        <p>
+          To find a service, select from the category or region below. Use the filter button above to further refine your search.
+        </p>
+      </div>
+      <div class="row">
+        <h4>Category</h4>
+        <div class="list-group">
+          <div ng-repeat="category in categories">
+            <a class="list-group-item">
+                {{category.name}} <span class="badge">{{category.count}}</span>
+            </a>
+            <div id="{{category.name}}Activities" class="activities">
+              <a ng-repeat="activity in category.activities" ng-click="selectCategory(activity.name)" class="list-group-item">
+                <span class="icon glyphicon glyphicon-star-empty"></span> {{activity.name}}
+                <span class="badge">{{activity.count}}</span>
+              </a>
             </div>
-
-            <h4>Region</h4>
-             <!-- populating the catgories from the SearchCtrl  -->
-              <div ng-repeat="region in regions">
-                <a href="#/results?region={{region}}" class="list-group-item">
-                  <span class="icon glyphicon glyphicon-star-empty"></span>
-                  {{region}}
-                  <span class="badge">14</span>
-                </a>
-              </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <h4>Region</h4>
+        <!-- populating the catgories from the SearchCtrl  -->
+        <div ng-repeat="region in regions">
+          <a href="#/results?region={{region}}" class="list-group-item">
+            <span class="icon glyphicon glyphicon-star-empty"></span> {{region.name}}
+            <span class="badge">{{region.count}}</span>
+          </a>
+        </div>
+      </div>
