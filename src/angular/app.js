@@ -115,9 +115,8 @@ controllers.controller('SearchCtrl', ['$scope', '$http', '$location', 'ServicesL
 
     ServicesList.get(function (data) {
         $scope.services = data;
-
         // Here we're going to extract the list of categories and display them in a simple template
-
+        
         // use an object to collect categories of services since object keys won't allow
         // for duplicates (this basically acts as a set)
         var categories = {};
@@ -130,6 +129,21 @@ controllers.controller('SearchCtrl', ['$scope', '$http', '$location', 'ServicesL
 
         // now to get an array of categories we just map over the keys of the object
         $scope.categories = $.map(categories, function (element, index) {
+            return index
+        });
+
+        // use an object to collect Regions of services since object keys won't allow
+        // for duplicates (this basically acts as a set)
+        var regions = {};
+        $.each(data, function (index, service) {
+            var region = service.properties.locationName;
+            if (region) {
+                regions[region] = true;
+            }
+        });
+
+        // now to get an array of regions we just map over the keys of the object
+        $scope.regions = $.map(regions, function (element, index) {
             return index
         });
     });
