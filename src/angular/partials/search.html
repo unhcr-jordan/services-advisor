@@ -1,8 +1,3 @@
-<ul>
-  <li ng-repeat="category in categories">
-    <a href="#/results?category={{category}}">{{category}}</a>
-  </li>
-</ul>
 
 <!-- search navigation bar -->
 <nav  id="searchNav" class="navbar navbar-fixed-top">
@@ -47,64 +42,27 @@
     </p>
 
     <h4>Category</h4>
-    
+
     <div class="list-group">
-      <a href="#" class="list-group-item">
-        <span class="icon glyphicon glyphicon-star-empty"></span>
-        Cras justo odio
-        <span class="badge">14</span>
-      </a>
-      <a href="#" class="list-group-item">
-        <span class="icon glyphicon glyphicon-star-empty"></span>
-        Dapibus ac facilisis in
-        <span class="badge">14</span>
-      </a>
-      <a href="#" class="list-group-item">
-        <span class="icon glyphicon glyphicon-star-empty"></span>
-        Morbi leo risus
-        <span class="badge">14</span>
-      </a>
-      <a href="#" class="list-group-item">
-        <span class="icon glyphicon glyphicon-star-empty"></span>
-        Porta ac consectetur ac
-        <span class="badge"></span>
-      </a>
-      <a href="#" class="list-group-item">
-        <span class="icon glyphicon glyphicon-star-empty"></span>
-        Vestibulum at eros
-        <span class="badge"></span>
-      </a>
+      <!-- populating the catgories from the SearchCtrl  -->
+      <div ng-repeat="category in categories">
+        <a href="#/results?category={{category}}" class="list-group-item">
+          <span class="icon glyphicon glyphicon-star-empty"></span>
+          {{category}}
+          <span class="badge">14</span>
+        </a>
+      </div>
     </div>
 
     <h4>Region</h4>
-    
-    <div class="list-group">
-      <a href="#" class="list-group-item">
-        <span class="icon glyphicon glyphicon-star-empty"></span>
-        Cras justo odio
-        <span class="badge"></span>
-      </a>
-      <a href="#" class="list-group-item">
-        <span class="icon glyphicon glyphicon-star-empty"></span>
-        Dapibus ac facilisis in
-        <span class="badge"></span>
-      </a>
-      <a href="#" class="list-group-item">
-        <span class="icon glyphicon glyphicon-star-empty"></span>
-        Morbi leo risus
-        <span class="badge"></span>
-      </a>
-      <a href="#" class="list-group-item">
-        <span class="icon glyphicon glyphicon-star-empty"></span>
-        Porta ac consectetur ac
-        <span class="badge"></span>
-      </a>
-      <a href="#" class="list-group-item">
-        <span class="icon glyphicon glyphicon-star-empty"></span>
-        Vestibulum at eros
-        <span class="badge"></span>
-      </a>
-    </div>
+     <!-- populating the catgories from the SearchCtrl  -->
+      <div ng-repeat="region in regions">
+        <a href="#/results?region={{region}}" class="list-group-item">
+          <span class="icon glyphicon glyphicon-star-empty"></span>
+          {{region}}
+          <span class="badge">14</span>
+        </a>
+      </div>
 
   </section>
 </main>
