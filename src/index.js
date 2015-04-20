@@ -19,6 +19,10 @@ require('./leaflet.awesome-markers.js');
 require('../node_modules/leaflet.markercluster/dist/leaflet.markercluster.js');
 // Select user location control
 require('./SelectUserLocationControl');
+
+// Angular app
+require('./angular/app.js');
+
 // File system
 var fs = require('fs');
 
