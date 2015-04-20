@@ -1,4 +1,3 @@
-
 <!-- search navigation bar -->
 <nav  id="searchNav" class="navbar navbar-fixed-top">
   <div class="container-fluid">
@@ -46,7 +45,7 @@
     <div class="list-group">
       <!-- populating the catgories from the SearchCtrl  -->
       <div ng-repeat="category in categories">
-        <a href="#/results?category={{category}}" class="list-group-item">
+        <a ng-click="selectCategory(category)" class="list-group-item">
           <span class="icon glyphicon glyphicon-star-empty"></span>
           {{category}}
           <span class="badge">14</span>
@@ -66,3 +65,4 @@
 
   </section>
 </main>
+
