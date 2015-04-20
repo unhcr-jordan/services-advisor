@@ -159,8 +159,14 @@ controllers.controller('SearchCtrl', ['$scope', '$http', '$location', 'ServicesL
  * For the results view
  */
 controllers.controller('ResultsCtrl', ['$scope', 'Search', function ($scope, Search) {
+    
+    // Filtered object based on the categories/regions 
     $scope.results = Search.currResults()
     
+    // the methods below serves to get the key value in the object between each ng-repeat loop. 
+    // The object is passed in from the view, manipulated then returned back.  
+
+    // gets the opening time of the service 
     $scope.getOpeningTime = function(result){
         //define a variable to store the 'opening time'
         var openingTime = null;
@@ -175,6 +181,7 @@ controllers.controller('ResultsCtrl', ['$scope', 'Search', function ($scope, Sea
         return openingTime;
     }
 
+    // gets the closing time of the service 
     $scope.getClosingTime = function(result){
         //define a variable to store the 'closing time'
         var closingTime = null;
@@ -188,6 +195,7 @@ controllers.controller('ResultsCtrl', ['$scope', 'Search', function ($scope, Sea
         return closingTime;
     }
 
+    // gets the activity details of the service 
     $scope.getActivityDetails = function(result){
         //define a variable to store the 'closing time'
         var activityDetails = null;
@@ -204,7 +212,7 @@ controllers.controller('ResultsCtrl', ['$scope', 'Search', function ($scope, Sea
             // Grabs the key value from the nested object which results in time in string
             activityDetails = Object.keys(activities)[0];
         }
-        
+
         return activityDetails;
     }
 }]);
