@@ -122,14 +122,23 @@ controllers.controller('SearchCtrl', ['$scope', '$http', '$location', 'ServicesL
         var categories = {};
         var regions = {};
         $.each(data, function (index, service) {
-            // add category to list, and increment counter of this category's available services
-            var category = service.properties.activityName;
+            // add activity and its category to list, and increment counter of this category's available services
+            var category = service.properties.activityCategory;
             if (category) {
                 if (categories[category] == null) {
-                    categories[category] = 0;
+                    categories[category] = {activities:{}, count: 0};
                 }
-                categories[category]++;
+                categories[category].count++;
+
+                var activity = service.properties.activityName;
+                if (activity) {
+                    if (categories[category].activities[activity] == null) {
+                        categories[category].activities[activity] = {name: activity, count: 0};
+                    }
+                    categories[category].activities[activity].count++;
+                }
             }
+            
             // add region to list, and increment counter of this region's available services
             var region = service.properties.locationName;
             if (region) {
@@ -142,7 +151,7 @@ controllers.controller('SearchCtrl', ['$scope', '$http', '$location', 'ServicesL
 
         // now to get an array of categories we just map over the keys of the object
         $scope.categories = $.map(categories, function (value, index) {
-            return {name: index, count: value};
+            return {name: index, count: value.count, activities: value.activities};
         });
 
         // now to get an array of regions we just map over the keys of the object
