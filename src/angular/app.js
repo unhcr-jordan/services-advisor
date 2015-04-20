@@ -55,25 +55,54 @@ services.factory('ServicesList', ['$resource', function ($resource) {
 /**
  * Holds the state of the current search and the current results of that search
  */
-services.factory('Search', ['ServicesList', function(ServicesList) {
-    var allServices = ServicesList.get();
+services.factory('Search', ['ServicesList', function (ServicesList) {
+    // asynchronously initialize crossfilter
+    ServicesList.get(function (allServices) {
+        crossfilter.add(allServices);
+    });
 
-    // search will contain the current search params.
-    // ex: { category: 'a', region: 'b', organization: 'c', query: 'd' }
-    var search = {};
+    /** Crossfilter Setup **/
+    var crossfilter = require('crossfilter')();
+
+    // TODO: not sure why they do || undefined, but previously they had "|| option.empty" where empty was never defined
+    var categoryDimension = crossfilter.dimension(function (f) {
+        return f.properties['activityName'] || undefined;
+    });
+    var referralDimension = crossfilter.dimension(function (f) {
+        return f.properties['Referral required'] || undefined;
+    });
+    var partnerDimension = crossfilter.dimension(function (f) {
+        return f.properties['partnerName'] || undefined;
+    });
+
+    // TODO: not sure if we need this anymore
+    var proximityDimension = crossfilter.dimension(function (f) {
+        return f.geometry.coordinates[0] + "," + f.geometry.coordinates[1] || "";
+    });
+
+    var regionDimension = crossfilter.dimension(function (f) {
+        return f.geometry.coordinates[0] + "," + f.geometry.coordinates[1] || "";
+    });
+
+    /** Used to get list of currently filtered services rather than re-using an existing dimension **/
+    var metaDimension = crossfilter.dimension(function (f) { return f.properties.activityName; });
+
+    /** End crossfilter setup **/
+
 
     return {
-        search: search,
+        selectCategory: function (category) {
+            categoryDimension.filter(function(service) {
+                return service == category;
+            });
+        },
         currResults: function () {
-            return allServices; // TODO: implement. Right now we don't return search results, just all the services
+            return metaDimension.top(Infinity);
         }
     }
 }]);
 
 /*** End Services ***/
-
-
-
 
 
 /*** Controllers ***/
@@ -82,7 +111,7 @@ var controllers = angular.module('controllers', []);
 /**
  * For the category/region search view
  */
-controllers.controller('SearchCtrl', ['$scope', '$http', 'ServicesList', 'Search', function ($scope, $http, ServicesList, Search) {
+controllers.controller('SearchCtrl', ['$scope', '$http', '$location', 'ServicesList', 'Search', function ($scope, $http, $location, ServicesList, Search) {
 
     ServicesList.get(function (data) {
         $scope.services = data;
@@ -105,8 +134,12 @@ controllers.controller('SearchCtrl', ['$scope', '$http', 'ServicesList', 'Search
         });
     });
 
+    /**
+     * When the user clicks on a category, we filter by that category and then navigate to the results view
+     */
     $scope.selectCategory = function (category) {
-        Search.search.category = category;
+        Search.selectCategory(category);
+        $location.path("/results")
     }
 }]);
 

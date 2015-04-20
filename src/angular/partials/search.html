@@ -1,5 +1,5 @@
 <ul>
   <li ng-repeat="category in categories">
-    <a href="#/results?category={{category}}">{{category}}</a>
+    <a ng-click="selectCategory(category)">{{category}}</a>
   </li>
 </ul>
