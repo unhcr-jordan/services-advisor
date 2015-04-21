@@ -174,7 +174,62 @@ controllers.controller('SearchCtrl', ['$scope', '$http', '$location', 'ServicesL
  * For the results view
  */
 controllers.controller('ResultsCtrl', ['$scope', 'Search', function ($scope, Search) {
-    $scope.results = Search.currResults();
+    
+    // Filtered object based on the categories/regions 
+    $scope.results = Search.currResults()
+    
+    // the methods below serves to get the key value in the object between each ng-repeat loop. 
+    // The object is passed in from the view, manipulated then returned back.  
+
+    // gets the opening time of the service 
+    $scope.getOpeningTime = function(result){
+        //define a variable to store the 'opening time'
+        var openingTime = null;
+
+        var timeObject = result.properties["8. Office Open at"];
+        // Run this if the office opening time exists 
+        if(timeObject){
+            // Grabs the key value from the nested object which results in time in string
+            openingTime = Object.keys(timeObject)[0];
+        } 
+
+        return openingTime;
+    }
+
+    // gets the closing time of the service 
+    $scope.getClosingTime = function(result){
+        //define a variable to store the 'closing time'
+        var closingTime = null;
+        var timeObject = result.properties["9. Office close at"];
+        // Run this if the office closing time exists 
+        if(timeObject){
+            // Grabs the key value from the nested object which results in time in string
+            closingTime = Object.keys(timeObject)[0];
+        } 
+
+        return closingTime;
+    }
+
+    // gets the activity details of the service 
+    $scope.getActivityDetails = function(result){
+        //define a variable to store the 'closing time'
+        var activityDetails = null;
+        var activities = result.properties["indicators"];
+        // filters out the activites with zero count first
+        for(key in activities){
+            if(activities[key] === 0){
+               delete activities[key];
+            }
+        }
+        
+        // Run this if the office closing time exists 
+        if(activities){
+            // Grabs the key value from the nested object which results in time in string
+            activityDetails = Object.keys(activities)[0];
+        }
+
+        return activityDetails;
+    }
 }]);
 
 /*** End Controllers ***/
