@@ -212,8 +212,8 @@ controllers.controller('ResultsCtrl', ['$scope', 'Search', function ($scope, Sea
 
     // gets the activity details of the service 
     $scope.getActivityDetails = function(result){
-        //define a variable to store the 'closing time'
-        var activityDetails = null;
+        // Define a default variable value for activity details
+        var activityDetails = ["Unknown"];
         var activities = result.properties["indicators"];
         // filters out the activites with zero count first
         for(key in activities){
@@ -221,12 +221,10 @@ controllers.controller('ResultsCtrl', ['$scope', 'Search', function ($scope, Sea
                delete activities[key];
             }
         }
-        
-        // Run this if the office closing time exists 
-        if(activities){
-            // Grabs the key value from the nested object which results in time in string
-            activityDetails = Object.keys(activities)[0];
-        }
+        // if the activity exists we'll assign it to the store variable
+        if(Object.keys(activities).length > 0){
+             activityDetails = Object.keys(activities);
+        } 
 
         return activityDetails;
     }
