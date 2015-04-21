@@ -230,4 +230,7 @@ controllers.controller('ResultsCtrl', ['$scope', 'Search', function ($scope, Sea
     }
 }]);
 
+controllers.controller('NavbarCtrl', ['$scope', function ($scope) {}]);
+
+
 /*** End Controllers ***/
