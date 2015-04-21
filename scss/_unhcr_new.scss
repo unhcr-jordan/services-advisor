@@ -146,6 +146,51 @@ h3 {
   #mapButton {
     float: right;
   }
+
+  #backButton {
+    margin-top: 10px;
+  }
+}
+
+#serviceDetails {
+  background-color: $grey-light;
+  border-radius: 0px;
+  border: 0px;
+  padding: 10px;
+
+  div.col-xs-6 {
+    background-color: white;
+    padding: 5px;
+
+    &:first-child {
+      border-right: 10px solid $grey-light;
+    }
+    &:last-child {
+      border-left: 10px solid $grey-light;
+      margin-bottom: 20px;
+    }
+  }
+
+  .row {
+    margin: 0px;
+    background-color: $grey-light;
+  }  
+
+  table {
+    margin-bottom: 0px; 
+
+    td {
+      border-top: 0px;
+
+      &:first-child {
+        font-weight: bold;
+      }
+    }
+
+    tbody>tr:nth-of-type(odd) {
+      background-color: white;
+    }
+  }
 }
 
 
