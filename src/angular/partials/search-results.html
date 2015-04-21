@@ -26,7 +26,9 @@
             <!-- activites detail section -->
             <div class="col-xs-7">
               <h3>Activity Details</h3>
-              <p> {{ getActivityDetails(result) || 'N/A' }}</p>
+              <div ng-repeat="activity in getActivityDetails(result)">
+                <p> {{ activity }}</p>
+              </div>
             </div>
               
           </div><!--  /row  -->
