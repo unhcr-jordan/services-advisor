@@ -47,3 +47,17 @@ Files:
    - split
    - vinyl-source-stream
    - watchify
+
+# How Services Data Is Loaded and Translated
+- `cat src/sources.txt | src/getJSON.js`
+  - this will call all the urls in `sources.txt` and then concatenate all the json responses into `compiled.json`
+  - NOTE: right now all those urls 500
+- `node src/LoadJSON.js`
+  - this takes the json from `compiled.json` and removes all the `comments` fields (which aren't translated) to output `compileTruncated.json`
+- `node src/ParseEn_AR_JSON.js`
+  - uses `data.csv` to regex replace the English strings in `compileTruncated.json` with their Arabic translations. This outputs `compiled_AR.json`.
+
+## Arabic Site (http://data.unhcr.org/jordan/services-advisor/index_AR.html)
+- uses a modified `index.html` with Arabic translations
+- this in turn requires `app_AR.js` instead of `app.js`
+- `app_AR.js` loads `compiled_AR.json`
