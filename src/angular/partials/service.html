@@ -1,3 +1,4 @@
+      <div data-ng-controller="ServiceCtrl"> <!-- Have to add this div for adding controller-->
       <div class="row">
           <button id="backButton" type="button" class="btn btn-default" href="/">
             <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span> BACK
@@ -5,7 +6,7 @@
       </div>
       <div class="row">
         <div class="col-xs-8">
-        <h1>Irbid Governorate: Education for children with disabilities</h1>
+        <h1>{{service.locationName}}: {{service.activityName}}</h1>
         </div>
         <div class="col-xs-4">
           <img class="media-object pull-right" src="/src/images/acted.jpg" />
@@ -16,41 +17,34 @@
           <div class="row">
             <div class="col-xs-6">
               <h2>Hours</h2>
-              <p>Open at 8:30</p>
+              <p data-ng-repeat="hour in hours">Open at {{hour}}</p>
             </div>
             <div class="col-xs-6">
-              <h2>Acitivity Details</h2>
-              <p>Teachers training. Provision of transportation and equipment & recreational activities</p>
+              <h2>Activity Details</h2>
+              <p>{{service.activityDetails}}</p>
             </div>
           </div>
           <div class="table-responsive">
             <table class="table table-striped">
               <tbody>
                 <tr>
-                  <td class="col-xs-4">Referral Method</td>
-                  <td>Email on a per case basis</td>
+                  <td class="col-xs-4">Start Date</td>
+                  <td>{{service.startDate}}</td>
                 </tr>
                 <tr>
-                  <td>Intake Criteria</td>
-                  <td>Disability</td>
+                  <td>End Date</td>
+                  <td>{{service.endDate}}</td>
                 </tr>
-                <tr>
-                  <td>Availability Day</td>
-                  <td>Sun-Thurs</td>
-                </tr>
-                <tr>
-                  <td>Accessibility</td>
-                  <td>Outreach</td>
-                </tr>
-                <tr>
-                  <td>Feedback delay</td>
-                  <td>Delay One day</td>
-                </tr>
-                <tr>
-                  <td>Availability</td>
-                  <td>Every Day</td>
+                <!--<tr>
+                  <td></td>
+                  <td></td>
+                </tr> -->
+                <tr data-ng-repeat="property in service.properties">
+                  <td>{{property.key}}</td>
+                  <td>{{property.value}}</td>
                 </tr>
               </tbody>
             </table>
+            <a target="_blank" href="https://www.syrianrefugeeresponse.org/resources/sites/points?feature={{service.id}}">Show on ActivityInfo</a>
           </div>
       </div>

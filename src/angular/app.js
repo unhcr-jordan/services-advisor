@@ -89,6 +89,7 @@ services.factory('Search', ['ServicesList', function (ServicesList) {
 
     /** End crossfilter setup **/
 
+    var servicesById;
 
     return {
         selectCategory: function (category) {
@@ -98,6 +99,12 @@ services.factory('Search', ['ServicesList', function (ServicesList) {
         },
         currResults: function () {
             return metaDimension.top(Infinity);
+        },
+        setServicesById: function (servicesById) {
+        	this.servicesById = servicesById;
+        },
+        getServicesById: function () {
+        	return this.servicesById;
         }
     }
 }]);
@@ -121,6 +128,7 @@ controllers.controller('SearchCtrl', ['$scope', '$http', '$location', 'ServicesL
         // for duplicates (this basically acts as a set)
         var categories = {};
         var regions = {};
+        var servicesById = {};
         $.each(data, function (index, service) {
             // add activity and its category to list, and increment counter of this category's available services
             var category = service.properties.activityCategory;
@@ -147,6 +155,14 @@ controllers.controller('SearchCtrl', ['$scope', '$http', '$location', 'ServicesL
                 }
                 regions[region]++;
             }
+
+            var id = service.id;
+			if(id) {
+				if(servicesById[id] == null) {
+					servicesById[id] = service;
+				}
+//				servicesById[id]++;
+			}
         });
 
         // now to get an array of categories we just map over the keys of the object
@@ -158,6 +174,11 @@ controllers.controller('SearchCtrl', ['$scope', '$http', '$location', 'ServicesL
         $scope.regions = $.map(regions, function (value, index) {
             return {name: index, count: value};
         });
+
+        $scope.services = $.map(servicesById, function (value, index) {
+            return {id: index, service: value};
+        });
+        Search.setServicesById(servicesById);
     });
 
     /**
@@ -173,7 +194,7 @@ controllers.controller('SearchCtrl', ['$scope', '$http', '$location', 'ServicesL
 /**
  * For the results view
  */
-controllers.controller('ResultsCtrl', ['$scope', 'Search', function ($scope, Search) {
+controllers.controller('ResultsCtrl', ['$scope', 'Search', '$location',  function ($scope, Search, $location) {
     
     // Filtered object based on the categories/regions 
     $scope.results = Search.currResults()
@@ -228,9 +249,64 @@ controllers.controller('ResultsCtrl', ['$scope', 'Search', function ($scope, Sea
 
         return activityDetails;
     }
+
+    $scope.setServiceId = function (serviceId) {
+    	// var url = '/#/services/' + serviceId;
+    	$location.path('/services/' + serviceId);
+    }
 }]);
 
 controllers.controller('NavbarCtrl', ['$scope', function ($scope) {}]);
 
+controllers.controller('ServiceCtrl', ['$scope', '$routeParams', 'Search', function($scope, $routeParams, Search) {
+	var servicesById = Search.getServicesById();
+	if(servicesById) {
+        var service = servicesById[$routeParams.serviceId];
+        $scope.service = {};
+        $scope.service.id = service.id;
+        $scope.service.locationName = service.properties.locationName;
+        $scope.service.partnerName = service.properties.partnerName;
+        $scope.service.comments = service.properties.comments;
+        $scope.service.activityCategory = service.properties.activityCategory;
+        $scope.service.activityName = service.properties.activityName;
+        $scope.service.startDate = service.properties.startDate;
+        $scope.service.endDate = service.properties.endDate;
+        $.each(service.properties.indicators, function(index, value) {
+            if(value) {
+                $scope.service.activityDetails = index;
+            }
+        });
+        var propList = new Array();
+        $scope.hours = new Array();
+        $.each(service.properties, function(index, value) {
+            var tempArray = new Array();
+            tempArray = index.split(".");
+            if(index != 'comments' && tempArray.length > 1) {
+                if($.isNumeric(tempArray[0])) {
+                    //TODO: Let's see if we can print it from index rather than creating new object for it again.
+                    var obj = {};
+                    var level = parseInt(tempArray[0], 10);
+                    if(level != 8) {
+                        obj.key = $.trim(tempArray[1]);
+                        $.each(service.properties[index], function(index, value) {
+                            if(value) {
+                                obj.value = index;
+                            }
+                        });
+                        propList[level] = obj;
+                    } else {
+                        $.each(service.properties[index], function(index, value) {
+                            if(value) {
+                                $scope.hours.push(index);
+                            }
+                        });
+                    }
+                }
+            }
+        });
+        propList = $.grep(propList, function(n){ return(n) });
+        $scope.service.properties = propList;
+    }
+}]);
 
 /*** End Controllers ***/
