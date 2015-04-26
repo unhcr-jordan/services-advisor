@@ -15,6 +15,10 @@ $brown-light: #e6c68b;
 $header-bg-color: $grey-dark;
 
 $navbar-height: 50px;
+$checkbox-height: 30px;
+
+/** From Bootstrap **/
+$screen-md-min: 992px;
 
 
 /* Basics */
@@ -47,6 +51,14 @@ h3 {
   text-transform: uppercase;
 }
 
+.btn-secondary {
+    font: 14px "Open Sans";
+    font-weight: lighter;
+    color: white;
+    background-color: $teal;
+    border-radius: 0px;
+}
+
 
 /* Utilities */
 .clearfix {
@@ -62,25 +74,59 @@ h3 {
   background-color: $dark-blue;
   min-height: $navbar-height;
 
-  .form-group {
-    //padding: 0px;
-  }
-
-  .btn {
-    text-transform: uppercase;
-    font: 14px "Open Sans";
-    font-weight: lighter;
-    color: white;
-    background-color: $teal;
+  input {
     border-radius: 0px;
-    border-width: 0px;
-  }
-
-  .input-group {
     width: 100%;
-    margin-top: 8px; /* align with Bootstrap's style for buttons*/
   }
 }
+
+/* Filters */
+#filterForm {
+  padding: 10px;
+}
+
+#filters {
+  @media (min-width: $screen-md-min) {
+    position: absolute;
+    top: 44px;
+    left: 17vw;
+    z-index: 9999;
+    background-color: white;
+  }
+
+  label {
+    text-align: left;
+    font-size: 12px;
+    background-color: $grey-light;
+    border: 2px solid white;
+
+    padding: 12px;
+
+    @media (min-width: $screen-md-min) {
+      &:nth-of-type(odd) {
+        border-right-width: 10px;
+      }
+      &:nth-of-type(even) {
+        border-left-width: 10px;
+      }
+    }    
+
+    div.pull-right {
+      margin: -10px -5px -5px;
+
+      img {
+        margin-top: -15px;
+      }
+
+      input[type=checkbox] {
+        height: $checkbox-height;
+        width: $checkbox-height;
+      }
+    }
+  }
+}
+
+
 
 /* Map styles */
 #map {
