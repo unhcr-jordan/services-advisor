@@ -12,7 +12,7 @@
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="css/normalize.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="node_modules/mapbox.js/theme/style.css">
   <link rel="stylesheet" href="css/leaflet.awesome-markers.css">
@@ -27,6 +27,9 @@
 
   <!-- Right navigation bar to select filters -->
   <main role="main">
+    <div id="filters" class="col-xs-12 col-md-8 hidden">
+      <ng-include src="'/src/angular/partials/filters.html'"></ng-include>
+    </div>
     <section id="map" class="col-sm-7 hidden-xs">
       <h3 class="hide">Map</h3>
     </section>
@@ -51,7 +54,8 @@
   <!-- Include jquery -->
   <script>
   window.jQuery || document.write('<script src="node_modules/jquery/dist/jquery.min.js"><\/script>')
-  </script>
+  </script>  
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
   <!-- on production, use the below script instead of the local version -->
   <!--<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>-->
   <!-- TODO: include all these files in app.js -->
