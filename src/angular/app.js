@@ -1,4 +1,5 @@
 
+
 // Register App Modules
 require('./register.module.js');
  
@@ -8,8 +9,11 @@ require('./Routes/routes.js');
 require('./services/serviceslist.js');
 require('./services/search.js');
 // Controllers 
-require('./Controllers/search.controller.js');
-require('./Controllers/results.controller.js');
-require('./Controllers/navbar.controller.js');
-require('./Controllers/map.controller.js');
-require('./Controllers/service.controller.js');
+require('./controllers/search.controller.js');
+require('./controllers/results.controller.js');
+require('./controllers/navbar.controller.js');
+require('./controllers/map.controller.js');
+require('./controllers/service.controller.js');
+
+// Translations
+require('./Translations/translations.config.js')

@@ -1,7 +1,8 @@
       <div data-ng-controller="ServiceCtrl"> <!-- Have to add this div for adding controller-->
       <div class="row">
           <button id="backButton" type="button" class="btn btn-default" href="/">
-            <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span> BACK
+            <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span> 
+            {{ 'BACK' | translate }}
           </button>
       </div>
       <div class="row">
@@ -16,11 +17,11 @@
         <div class="panel-body">
           <div class="row">
             <div class="col-xs-6">
-              <h2>Hours</h2>
+              <h2>{{ 'HOURS' | translate }}</h2>
               <p data-ng-repeat="hour in hours">Open at {{hour}}</p>
             </div>
             <div class="col-xs-6">
-              <h2>Activity Details</h2>
+              <h2>{{ 'ACTIVITY_DETAILS' | translate }}</h2>
               <p>{{service.activityDetails}}</p>
             </div>
           </div>
@@ -28,11 +29,11 @@
             <table class="table table-striped">
               <tbody>
                 <tr>
-                  <td class="col-xs-4">Start Date</td>
+                  <td class="col-xs-4">{{ 'START_DATE' | translate }}</td>
                   <td>{{service.startDate}}</td>
                 </tr>
                 <tr>
-                  <td>End Date</td>
+                  <td>{{ 'END_DATE' | translate }}</td>
                   <td>{{service.endDate}}</td>
                 </tr>
                 <!--<tr>
@@ -45,6 +46,6 @@
                 </tr>
               </tbody>
             </table>
-            <a target="_blank" href="https://www.syrianrefugeeresponse.org/resources/sites/points?feature={{service.id}}">Show on ActivityInfo</a>
+            <a target="_blank" href="https://www.syrianrefugeeresponse.org/resources/sites/points?feature={{service.id}}">{{ 'SHOW_ON_ ACTIVITYINFO' | translate }}</a>
           </div>
       </div>

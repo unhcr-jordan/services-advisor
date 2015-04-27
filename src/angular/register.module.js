@@ -2,7 +2,7 @@
 // with their dependencies
 
 /*** Routes ***/
-angular.module('servicesAdvisorApp', ['ngRoute', 'controllers', 'services']);
+angular.module('servicesAdvisorApp', ['ngRoute', 'controllers', 'services', 'pascalprecht.translate']);
 
 /*** Services ***/
 angular.module('services', ['ngResource']);

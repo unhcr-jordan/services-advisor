@@ -8,7 +8,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title></title>
+  <title>{{ 'APP_NAME' | translate }}</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="css/normalize.css">
@@ -30,9 +30,7 @@
     <div id="filters" class="col-xs-12 col-md-8 hidden">
       <ng-include src="'/src/angular/Views/filters.html'"></ng-include>
     </div>
-    <section id="map" class="col-sm-7 hidden-xs" ng-controller="MapCtrl">
-      <h3 class="hide">Map</h3>
-    </section>
+    <section id="map" class="col-sm-7 hidden-xs" ng-controller="MapCtrl"></section>
     <section id="serviceList" class="col-xs-12 col-sm-5">
       <!-- IE7 warning - maybe take this out, it's probably unhelpful in this case -->
       <!--[if lt IE 7]>
@@ -62,6 +60,7 @@
   <script src="bower_components/angular/angular.js"></script>
   <script src="bower_components/angular-route/angular-route.js"></script>
   <script src="bower_components/angular-resource/angular-resource.js"></script>
+  <script src="bower_components/angular-translate/angular-translate.min.js"></script>
   <!-- app.js is the main, browserified, minified application JS for the UNHCR map. -->
   <script src="js/app.js"></script>
   <!-- Google Analytics, in case we need it: change UA-XXXXX-X to be your site's ID. -->

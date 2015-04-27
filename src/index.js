@@ -24,7 +24,6 @@ require('./SelectUserLocationControl');
 // Angular app
 
 
-
 // File system
 var fs = require('fs');
 
