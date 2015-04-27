@@ -11,25 +11,25 @@ servicesAdvisorApp.config(['$routeProvider',
 
             // home is the category/region search page
             when('/', {
-                templateUrl: basePath + 'partials/search.html',
+                templateUrl: basePath + 'Views/search.html',
                 controller: 'SearchCtrl'
             }).
 
             // once a category/region is click on, we display the results
             when('/results', {
-                templateUrl: basePath + 'partials/search-results.html',
+                templateUrl: basePath + 'Views/search-results.html',
                 controller: 'ResultsCtrl'
             }).
 
             // when you click on a specific service in the result list
             when('/services/:serviceId', {
-                templateUrl: basePath + 'partials/service.html',
+                templateUrl: basePath + 'Views/service.html',
                 controller: 'ServiceCtrl'
             }).
 
             // the special filters view
             when('/filters', {
-                templateUrl: basePath + 'partials/filters.html',
+                templateUrl: basePath + 'Views/filters.html',
                 controller: 'FilterCtrl'
             });
     }]);
