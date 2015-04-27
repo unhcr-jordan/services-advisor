@@ -23,7 +23,10 @@ require('../node_modules/leaflet.markercluster/dist/leaflet.markercluster.js');
 require('./SelectUserLocationControl');
 
 // Angular app
+    // Routes
+    require('./angular/Routes/routes.js');
 require('./angular/app.js');
+
 
 // File system
 var fs = require('fs');
