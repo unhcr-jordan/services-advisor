@@ -1,41 +1,44 @@
 <!-- view when clicked once a category/region is click on -->
 
-<main role="main" data-ng-controller="ResultsCtrl">
-  <div class ="col-xs-12 col-sm-12"> 
-    <button class="btn icon-large icon-angle-left"> back</button>
-    <h4>Search Results</h4>
-    <ul class="list-group">
+      <div data-ng-controller="ResultsCtrl">
+        <div class ="col-xs-12 col-sm-12"> 
+          <button id="backButton" type="button" class="btn btn-default" href="/">
+            <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span> 
+            {{ 'BACK' | translate }}
+          </button>
+          <h4>{{ 'SEARCH_RESULTS' | translate }}</h4>
+          <ul class="list-group">
 
-      <div ng-repeat="result in results">
-        <a href="#" class="list-group-item" ng-href="#/services/{{result.id}}">
-          
-          <!-- location name section -->
-          <div class="row media-body">
-            <h2 class="media-heading">{{result.properties.locationName}}</h2>
-            <img class="media-object pull-right" src="...">
-          </div>
+            <div ng-repeat="result in results">
+              <a href="#" class="list-group-item" ng-href="#/services/{{result.id}}">
+                
+                <!-- location name section -->
+                <div class="row media-body">
+                  <h2 class="media-heading">{{result.properties.locationName}}</h2>
+                  <img class="media-object pull-right" src="...">
+                </div>
 
-          <div class="row">
+                <div class="row">
 
-            <!-- hours section -->
-            <div class="col-xs-5">
-              <h3>Hours</h3>
-              <p> {{ getOpeningTime(result) || 'N/A'}} - {{ getClosingTime(result) || 'N/A' }} </p>
+                  <!-- hours section -->
+                  <div class="col-xs-5">
+                    <h3>{{ 'HOURS' | translate }}</h3>
+                    <p> {{ getOpeningTime(result) || 'N/A' }} - {{ getClosingTime(result) || 'N/A' }} </p>
+                  </div>
+
+                  <!-- activites detail section -->
+                  <div class="col-xs-7">
+                    <h3>{{ 'ACTIVITY_DETAILS' | translate }}</h3>
+                    <div ng-repeat="activity in getActivityDetails(result)">
+                      <p> {{ activity }}</p>
+                    </div>
+                  </div>
+                    
+                </div><!--  /row  -->
+              </a> <!-- /list-group-items -->
             </div>
 
-            <!-- activites detail section -->
-            <div class="col-xs-7">
-              <h3>Activity Details</h3>
-              <div ng-repeat="activity in getActivityDetails(result)">
-                <p> {{ activity }}</p>
-              </div>
-            </div>
-              
-          </div><!--  /row  -->
-        </a> <!-- /list-group-items -->
+          </ul>
+
+        </div>
       </div>
-
-    </ul>
-
-  </div>
-</main>

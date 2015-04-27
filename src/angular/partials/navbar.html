@@ -17,13 +17,13 @@
         <form class="navbar-form" role="search">
           <button id="filtersButton" type="button" class="btn btn-secondary col-xs-12 col-md-1 col-md-offset-2"
               onclick="javascript:$('#filters').toggleClass('hidden');">
-            Filters
+            {{ 'FILTERS' | translate }}
           </button>
           <div class="form-group col-xs-12 col-md-6">
-            <input type="text" class="form-control" placeholder="search">
+            <input id="searchInput" type="text" class="form-control" placeholder="{{ 'SEARCH' | translate }}">
           </div>
-          <button id="clearFilters" type="button" class="btn btn-secondary col-xs-12 col-md-1">
-            <span class="glyphicon glyphicon-remove"></span> Clear
+          <button id="clearFilters" type="button" class="btn btn-secondary col-xs-12 col-md-1 hidden">
+            <span class="glyphicon glyphicon-remove"></span> {{ 'CLEAR' | translate }}
           </button>
         </form>
       </div><!-- /.navbar-collapse -->
