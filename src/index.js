@@ -27,6 +27,9 @@ require('./SelectUserLocationControl');
     require('./angular/register.module.js');
     // Routes
     require('./angular/Routes/routes.js');
+    // Services 
+    require('./angular/services/serviceslist.js');
+    require('./angular/services/search.js');
 
 
 require('./angular/app.js');
