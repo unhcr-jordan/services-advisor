@@ -23,8 +23,12 @@ require('../node_modules/leaflet.markercluster/dist/leaflet.markercluster.js');
 require('./SelectUserLocationControl');
 
 // Angular app
+    // Register App Modules 
+    require('./angular/register.module.js');
     // Routes
     require('./angular/Routes/routes.js');
+
+
 require('./angular/app.js');
 
 
