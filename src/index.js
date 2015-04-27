@@ -10,9 +10,8 @@ var $ = require('jquery'),
     categoryFilter = require("./CategoryFilter"),
     proximityFilter = require("./ProximityFilter"),
     regionFilter = require("./RegionFilter"),
-    UserLocation = require('./UserLocation'),
-    path = require('path'),
-    glob = require('glob');
+    UserLocation = require('./UserLocation');
+
 // Mapbox doesn't need its own var - it automatically attaches to Leaflet's L.
 require('mapbox.js');
 // Use Awesome Markers lib to produce font-icon map markers
@@ -21,8 +20,9 @@ require('./leaflet.awesome-markers.js');
 require('../node_modules/leaflet.markercluster/dist/leaflet.markercluster.js');
 // Select user location control
 require('./SelectUserLocationControl');
-
+var test = '/register.module.js'
 // Angular app
+
     // Register App Modules 
     require('./angular/register.module.js');
     // Routes
@@ -30,9 +30,12 @@ require('./SelectUserLocationControl');
     // Services 
     require('./angular/services/serviceslist.js');
     require('./angular/services/search.js');
+    // Controllers 
+    require('./angular/Controllers/search.controller.js');
+    require('./angular/Controllers/results.controller.js');
+    require('./angular/Controllers/navbar.controller.js');
 
-
-require('./angular/app.js');
+// require('./angular/app.js');
 
 
 // File system
