@@ -19,11 +19,11 @@ gulp.task('default', ['watch']);
 gulp.task('watch', ['watchify', 'sass'], function() {
   gutil.log('running sass');
   gulp.watch('./scss/*.scss', ['sass']);
-    gulp.watch('./src/angular/*.js', ['watchify']);
+    //gulp.watch('./src/angular/*.js', ['watchify']);
 });
 
 gulp.task('watchify', function () {
-    var bundler = watchify('./src/index.js');
+    var bundler = watchify('./src/angular/app.js');
 
     bundler.on('update', rebundle);
     bundler.on('log', gutil.log);

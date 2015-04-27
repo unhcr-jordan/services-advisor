@@ -1,13 +1,13 @@
 <!-- view when clicked once a category/region is click on -->
 
-<main role="main">
+<main role="main" data-ng-controller="ResultsCtrl">
   <div class ="col-xs-12 col-sm-12"> 
     <button class="btn icon-large icon-angle-left"> back</button>
     <h4>Search Results</h4>
     <ul class="list-group">
 
       <div ng-repeat="result in results">
-        <a href="#" class="list-group-item">
+        <a href="#" class="list-group-item" ng-href="#/services/{{result.id}}">
           
           <!-- location name section -->
           <div class="row media-body">
