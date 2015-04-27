@@ -166,6 +166,9 @@ h3 {
 
 /* Sidebar */
 #serviceList {
+  height: 94vh; /* compensate for the scroll buttons */
+  overflow-y: scroll;
+
   .list-group {
     :first-child, 
     :last-child {  
