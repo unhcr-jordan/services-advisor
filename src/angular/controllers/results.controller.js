@@ -1,6 +1,5 @@
 var controllers = angular.module('controllers');
 
-
 /**
  * For the results view
  */
