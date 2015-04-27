@@ -1,7 +1,7 @@
       <form id="filterForm" class="form-horizontal">
         <div class="form-group">
           <label for="inputReferral" class="col-xs-12 col-md-6 control-label">
-            Referral Required?
+            {{ 'REFERRAL_REQUIRED' | translate }}?
             <div class="pull-right">
               <input type="checkbox" id="inputReferral" value="">
             </div>
@@ -10,16 +10,16 @@
             <div class="pull-right">
               <button id="cancelFilter" type="button" class="btn btn-secondary"
                     onclick="javascript:$('#filters').addClass('hidden');">
-                Cancel
+                {{ 'CANCEL' | translate }}
               </button>
               <button id="applyFilter" type="button" class="btn btn-secondary"
                     onclick="javascript:$('#filters').addClass('hidden');">
-                Apply
+                {{ 'APPLY' | translate }}
               </button>
             </div>
           </div>
         </div>
-        <h3>Organizations</h3>
+        <h3>{{ 'ORGANIZATIONS' | translate }}</h3>
         <div class="form-group">
           <label for="inputReferral" class="col-xs-12 col-md-6 control-label">
             Unicef
@@ -57,7 +57,7 @@
             </div>
           </label>
         </div>
-        <h3>Distance</h3>
+        <h3>{{ 'DISTANCE' | translate }}</h3>
         <div class="form-group">    
           <label for="inputReferral" class="col-xs-12 col-md-6 control-label">
             Unicef
