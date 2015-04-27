@@ -1,12 +1,16 @@
 var services = angular.module('services');
 
+
 /**
  * Holds the state of the current search and the current results of that search
  */
-services.factory('Search', ['ServicesList', function (ServicesList) {
+services.factory('Search', ['ServicesList', '$rootScope', function (ServicesList, $rootScope) {
     // asynchronously initialize crossfilter
     ServicesList.get(function (allServices) {
         crossfilter.add(allServices);
+
+        // trigger initial map load
+        $rootScope.$emit('FILTER_CHANGED')
     });
 
     /** Crossfilter Setup **/
@@ -44,17 +48,10 @@ services.factory('Search', ['ServicesList', function (ServicesList) {
             categoryDimension.filter(function(service) {
                 return service == category;
             });
+            $rootScope.$emit('FILTER_CHANGED')
         },
         currResults: function () {
             return metaDimension.top(Infinity);
-        },
-        setServicesById: function (servicesById) {
-          this.servicesById = servicesById;
-        },
-        getServicesById: function () {
-          return this.servicesById;
         }
     }
 }]);
-
-

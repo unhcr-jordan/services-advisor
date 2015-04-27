@@ -1,9 +1,10 @@
 var controllers = angular.module('controllers');
 
+
 /**
  * For the results view
  */
-controllers.controller('ResultsCtrl', ['$scope', 'Search', '$location',  function ($scope, Search, $location) {
+controllers.controller('ResultsCtrl', ['$scope', 'Search', function ($scope, Search) {
     
     // Filtered object based on the categories/regions 
     $scope.results = Search.currResults()
@@ -57,10 +58,5 @@ controllers.controller('ResultsCtrl', ['$scope', 'Search', '$location',  functio
         } 
 
         return activityDetails;
-    }
-
-    $scope.setServiceId = function (serviceId) {
-      // var url = '/#/services/' + serviceId;
-      $location.path('/services/' + serviceId);
     }
 }]);

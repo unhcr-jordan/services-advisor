@@ -20,22 +20,9 @@ require('./leaflet.awesome-markers.js');
 require('../node_modules/leaflet.markercluster/dist/leaflet.markercluster.js');
 // Select user location control
 require('./SelectUserLocationControl');
-var test = '/register.module.js'
+
 // Angular app
 
-    // Register App Modules 
-    require('./angular/register.module.js');
-    // Routes
-    require('./angular/Routes/routes.js');
-    // Services 
-    require('./angular/services/serviceslist.js');
-    require('./angular/services/search.js');
-    // Controllers 
-    require('./angular/Controllers/search.controller.js');
-    require('./angular/Controllers/results.controller.js');
-    require('./angular/Controllers/navbar.controller.js');
-
-// require('./angular/app.js');
 
 
 // File system

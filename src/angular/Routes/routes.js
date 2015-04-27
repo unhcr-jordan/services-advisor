@@ -1,7 +1,7 @@
 var basePath = 'src/angular/';
 // messing around with getting angular to work side by side with the current app
 
-var servicesAdvisorApp = angular.module('servicesAdvisorApp', ['ngRoute', 'controllers', 'services']);
+var servicesAdvisorApp = angular.module('servicesAdvisorApp');
 
 
 /*** Routing ***/
@@ -34,4 +34,3 @@ servicesAdvisorApp.config(['$routeProvider',
             });
     }]);
 /*** End Routing ***/
-

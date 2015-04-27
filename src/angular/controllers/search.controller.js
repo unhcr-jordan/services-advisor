@@ -13,7 +13,6 @@ controllers.controller('SearchCtrl', ['$scope', '$http', '$location', 'ServicesL
         // for duplicates (this basically acts as a set)
         var categories = {};
         var regions = {};
-        var servicesById = {};
         $.each(data, function (index, service) {
             // add activity and its category to list, and increment counter of this category's available services
             var category = service.properties.activityCategory;
@@ -40,14 +39,6 @@ controllers.controller('SearchCtrl', ['$scope', '$http', '$location', 'ServicesL
                 }
                 regions[region]++;
             }
-
-            var id = service.id;
-      if(id) {
-        if(servicesById[id] == null) {
-          servicesById[id] = service;
-        }
-//        servicesById[id]++;
-      }
         });
 
         // now to get an array of categories we just map over the keys of the object
@@ -59,11 +50,6 @@ controllers.controller('SearchCtrl', ['$scope', '$http', '$location', 'ServicesL
         $scope.regions = $.map(regions, function (value, index) {
             return {name: index, count: value};
         });
-
-        $scope.services = $.map(servicesById, function (value, index) {
-            return {id: index, service: value};
-        });
-        Search.setServicesById(servicesById);
     });
 
     /**
