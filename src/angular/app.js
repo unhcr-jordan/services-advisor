@@ -16,9 +16,9 @@ require('./register.module.js');
 // Routes
 require('./Routes/routes.js');
 // Services 
-require('./services/serviceslist.js');
-require('./services/search.js');
-require('./services/popupbuilder.js');
+require('./Services/serviceslist.js');
+require('./Services/search.js');
+require('./Services/popupbuilder.js');
 
 // Controllers 
 require('./controllers/search.controller.js');
@@ -28,4 +28,4 @@ require('./controllers/map.controller.js');
 require('./controllers/service.controller.js');
 
 // Translations
-require('./Translations/translations.config.js')
+require('./translations/translations.config.js')
