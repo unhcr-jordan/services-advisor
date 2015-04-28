@@ -1,6 +1,8 @@
 var controllers = angular.module('controllers');
 
-controllers.controller('ServiceCtrl', ['$scope', '$routeParams', 'ServicesList', function ($scope, $routeParams, ServicesList) {
+controllers.controller('ServiceCtrl', ['$scope', '$routeParams', 'ServicesList', 'Search', function ($scope, $routeParams, ServicesList, Search) {
+    Search.selectId($routeParams.serviceId);
+
     var service = ServicesList.findById($routeParams.serviceId);
     $scope.service = {};
     $scope.service.id = service.id;
