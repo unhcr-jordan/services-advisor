@@ -6,6 +6,7 @@ var controllers = angular.module('controllers');
 controllers.controller('SearchCtrl', ['$scope', '$http', '$location', 'ServicesList', 'Search', function ($scope, $http, $location, ServicesList, Search) {
 
     ServicesList.get(function (data) {
+        Search.clearAll();
         $scope.services = data;
         // Here we're going to extract the list of categories and display them in a simple template
         
