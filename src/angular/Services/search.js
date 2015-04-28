@@ -53,21 +53,27 @@ services.factory('Search', ['ServicesList', '$rootScope', function (ServicesList
 
     /** End crossfilter setup **/
 
-    return {
-        selectCategory: function (category) {
+    // this function allows us to wrap another function with clearAll() and $emit to reduce boilerplate
+    var withClearAndEmit = function(fn) {
+        return function () {
             clearAll();
+            var result = fn.apply(this, arguments);
+            $rootScope.$emit('FILTER_CHANGED');
+            return result;
+        };
+    };
+
+    return {
+        selectCategory: withClearAndEmit(function (category) {
             categoryDimension.filter(function(service) {
                 return service == category;
             });
-            $rootScope.$emit('FILTER_CHANGED')
-        },
-        selectId: function (id) {
-            clearAll();
+        }),
+        selectId: withClearAndEmit(function (id) {
             idDimension.filter(function(serviceId) {
                 return serviceId == id
             });
-            $rootScope.$emit('FILTER_CHANGED')
-        },
+        }),
         currResults: function () {
             return metaDimension.top(Infinity);
         }
