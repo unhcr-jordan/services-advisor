@@ -1,7 +1,7 @@
 var servicesAdvisorApp = angular.module('servicesAdvisorApp');
 
 servicesAdvisorApp.config(['$translateProvider', function ($translateProvider) {
-  $translateProvider.translations('en_EN', {
+  $translateProvider.translations('en', {
     'APP_NAME': 'UNHCR Services Advisor',
     'CATEGORY': 'Category',
     'SEARCH_TEXT': 'To find a service, select from the category or region below. Use the filter button above to further refine your search.',
@@ -25,5 +25,10 @@ servicesAdvisorApp.config(['$translateProvider', function ($translateProvider) {
     'SEARCH': 'search'
   });
 
-  $translateProvider.preferredLanguage('en_EN');
+
+  $translateProvider.translations('ar', {
+    // To be filled in...
+  });
+
+  $translateProvider.preferredLanguage('en');
 }]);
