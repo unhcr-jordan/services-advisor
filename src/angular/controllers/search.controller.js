@@ -57,14 +57,6 @@ controllers.controller('SearchCtrl', ['$scope', '$http', '$location', 'ServicesL
         });
     });
 
-    /**
-     * When the user clicks on a category, we filter by that category and then navigate to the results view
-     */
-    $scope.selectCategory = function (category) {
-        Search.selectCategory(category);
-        $location.path("/results")
-    };
-
     $scope.toggleCategory = function(categoryName) {
         var categoryDivId = categoryName + 'Activities';
         $( '#' + categoryDivId ).toggleClass('hidden');
