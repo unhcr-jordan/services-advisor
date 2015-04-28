@@ -1,12 +1,6 @@
       <form id="filterForm" class="form-horizontal">
         <div class="form-group">
-          <label for="inputReferral" class="col-xs-12 col-md-6 control-label">
-            {{ 'REFERRAL_REQUIRED' | translate }}?
-            <div class="pull-right">
-              <input type="checkbox" id="inputReferral" value="">
-            </div>
-          </label>
-          <div class="col-xs-12 col-md-6">
+          <div class="col-xs-12 col-md-6 pull-right">
             <div class="pull-right">
               <button id="cancelFilter" type="button" class="btn btn-secondary"
                     onclick="javascript:$('#filters').addClass('hidden');">
@@ -18,6 +12,12 @@
               </button>
             </div>
           </div>
+          <label for="inputReferral" class="col-xs-12 col-md-6 control-label">
+            {{ 'REFERRAL_REQUIRED' | translate }}?
+            <div class="pull-right">
+              <input type="checkbox" id="inputReferral" value="">
+            </div>
+          </label>
         </div>
         <h3>{{ 'ORGANIZATIONS' | translate }}</h3>
         <div class="form-group">
