@@ -11,6 +11,7 @@ var $ = require('jquery'),
     proximityFilter = require("./ProximityFilter"),
     regionFilter = require("./RegionFilter"),
     UserLocation = require('./UserLocation');
+
 // Mapbox doesn't need its own var - it automatically attaches to Leaflet's L.
 require('mapbox.js');
 // Use Awesome Markers lib to produce font-icon map markers
@@ -21,7 +22,7 @@ require('../node_modules/leaflet.markercluster/dist/leaflet.markercluster.js');
 require('./SelectUserLocationControl');
 
 // Angular app
-require('./angular/app.js');
+
 
 // File system
 var fs = require('fs');
