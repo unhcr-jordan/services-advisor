@@ -47,8 +47,12 @@ controllers.controller('SearchCtrl', ['$scope', '$http', '$location', 'ServicesL
         });
 
         // now to get an array of regions we just map over the keys of the object
-        $scope.regions = $.map(regions, function (value, index) {
+        var unsortedRegions = $.map(regions, function (value, index) {
             return {name: index, count: value};
+        });
+
+        $scope.regions = unsortedRegions.sort(function (regionA, regionB) {
+            return regionA.name.localeCompare(regionB.name);
         });
     });
 
