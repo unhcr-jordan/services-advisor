@@ -9,7 +9,7 @@ controllers.controller('MapCtrl', ['$scope', '$rootScope', 'Search', function ($
     require('../../../node_modules/leaflet.markercluster/dist/leaflet.markercluster.js');
 
     // Initialize the map, using Affinity Bridge's mapbox account.
-    var map = L.mapbox.map('map', 'affinitybridge.ia7h38nj');
+    var map = L.mapbox.map('mapContainer', 'affinitybridge.ia7h38nj');
 
     map.locate({setView: false}); // set setView to false so that map doesn't re-center on geolocation
     map.on("locationfound", function(e) {
