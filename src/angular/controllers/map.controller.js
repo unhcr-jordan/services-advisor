@@ -43,7 +43,8 @@ controllers.controller('MapCtrl', ['$scope', '$rootScope', 'Search', function ($
     map.addLayer(polygonLayer);
 
     // Match possible Activity Categories to Humanitarian Font icons.
-    var iconGlyphs = {
+    // TODO: this is global right now so we can use it in the ServicesList service
+    iconGlyphs = {
         'CASH': {glyph: 'ocha-sector-cash', markerColor: '#a48658' },
         'EDUCATION': {glyph: 'ocha-sector-education', markerColor: '#c00000' },
         'FOOD': {glyph: 'ocha-sector-foodsecurity', markerColor: '#006600' },

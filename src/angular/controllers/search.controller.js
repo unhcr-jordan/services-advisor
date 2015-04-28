@@ -6,6 +6,7 @@ var controllers = angular.module('controllers');
 controllers.controller('SearchCtrl', ['$scope', '$http', '$location', 'ServicesList', 'Search', function ($scope, $http, $location, ServicesList, Search) {
 
     ServicesList.get(function (data) {
+        Search.clearAll();
         $scope.services = data;
         // Here we're going to extract the list of categories and display them in a simple template
         
@@ -47,18 +48,14 @@ controllers.controller('SearchCtrl', ['$scope', '$http', '$location', 'ServicesL
         });
 
         // now to get an array of regions we just map over the keys of the object
-        $scope.regions = $.map(regions, function (value, index) {
+        var unsortedRegions = $.map(regions, function (value, index) {
             return {name: index, count: value};
         });
-    });
 
-    /**
-     * When the user clicks on a category, we filter by that category and then navigate to the results view
-     */
-    $scope.selectCategory = function (category) {
-        Search.selectCategory(category);
-        $location.path("/results")
-    };
+        $scope.regions = unsortedRegions.sort(function (regionA, regionB) {
+            return regionA.name.localeCompare(regionB.name);
+        });
+    });
 
     $scope.toggleCategory = function(categoryName) {
         var categoryDivId = categoryName + 'Activities';
