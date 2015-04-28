@@ -11,14 +11,10 @@ controllers.controller('MapCtrl', ['$scope', '$rootScope', 'Search', function ($
     // Initialize the map, using Affinity Bridge's mapbox account.
     var map = L.mapbox.map('map', 'affinitybridge.ia7h38nj');
 
-    // TODO: re-enable when UserLocation service is added
-    // Object that holds user location - adds a layer with user's location marker
-    //    var myLocation = new UserLocation(map);
-    //
-    //    map.on('load', function () {
-    //        // Try to add user location marker
-    //        getUserLocation();
-    //    });
+    map.locate({setView: false});
+    map.on("locationfound", function(e) {
+        L.marker(e.latlng).addTo(map);
+    });
 
     // Initialize the empty layer for the markers, and add it to the map.
     // TODO: don't use global var here
