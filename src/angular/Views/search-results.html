@@ -1,11 +1,14 @@
 <!-- view when clicked once a category/region is click on -->
 
       <div data-ng-controller="ResultsCtrl">
-        <div class ="col-xs-12 col-sm-12"> 
-          <button id="backButton" type="button" class="btn btn-default" href="/">
+        <div class="row">
+          <button id="backButton" type="button" class="btn btn-default" href="#"
+            onclick="history.back(); return false;">
             <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span> 
             {{ 'BACK' | translate }}
           </button>
+        </div>
+        <div class="row">
           <h4>{{ 'SEARCH_RESULTS' | translate }}</h4>
           <ul class="list-group">
 

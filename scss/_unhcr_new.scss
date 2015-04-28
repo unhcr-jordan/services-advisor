@@ -78,6 +78,11 @@ h3 {
     border-radius: 0px;
     width: 100%;
   }
+
+  form.navbar-form {
+    border: 0px;
+    box-shadow: none;
+  }
 }
 
 /* Filters */
@@ -180,6 +185,7 @@ h3 {
     border: 1px solid white;
     font-weight: bold;
     color: black;
+    cursor: pointer;
 
     .icon {
       padding: 3px;
@@ -190,10 +196,6 @@ h3 {
     font-weight: normal;
     color: black;
     }
-  }
-
-  #mapButton {
-    float: right;
   }
 
   #backButton {

@@ -62,5 +62,10 @@ controllers.controller('SearchCtrl', ['$scope', '$http', '$location', 'ServicesL
     $scope.selectCategory = function (category) {
         Search.selectCategory(category);
         $location.path("/results")
+    };
+
+    $scope.toggleCategory = function(categoryName) {
+        var categoryDivId = categoryName + 'Activities';
+        $( '#' + categoryDivId ).toggleClass('hidden');
     }
 }]);

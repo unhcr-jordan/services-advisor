@@ -1,26 +1,14 @@
   <nav id="searchNav" class="navbar navbar-inverse navbar-fixed-top" ng-controller="NavbarCtrl">
     <div class="container-fluid">
-      <!-- Brand and toggle get grouped for better mobile display -->
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
-              aria-expanded="false" aria-controls="navbar">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-      <!-- <a class="navbar-brand" href="#">UNHCR</a> -->
-      </div>
-
       <!-- Collect the nav links, forms, and other content for toggling -->
-      <div id="navbar" class="collapse navbar-collapse">
+      <div id="navbar">
         <form class="navbar-form" role="search">
-          <button id="filtersButton" type="button" class="btn btn-secondary col-xs-12 col-md-1 col-md-offset-2"
+          <button id="filtersButton" type="button" class="btn btn-secondary col-xs-3 col-md-1 col-md-offset-2"
               onclick="javascript:$('#filters').toggleClass('hidden');">
             {{ 'FILTERS' | translate }}
           </button>
-          <div class="form-group col-xs-12 col-md-6">
-            <input id="searchInput" type="text" class="form-control" placeholder="{{ 'SEARCH' | translate }}">
+          <div class="form-group col-xs-9 col-md-6">
+            <input id="searchInput" type="search" class="form-control" placeholder="{{ 'SEARCH' | translate }}">
           </div>
           <button id="clearFilters" type="button" class="btn btn-secondary col-xs-12 col-md-1 hidden">
             <span class="glyphicon glyphicon-remove"></span> {{ 'CLEAR' | translate }}
