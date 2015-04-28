@@ -134,11 +134,17 @@ h3 {
 
 
 /* Map styles */
-#map {
+#mapContainer {
   height: 100%;
   clear: both;
 
+  @media (max-width: $screen-md-min) {
+    height: 75%;
 
+    &.map-hide {
+      height: 0%; /* hide by setting height so that map is still loaded correctly */
+    }
+  }
 }
 
 /* Map Popup styles */
@@ -198,7 +204,7 @@ h3 {
     }
   }
 
-  #backButton {
+  button {
     margin-top: 10px;
   }
 }
