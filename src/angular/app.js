@@ -18,6 +18,8 @@ require('./Routes/routes.js');
 // Services 
 require('./services/serviceslist.js');
 require('./services/search.js');
+require('./services/popupbuilder.js');
+
 // Controllers 
 require('./controllers/search.controller.js');
 require('./controllers/results.controller.js');
