@@ -74,6 +74,7 @@ services.factory('Search', ['ServicesList', '$rootScope', function (ServicesList
                 return serviceId == id
             });
         }),
+        clearAll: withClearAndEmit(function(){}),
         currResults: function () {
             return metaDimension.top(Infinity);
         }
