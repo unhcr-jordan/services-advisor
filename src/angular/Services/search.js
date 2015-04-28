@@ -36,17 +36,35 @@ services.factory('Search', ['ServicesList', '$rootScope', function (ServicesList
         return f.geometry.coordinates[0] + "," + f.geometry.coordinates[1] || "";
     });
 
+    var idDimension = crossfilter.dimension(function (f) {
+        return f.id;
+    });
+
     /** Used to get list of currently filtered services rather than re-using an existing dimension **/
     var metaDimension = crossfilter.dimension(function (f) { return f.properties.activityName; });
 
-    /** End crossfilter setup **/
+    var allDimensions = [categoryDimension, referralDimension, partnerDimension, proximityDimension, regionDimension, idDimension];
 
-    var servicesById;
+    var clearAll = function () {
+        angular.forEach(allDimensions, function(filter) {
+            filter.filterAll();
+        });
+    };
+
+    /** End crossfilter setup **/
 
     return {
         selectCategory: function (category) {
+            clearAll();
             categoryDimension.filter(function(service) {
                 return service == category;
+            });
+            $rootScope.$emit('FILTER_CHANGED')
+        },
+        selectId: function (id) {
+            clearAll();
+            idDimension.filter(function(serviceId) {
+                return serviceId == id
             });
             $rootScope.$emit('FILTER_CHANGED')
         },
