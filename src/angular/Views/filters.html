@@ -23,14 +23,16 @@
         <h3>{{ 'ORGANIZATIONS' | translate }}</h3>
 
         <!-- use this as a skeleton for a ng-repeat once we figure out getting the organization list -->
-        <div class="form-group">
-          <label for="inputReferral" class="col-xs-12 col-md-6 control-label">
-            Unicef
-            <div class="pull-right">
-              <img src="..." />
-              <input type="checkbox" id="inputReferral" value="">
-            </div>
-          </label>  
+        <div ng-repeat="organization in organizations">
+          <div class="form-group">
+            <label for="inputReferral" class="col-xs-12 col-md-6 control-label">
+              {{organization}}
+              <div class="pull-right">
+                <img src="..." />
+                <input type="checkbox" id="inputReferral" value="">
+              </div>
+            </label>  
+          </div>
         </div>
 
         <h3>{{ 'DISTANCE' | translate }}</h3>
