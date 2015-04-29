@@ -42,6 +42,42 @@ controllers.controller('MapCtrl', ['$scope', '$rootScope', 'Search', function ($
     var polygonLayer = L.geoJson();
     map.addLayer(polygonLayer);
 
+    jQuery.getJSON( "src/polygons.json", function( polygonData ) {
+        // Create the polygon layer and add to the map.
+        polygonLayer.addData(polygonData);
+
+        polygonLayer.getLayers().forEach(function(f) {
+            f.setStyle({
+                opacity: 0.3
+            });
+
+            L.DomEvent.addListener(f, 'mouseover', function(e) {
+                //if(this._activeFilters.indexOf(polygonLayer.getLayerId(e.target)) < 0) {
+                    e.target.setStyle({
+                        opacity: 0.5
+                    });
+                //}
+            }, this);
+
+            L.DomEvent.addListener(f, 'mouseout', function(e) {
+                //if(this._activeFilters.indexOf(polygonLayer.getLayerId(e.target)) < 0) {
+                    e.target.setStyle({
+                        opacity: 0.3
+                    });
+                //}
+            }, this);
+
+            //L.DomEvent.addListener(f, 'click', this._onFeatureClick, this);
+
+            //var key = this._getFeatureId(f);
+            //if (!this._filters[key]) {
+            //    this._numItems++;
+            //    this._filters[key] = this._addItem(f);
+            //}
+        });
+    });
+
+
     // Match possible Activity Categories to Humanitarian Font icons.
     // TODO: this is global right now so we can use it in the ServicesList service
     iconGlyphs = {
@@ -90,23 +126,9 @@ controllers.controller('MapCtrl', ['$scope', '$rootScope', 'Search', function ($
             // Store the marker for easy reference.
             markers[feature.id] = feature.properties.marker;
             // Build the output for the filtered list view
-            //listOutput += renderServiceText(feature, "list");
         } );
 
-        // Replace the contents of the list div with this new, filtered output.
-        //$('#list').html(listOutput);
-
-        // According functionality for the list - expand item when its header is clicked
-        //$(".serviceText > header").click(function(event) {
-        //    event.preventDefault();
-        //    $(this).parent().toggleClass('expand');
-        //    // Toggle the text of the "Show details" / "Hide details" link
-        //    if ($(this).find('.show-details').html() === "Show details") {
-        //        $(this).find('.show-details').html("Hide details");
-        //    } else {
-        //        $(this).find('.show-details').html("Show details");
-        //    }
-        //});
+        // TODO: do this zooming when someone clicks into the service detailed view
 
         // Bind "show on map" behavior.  Do this here because now the list exists.
         //$(".show-on-map").click(function(e) {
