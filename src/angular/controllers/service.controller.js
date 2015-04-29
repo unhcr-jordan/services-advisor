@@ -19,16 +19,20 @@ controllers.controller('ServiceCtrl', ['$scope', '$routeParams', '$location', 'S
     $scope.service.activityName = service.properties.activityName;
     $scope.service.startDate = service.properties.startDate;
     $scope.service.endDate = service.properties.endDate;
+
+    // TODO: reuse functionality in results controller to parse this info
+    var partnerName = service.properties.partnerName.toLowerCase().replace(' ', '');
+    $scope.service.partnerLogoUrl = './src/images/partner/' + partnerName + '.jpg';
+
     $.each(service.properties.indicators, function (index, value) {
         if (value) {
             $scope.service.activityDetails = index;
         }
     });
-    var propList = new Array();
-    $scope.hours = new Array();
-    $.each(service.properties, function (index, value) {
-        var tempArray = new Array();
-        tempArray = index.split(".");
+    var propList = [];
+    $scope.hours = [];
+    $.each(service.properties, function (index) {
+        var tempArray = index.split(".");
         if (index != 'comments' && tempArray.length > 1) {
             if ($.isNumeric(tempArray[0])) {
                 //TODO: Let's see if we can print it from index rather than creating new object for it again.

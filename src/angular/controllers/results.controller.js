@@ -54,6 +54,11 @@ controllers.controller('ResultsCtrl', ['$scope', '$location', 'Search', function
         return closingTime;
     }
 
+    $scope.getPartnerLogoUrl = function(result) {
+        var partnerName = result.properties.partnerName.toLowerCase().replace(' ', '');
+        return './src/images/partner/' + partnerName + '.jpg';
+    };
+
     // gets the activity details of the service 
     $scope.getActivityDetails = function(result){
         // Define a default variable value for activity details
