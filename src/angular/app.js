@@ -19,6 +19,7 @@ require('./Routes/routes.js');
 require('./Services/serviceslist.js');
 require('./Services/search.js');
 require('./Services/popupbuilder.js');
+require('./Services/underscore.js')
 
 // Controllers 
 require('./controllers/search.controller.js');

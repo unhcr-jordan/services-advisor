@@ -6,7 +6,11 @@ var controllers = angular.module('controllers');
 
 */
 
-controllers.controller('FilterCtrl', ['$scope', 'Search', 'ServicesList', function ($scope, Search, ServicesList) {
+controllers.controller('FilterCtrl', ['$scope', 'Search', 'ServicesList', '_', function ($scope, Search, ServicesList, _) {
+
+ _.each([1, 2, 3],function(num){
+  console.log(num)
+ });
 
  var callback = function(data){
   console.dir(data);
