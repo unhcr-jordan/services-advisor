@@ -20,9 +20,6 @@ services.factory('Search', ['ServicesList', '$rootScope', function (ServicesList
     var categoryDimension = crossfilter.dimension(function (f) {
         return f.properties['activityName'] || undefined;
     });
-    var referralDimension = crossfilter.dimension(function (f) {
-        return f.properties['Referral required'] || undefined;
-    });
     var partnerDimension = crossfilter.dimension(function (f) {
         return f.properties['partnerName'] || undefined;
     });
@@ -43,7 +40,7 @@ services.factory('Search', ['ServicesList', '$rootScope', function (ServicesList
     /** Used to get list of currently filtered services rather than re-using an existing dimension **/
     var metaDimension = crossfilter.dimension(function (f) { return f.properties.activityName; });
 
-    var allDimensions = [categoryDimension, referralDimension, partnerDimension, proximityDimension, regionDimension, idDimension];
+    var allDimensions = [categoryDimension, partnerDimension, proximityDimension, regionDimension, idDimension];
 
     var clearAll = function () {
         angular.forEach(allDimensions, function(filter) {
