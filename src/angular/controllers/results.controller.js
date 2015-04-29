@@ -17,6 +17,10 @@ controllers.controller('ResultsCtrl', ['$scope', '$location', 'Search', function
             Search.selectCategory(filters.category)
         }
 
+        if (filters.regionLayerId !== undefined) {
+            Search.selectRegionByLayerId(filters.regionLayerId);
+        }
+
         return Search.currResults();
     };
 

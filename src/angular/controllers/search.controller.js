@@ -10,7 +10,6 @@ controllers.controller('SearchCtrl', ['$scope', '$http', '$location', '$rootScop
         // use an object to collect service information since object keys won't allow
         // for duplicates (this basically acts as a set)
         var categories = {};
-        var regions = {};
         angular.forEach(services, function (service) {
             // add activity and its category to list, and increment counter of this category's available services
             var category = service.properties ? service.properties.activityCategory : null;
@@ -28,15 +27,6 @@ controllers.controller('SearchCtrl', ['$scope', '$http', '$location', '$rootScop
                     categories[category].activities[activity].count++;
                 }
             }
-
-            // add region to list, and increment counter of this region's available services
-            var region = service.properties.locationName;
-            if (region) {
-                if (regions[region] == null) {
-                    regions[region] = 0;
-                }
-                regions[region]++;
-            }
         });
 
         // now to get an array of categories we just map over the keys of the object
@@ -48,13 +38,16 @@ controllers.controller('SearchCtrl', ['$scope', '$http', '$location', '$rootScop
             return categoryA.name.localeCompare(categoryB.name);
         });
 
-        // now to get an array of regions we just map over the keys of the object
-        var unsortedRegions = $.map(regions, function (value, index) {
-            return {name: index, count: value};
+        // use object here so we don't get duplicate keys
+        var regions = {};
+        polygonLayer.getLayers().forEach(function(f) {
+            regions[f.feature.properties.adm1_name] = true;
         });
+        var unsortedRegions = [];
+        $.each(regions, function(k) { unsortedRegions.push(k) });
 
         $scope.regions = unsortedRegions.sort(function (regionA, regionB) {
-            return regionA.name.localeCompare(regionB.name);
+            return regionA.localeCompare(regionB);
         });
     };
 
