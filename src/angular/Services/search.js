@@ -5,6 +5,8 @@ var services = angular.module('services');
  * Holds the state of the current search and the current results of that search
  */
 services.factory('Search', ['ServicesList', '$rootScope', function (ServicesList, $rootScope) {
+    var gju = require('../../../node_modules/geojson-utils');
+
     // asynchronously initialize crossfilter
     ServicesList.get(function (allServices) {
         crossfilter.add(allServices);
@@ -24,13 +26,9 @@ services.factory('Search', ['ServicesList', '$rootScope', function (ServicesList
         return f.properties['partnerName'] || undefined;
     });
 
-    // TODO: not sure if we need this anymore
-    var proximityDimension = crossfilter.dimension(function (f) {
-        return f.geometry.coordinates[0] + "," + f.geometry.coordinates[1] || "";
-    });
-
     var regionDimension = crossfilter.dimension(function (f) {
-        return f.geometry.coordinates[0] + "," + f.geometry.coordinates[1] || "";
+        //return f.geometry.coordinates[0] + "," + f.geometry.coordinates[1] || "";
+        return f.properties.locationName || undefined;
     });
 
     var idDimension = crossfilter.dimension(function (f) {
@@ -40,7 +38,7 @@ services.factory('Search', ['ServicesList', '$rootScope', function (ServicesList
     /** Used to get list of currently filtered services rather than re-using an existing dimension **/
     var metaDimension = crossfilter.dimension(function (f) { return f.properties.activityName; });
 
-    var allDimensions = [categoryDimension, partnerDimension, proximityDimension, regionDimension, idDimension];
+    var allDimensions = [categoryDimension, partnerDimension, regionDimension, idDimension];
 
     var clearAll = function () {
         angular.forEach(allDimensions, function(filter) {
@@ -70,6 +68,28 @@ services.factory('Search', ['ServicesList', '$rootScope', function (ServicesList
             idDimension.filter(function(serviceId) {
                 return serviceId == id
             });
+        }),
+        selectRegion: withClearAndEmit(function(region) {
+            regionDimension.filter(function(serviceRegion) {
+                return serviceRegion == region;
+            });
+            //var activeRegionLayer = null;
+            //polygonLayer.getLayers().forEach(function(f) {
+            //    if (f.feature.properties.adm1_name == region) {
+            //        activeRegionLayer = f;
+            //    }
+            //});
+            //if (activeRegionLayer) {
+            //    regionDimension.filter(function(servicePoint) {
+            //        var pp = servicePoint.split(',');
+            //        var point = {
+            //            type: "Point",
+            //            coordinates: [parseFloat(pp[1]), parseFloat(pp[0])]
+            //        };
+            //
+            //        return gju.pointInPolygon(point, activeRegionLayer.toGeoJSON().geometry);
+            //    })
+            //}
         }),
         clearAll: withClearAndEmit(function(){}),
         currResults: function () {
