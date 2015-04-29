@@ -26,6 +26,7 @@ require('./controllers/results.controller.js');
 require('./controllers/navbar.controller.js');
 require('./controllers/map.controller.js');
 require('./controllers/service.controller.js');
+require('./controllers/filter.controller.js');
 
 // Translations
 require('./translations/translations.config.js')

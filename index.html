@@ -28,7 +28,9 @@
   <!-- Right navigation bar to select filters -->
   <main role="main">
     <div id="filters" class="col-xs-12 col-md-8 hidden">
-      <ng-include src="'/src/angular/Views/filters.html'"></ng-include>
+      <div ng-controller="FilterCtrl">
+        <ng-include src="'/src/angular/Views/filters.html'"></ng-include>
+      </div>
     </div>
     <section id="mapContainer" class="col-xs-12 col-sm-7" ng-controller="MapCtrl"></section>
     <section id="serviceList" class="col-xs-12 col-sm-5">
