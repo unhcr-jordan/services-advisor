@@ -14,7 +14,7 @@ controllers.controller('SearchCtrl', ['$scope', '$http', '$location', 'ServicesL
         // for duplicates (this basically acts as a set)
         var categories = {};
         var regions = {};
-        $.each(data, function (index, service) {
+        angular.forEach(data, function (service, index) {
             // add activity and its category to list, and increment counter of this category's available services
             var category = service.properties.activityCategory;
             if (category) {
