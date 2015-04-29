@@ -6,7 +6,14 @@ var controllers = angular.module('controllers');
 
 */
 
-controllers.controller('FilterCtrl', ['$scope', 'Search', function ($scope, Search) {
+controllers.controller('FilterCtrl', ['$scope', 'Search', 'ServicesList', function ($scope, Search, ServicesList) {
+
+ var callback = function(data){
+  console.dir(data);
+ }
+ 
+ ServicesList.get(callback);
+
 
   // referral required selected ? 
   // pass the result into the search service function 
