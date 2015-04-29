@@ -27,8 +27,7 @@ services.factory('Search', ['ServicesList', '$rootScope', function (ServicesList
     });
 
     var regionDimension = crossfilter.dimension(function (f) {
-        //return f.geometry.coordinates[0] + "," + f.geometry.coordinates[1] || "";
-        return f.properties.locationName || undefined;
+        return f.geometry.coordinates[0] + "," + f.geometry.coordinates[1] || "";
     });
 
     var idDimension = crossfilter.dimension(function (f) {
@@ -70,26 +69,36 @@ services.factory('Search', ['ServicesList', '$rootScope', function (ServicesList
             });
         }),
         selectRegion: withClearAndEmit(function(region) {
-            regionDimension.filter(function(serviceRegion) {
-                return serviceRegion == region;
+            var activeRegionLayer = null;
+            polygonLayer.getLayers().forEach(function(f) {
+                if (f.feature.properties.adm1_name == region) {
+                    activeRegionLayer = f;
+                }
             });
-            //var activeRegionLayer = null;
-            //polygonLayer.getLayers().forEach(function(f) {
-            //    if (f.feature.properties.adm1_name == region) {
-            //        activeRegionLayer = f;
-            //    }
-            //});
-            //if (activeRegionLayer) {
-            //    regionDimension.filter(function(servicePoint) {
-            //        var pp = servicePoint.split(',');
-            //        var point = {
-            //            type: "Point",
-            //            coordinates: [parseFloat(pp[1]), parseFloat(pp[0])]
-            //        };
-            //
-            //        return gju.pointInPolygon(point, activeRegionLayer.toGeoJSON().geometry);
-            //    })
-            //}
+            if (activeRegionLayer) {
+                regionDimension.filter(function(servicePoint) {
+                    var pp = servicePoint.split(',');
+                    var point = {
+                        type: "Point",
+                        coordinates: [parseFloat(pp[1]), parseFloat(pp[0])]
+                    };
+
+                    return gju.pointInPolygon(point, activeRegionLayer.toGeoJSON().geometry);
+                })
+            }
+        }),
+        selectRegionByLayerId: withClearAndEmit(function (layerId) {
+            var geoJson = polygonLayer.getLayer(layerId).toGeoJSON();
+
+            regionDimension.filter(function(servicePoint) {
+                var pp = servicePoint.split(',');
+                var point = {
+                    type: "Point",
+                    coordinates: [parseFloat(pp[1]), parseFloat(pp[0])]
+                };
+
+                return gju.pointInPolygon(point, geoJson.geometry);
+            })
         }),
         clearAll: withClearAndEmit(function(){}),
         currResults: function () {
