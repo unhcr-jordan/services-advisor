@@ -8,8 +8,22 @@ var controllers = angular.module('controllers');
 
 controllers.controller('FilterCtrl', ['$scope', 'Search', function ($scope, Search) {
 
-  $scope.test = function(){
-    console.log('Hey this worked eh? ');
+  // referral required selected ? 
+  // pass the result into the search service function 
+  // Search.selectReferralRequired(true/false)
+  $scope.referralFilter = false; 
+
+  $scope.check = function(){
+    $scope.referralFilter = !$scope.referralFilter;
+  }
+
+  // functions to apply the changes based on user selection
+  $scope.applyFilter = function(){
+    // applies the filter for the referral field 
+    Search.selectReferralRequired($scope.referralFilter);
+
+    //TODO:  Search.selectOrganization`
+
   }
 
 

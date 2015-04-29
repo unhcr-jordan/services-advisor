@@ -3,7 +3,7 @@
           <div class="col-xs-12 col-md-6 pull-right">
             <div class="pull-right">
               <button id="cancelFilter" type="button" class="btn btn-secondary"
-                    onclick="javascript:$('#filters').addClass('hidden');" ng-click="test()">
+                    onclick="javascript:$('#filters').addClass('hidden');">
                 {{ 'CANCEL' | translate }}
               </button>
               <button id="applyFilter" type="button" class="btn btn-secondary"
@@ -15,7 +15,7 @@
           <label for="inputReferral" class="col-xs-12 col-md-6 control-label">
             {{ 'REFERRAL_REQUIRED' | translate }}?
             <div class="pull-right">
-              <input type="checkbox" id="inputReferral" value="">
+              <input type="checkbox" ng-click="check()" id="inputReferral" value="">
             </div>
           </label>
         </div>
