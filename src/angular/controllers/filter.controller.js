@@ -8,15 +8,31 @@ var controllers = angular.module('controllers');
 
 controllers.controller('FilterCtrl', ['$scope', 'Search', 'ServicesList', '_', function ($scope, Search, ServicesList, _) {
 
- _.each([1, 2, 3],function(num){
-  console.log(num)
- });
+ // defines a function to callback function for filtering data 
+  var collectPartnerNames = function(data){
+    /* 
 
- var callback = function(data){
-  console.dir(data);
- }
+     Here we make use of methods in underscore 
+      chain - returns a wrapped object & calling methods on 
+              it will continue to return wrapped objects 
+              (calling VALUE will return final value)
+
+      pluck - extracting data from the objects inside the data array 
+      flatten 
+
+      unique - grabs the unique values 
+
+    */
+     $scope.parterName = _.chain(data) 
+                           .pluck("properties")
+                           .pluck("partnerName")
+                           .unique()
+                           .value();
+  }
  
- ServicesList.get(callback);
+  // calls the ServiceList function get which takes a call back function 
+  // in this case we are collecting partnerNames/Organizations
+  ServicesList.get(collectPartnerNames);
 
 
   // referral required selected ? 
