@@ -19,7 +19,7 @@
             <h1>{{service.locationName}}: {{service.activityName}}</h1>
           </div>
           <div class="col-xs-4">
-            <img class="media-object pull-right" src="/src/images/acted.jpg" />
+            <img class="media-object pull-right" ng-src="{{service.partnerLogoUrl}}" onError="this.onerror=null;this.style.display='none'"/>
           </div>
         </div>
         <div id="serviceDetails" class="panel panel-default">

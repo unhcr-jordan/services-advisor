@@ -6,10 +6,6 @@
   "directories": {
     "doc": "doc"
   },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "postinstall": "bower install"
-  },
   "author": "",
   "license": "ISC",
   "devDependencies": {
@@ -29,7 +25,6 @@
     "crossfilter": "^1.3.7",
     "geojson-utils": "^1.1.0",
     "glob": "^5.0.5",
-    "jquery": "^2.1.1",
     "leaflet": "^0.7.2",
     "leaflet.markercluster": "https://github.com/Leaflet/Leaflet.markercluster/archive/master.tar.gz",
     "mapbox.js": "^1.6.3",
