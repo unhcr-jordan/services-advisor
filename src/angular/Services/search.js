@@ -74,6 +74,11 @@ services.factory('Search', ['ServicesList', '$rootScope', function (ServicesList
                 return serviceId == id
             });
         }),
+        selectPartner: withClearAndEmit(function(partner) {
+            partnerDimension.filter(function(servicePartner) {
+                return servicePartner == partner;
+            })
+        }),
         clearAll: withClearAndEmit(function(){}),
         currResults: function () {
             return metaDimension.top(Infinity);
