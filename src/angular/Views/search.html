@@ -25,9 +25,8 @@
   <!-- populating the catgories from the SearchCtrl  -->
   <div class="list-group">
     <div ng-repeat="region in regions">
-      <a href="#/results?region={{region.name}}" class="list-group-item">
-        <span class="icon glyphicon glyphicon-star-empty"></span> {{region.name}}
-        <span class="badge">{{region.count}}</span>
+      <a href="#/results?region={{region}}" class="list-group-item">
+        <span class="icon glyphicon glyphicon-star-empty"></span> {{region}}
       </a>
     </div>
   </div>
