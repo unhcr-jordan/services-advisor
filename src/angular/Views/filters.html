@@ -29,7 +29,7 @@
               {{organization}}
               <div class="pull-right">
                 <img src="..." />
-                <input type="checkbox" id="inputReferral" value="">
+                <input ng-checked="selection.indexOf(organization) > -1" ng-click="toggleSelection(organization)" type="checkbox" id="inputReferral" value="">
               </div>
             </label>  
           </div>

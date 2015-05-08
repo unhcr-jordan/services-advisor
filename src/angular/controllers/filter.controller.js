@@ -24,7 +24,6 @@ controllers.controller('FilterCtrl', ['$scope', 'Search', 'ServicesList', '_', f
       unique - grabs the unique values 
 
     */
-
      $scope.organizations = _.chain(data) 
                              .pluck("properties")
                              // partnerName is same as 'Organization'
@@ -37,15 +36,32 @@ controllers.controller('FilterCtrl', ['$scope', 'Search', 'ServicesList', '_', f
   // in this case we are collecting Organizations
   ServicesList.get(collectOrganizations);
 
+  // toggle selection for a given organization by name
+  $scope.toggleSelection = function toggleSelection(organization) {
 
-  // functions to apply the changes based on user selection
-  $scope.applyFilter = function(){
-    // applies the filter for the referral field 
-    Search.selectReferralRequired($scope.referralFilter);
+    // selected organizations
+    var selection = [];
+    
+    // stores the index of the organization currently being click
+    var idx = selection.indexOf(organization);
 
-    //TODO:  Search.selectOrganization`
+    // is currently selected - splice that organization from selected array
+    if (idx > -1) {
+      selection.splice(idx, 1);
 
-  }
+      // Call search service to toggle that a certain partner was * un-selected *
+      Search.selectPartner(organization);
+    }
+
+    // is newly selected - push organization into the selection array
+    else {
+      selection.push(organization);
+
+      // Call search service to toggle that a certain partner was * selected * 
+      Search.selectPartner(organization);
+    }
+    
+  };
 
 
 }]);
