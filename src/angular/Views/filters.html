@@ -15,48 +15,26 @@
           <label for="inputReferral" class="col-xs-12 col-md-6 control-label">
             {{ 'REFERRAL_REQUIRED' | translate }}?
             <div class="pull-right">
-              <input type="checkbox" id="inputReferral" value="">
+              <input type="checkbox" ng-click="check()" id="inputReferral" value="">
             </div>
           </label>
         </div>
+
         <h3>{{ 'ORGANIZATIONS' | translate }}</h3>
-        <div class="form-group">
-          <label for="inputReferral" class="col-xs-12 col-md-6 control-label">
-            Unicef
-            <div class="pull-right">
-              <img src="..." />
-              <input type="checkbox" id="inputReferral" value="">
-            </div>
-          </label>
-          <label for="inputReferral" class="col-xs-12 col-md-6 control-label">
-            Unicef
-            <div class="pull-right">
-              <img src="..." />
-              <input type="checkbox" id="inputReferral" value="">
-            </div>
-          </label>
-          <label for="inputReferral" class="col-xs-12 col-md-6 control-label">
-            Unicef
-            <div class="pull-right">
-              <img src="..." />
-              <input type="checkbox" id="inputReferral" value="">
-            </div>
-          </label>
-          <label for="inputReferral" class="col-xs-12 col-md-6 control-label">
-            Unicef
-            <div class="pull-right">
-              <img src="..." />
-              <input type="checkbox" id="inputReferral" value="">
-            </div>
-          </label>
-          <label for="inputReferral" class="col-xs-12 col-md-6 control-label">
-            Unicef
-            <div class="pull-right">
-              <img src="..." />
-              <input type="checkbox" id="inputReferral" value="">
-            </div>
-          </label>
+
+        <!-- use this as a skeleton for a ng-repeat once we figure out getting the organization list -->
+        <div ng-repeat="organization in organizations">
+          <div class="form-group">
+            <label for="inputReferral" class="col-xs-12 col-md-6 control-label">
+              {{organization}}
+              <div class="pull-right">
+                <img src="..." />
+                <input ng-checked="selection.indexOf(organization) > -1" ng-click="toggleSelection(organization)" type="checkbox" id="inputReferral" value="">
+              </div>
+            </label>  
+          </div>
         </div>
+
         <h3>{{ 'DISTANCE' | translate }}</h3>
         <div class="form-group">    
           <label for="inputReferral" class="col-xs-12 col-md-6 control-label">

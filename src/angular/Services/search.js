@@ -68,6 +68,11 @@ services.factory('Search', ['ServicesList', '$rootScope', function (ServicesList
                 return serviceId == id
             });
         }),
+        selectPartner: withClearAndEmit(function(partner) {
+            partnerDimension.filter(function(servicePartner) {
+                return servicePartner == partner;
+            })
+        }),
         selectRegion: withClearAndEmit(function(region) {
             var activeRegionLayer = null;
             polygonLayer.getLayers().forEach(function(f) {
