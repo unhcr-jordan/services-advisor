@@ -6,7 +6,7 @@ servicesAdvisorApp.config(['$translateProvider', function ($translateProvider) {
     'CATEGORY': 'Category',
     'SEARCH_TEXT': 'To find a service, select from the category or region below. Use the filter button above to further refine your search.',
     'REGION': 'Region',
-    'FILTERS': 'Filters',
+    'FILTERS': 'Filter your search',
     'TOGGLE_MAP': 'Show/Hide Map',
     'CLEAR': 'Clear',
     'REFERRAL_REQUIRED': 'Referral Required',
