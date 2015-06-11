@@ -3,7 +3,7 @@ var controllers = angular.module('controllers');
 /**
  * For the results view
  */
-controllers.controller('ResultsCtrl', ['$scope', '$location', 'Search', function ($scope, $location, Search) {
+controllers.controller('ResultsCtrl', ['$scope', '$location', 'Search', 'ServicesList', function ($scope, $location, Search, ServicesList) {
 
     // Filtered object based on the categories/regions in the query string
     var getFilteredResults = function ($location) {
@@ -24,7 +24,13 @@ controllers.controller('ResultsCtrl', ['$scope', '$location', 'Search', function
         return Search.currResults();
     };
 
-    $scope.results = getFilteredResults($location);
+    // A bit of a hack to get the services to load before we apply any filter on,
+    // ServicesList.get will only load the services if they haven't been loaded already.
+    ServicesList.get(
+        function(services){
+            $scope.results = getFilteredResults($location)
+        }
+    )
 
     // the methods below serves to get the key value in the object between each ng-repeat loop. 
     // The object is passed in from the view, manipulated then returned back.  
