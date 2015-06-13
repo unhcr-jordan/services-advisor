@@ -3,16 +3,16 @@
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div id="navbar">
         <form class="navbar-form" role="search">
-          <button id="filtersButton" type="button" class="btn btn-secondary col-xs-3 col-md-1 col-md-offset-2"
-              onclick="javascript:$('#filters').toggleClass('hidden');">
-            {{ 'FILTERS' | translate }}
-          </button>
-          <div class="form-group col-xs-9 col-md-6">
-            <input id="searchInput" type="search" class="form-control" placeholder="{{ 'SEARCH' | translate }}">
+          <div class="col-xs-12 col-md-2">
+            <button id="filtersButton" type="button" class="btn btn-secondary"
+                onclick="javascript:$('#filters').toggleClass('hidden');">
+              {{ 'FILTERS' | translate }}
+            </button>
           </div>
-          <button id="clearFilters" type="button" class="btn btn-secondary col-xs-12 col-md-1 hidden">
-            <span class="glyphicon glyphicon-remove"></span> {{ 'CLEAR' | translate }}
-          </button>
+          <div id="activeFilters" class="form-group col-xs-12 col-md-10">
+            <button type="button" class="btn btn-secondary">Financial assistance</button>
+            <button type="button" class="btn btn-secondary">Zaatari District 5</button>
+          </div>
         </form>
       </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->

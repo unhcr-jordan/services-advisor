@@ -18,6 +18,7 @@ $navbar-height: 50px;
 $checkbox-height: 30px;
 
 /** From Bootstrap **/
+$screen-xs-max: 768px;
 $screen-md-min: 992px;
 
 
@@ -57,6 +58,14 @@ h3 {
     color: white;
     background-color: $teal;
     border-radius: 0px;
+
+    &:visited, &:active {
+      color: white;
+    }
+
+    &:hover {
+      color: black;
+    }
 }
 
 
@@ -74,14 +83,31 @@ h3 {
   background-color: $dark-blue;
   min-height: $navbar-height;
 
-  input {
-    border-radius: 0px;
-    width: 100%;
+  @media (min-width: $screen-md-min) {
+    form.navbar-form {
+      padding-left: 0px;
+
+      div {        
+        margin-left: -18px; /* align to map zoom buttons */
+      }
+    }
+  } 
+
+  @media (max-width: $screen-xs-max) {
+      #filtersButton {
+        width: 100%;
+      }
   }
 
-  form.navbar-form {
-    border: 0px;
-    box-shadow: none;
+  #activeFilters button {
+    border-radius: 5px;
+    text-transform: inherit;
+
+    &:after {
+      font-family: "FontAwesome";
+      content: "\f00d";
+      margin-left: 6px;
+    }
   }
 }
 
@@ -93,8 +119,8 @@ h3 {
 #filters {
   @media (min-width: $screen-md-min) {
     position: absolute;
-    top: 44px;
-    left: 17vw;
+    top: 8px;
+    left: 15vw;
     z-index: 9999;
     background-color: white;
   }
