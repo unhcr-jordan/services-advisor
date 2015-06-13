@@ -37,11 +37,12 @@ controllers.controller('FilterCtrl', ['$scope', 'Search', 'ServicesList', '_', f
     // Results array = [ ['UNHCR', 'stuff '], ['stuff', 'stuff'] ]
 
     $scope.organizationsArray = _.chain(organizationsArray)
+                                  // Converts the array into an even Split
                                  .groupBy(function(element, index){
-                                          return Math.floor(index/splitValue);
-                                    })
-                            .toArray()
-                            .value();
+                                    return Math.floor(index/splitValue);
+                                  })
+                                 .toArray()
+                                 .value();
   
   }
  
@@ -64,7 +65,7 @@ controllers.controller('FilterCtrl', ['$scope', 'Search', 'ServicesList', '_', f
 
       // Call search service to toggle that a certain partner was * un-selected *
       Search.selectPartner(organization);
-      console.log('splice value ' + selection)
+      
     }
 
     // is newly selected - push organization into the selection array
@@ -73,7 +74,7 @@ controllers.controller('FilterCtrl', ['$scope', 'Search', 'ServicesList', '_', f
 
       // Call search service to toggle that a certain partner was * selected * 
       Search.selectPartner(organization);
-      console.log('push value ' + selection)
+
     }
     
   };
