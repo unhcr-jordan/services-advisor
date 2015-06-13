@@ -23,16 +23,33 @@
         <h3>{{ 'ORGANIZATIONS' | translate }}</h3>
 
         <!-- use this as a skeleton for a ng-repeat once we figure out getting the organization list -->
-        <div ng-repeat="organization in organizations">
-          <div class="form-group">
-            <label for="inputReferral" class="col-xs-12 col-md-6 control-label">
-              {{organization}}
-              <div class="pull-right">
-                <img src="..." />
-                <input ng-checked="selection.indexOf(organization) > -1" ng-click="toggleSelection(organization)" type="checkbox" id="inputReferral" value="">
-              </div>
-            </label>  
-          </div>
+        
+        <div class="form-group">
+
+          <!-- Note organization1 and organization2 are from the same source but are just split into two for separate column   -->
+          
+            <!-- Looping first split array  -->
+            <div ng-repeat="organization1 in organizationsArray[0]">
+              <label for="inputReferral" class="col-xs-12 col-md-6 control-label">
+                {{organization1}}
+                <div class="pull-right">
+                  <img src="..." />
+                  <input ng-checked="selection.indexOf(organization1) > -1" ng-click="toggleSelection(organization1)" type="checkbox" id="inputReferral" value="">
+                </div>
+              </label>  
+            </div>
+
+            <!-- Looping second split array  -->
+            <div ng-repeat="organization2 in organizationsArray[1]" ng-if="$index == 1">
+              <label for="inputReferral" class="col-xs-12 col-md-6 control-label">
+                {{organization2}}
+                <div class="pull-right">
+                  <img src="..." />
+                  <input ng-checked="selection.indexOf(organization2) > -1" ng-click="toggleSelection(organization2)" type="checkbox" id="inputReferral" value="">
+                </div>
+              </label>  
+            </div>
+  
         </div>
 
         <h3>{{ 'DISTANCE' | translate }}</h3>

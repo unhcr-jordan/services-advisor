@@ -24,12 +24,25 @@ controllers.controller('FilterCtrl', ['$scope', 'Search', 'ServicesList', '_', f
       unique - grabs the unique values 
 
     */
-     $scope.organizations = _.chain(data) 
+     var organizationsArray  = _.chain(data) 
                              .pluck("properties")
                              // partnerName is same as 'Organization'
                              .pluck("partnerName")
                              .unique()
                              .value();
+    // Divide the organization names by half since we have two columns                         
+    var splitValue = organizationsArray.length/2;    
+    
+    // Using the split value, we divide the array evenly into two separate arrays 
+    // Results array = [ ['UNHCR', 'stuff '], ['stuff', 'stuff'] ]
+
+    $scope.organizationsArray = _.chain(organizationsArray)
+                                 .groupBy(function(element, index){
+                                          return Math.floor(index/splitValue);
+                                    })
+                            .toArray()
+                            .value();
+  
   }
  
   // calls the ServiceList function get which takes a call back function 
@@ -51,6 +64,7 @@ controllers.controller('FilterCtrl', ['$scope', 'Search', 'ServicesList', '_', f
 
       // Call search service to toggle that a certain partner was * un-selected *
       Search.selectPartner(organization);
+      console.log('splice value ' + selection)
     }
 
     // is newly selected - push organization into the selection array
@@ -59,6 +73,7 @@ controllers.controller('FilterCtrl', ['$scope', 'Search', 'ServicesList', '_', f
 
       // Call search service to toggle that a certain partner was * selected * 
       Search.selectPartner(organization);
+      console.log('push value ' + selection)
     }
     
   };
