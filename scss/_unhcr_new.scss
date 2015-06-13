@@ -87,8 +87,16 @@ h3 {
     form.navbar-form {
       padding-left: 0px;
 
-      div {        
+      #filtersDiv {        
         margin-left: -18px; /* align to map zoom buttons */
+      }
+
+      #preferences {
+        top: 5px;
+      }
+
+      #selectedLanguage {
+        margin-right: -50px;
       }
     }
   } 
