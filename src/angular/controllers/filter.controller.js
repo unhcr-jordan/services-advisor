@@ -10,34 +10,29 @@ controllers.controller('FilterCtrl', ['$scope', 'Search', 'ServicesList', '_', f
 
  // defines a function to callback function for filtering data 
   var collectOrganizations = function(data){
-    /* 
+    
+    /*  
+        
+        This is a object containing Name of the partners as "KEY" and the relative 
+         Service Object ID associated with that partner as "VALUE" 
+          
+          Example:
 
-     Here we make use of methods in underscore 
-
-      chain - returns a wrapped object & calling methods on 
-              it will continue to return wrapped objects 
-              (calling VALUE will return final value)
-
-      pluck - extracting data from the objects inside the data array 
-      flatten 
-
-      unique - grabs the unique values 
-
+          Object {JWU: [342176915,1971267257], "IFH/NHF ": Array[11], ... , IMC: Array[6]}
     */
-     var organizationsArray  = _.chain(data) 
-                             .pluck("properties")
-                             // partnerName is same as 'Organization'
-                             .pluck("partnerName")
-                             .unique()
-                             .value();
-
+    var partnerIdObject  = _.chain(data)
+                            .groupBy(function(obj){ return obj.properties.partnerName; })
+                            .mapObject( function(val, key) {return _.pluck(val, 'id') })
+                            .value();
+  
+    // Gather the "KEY" values from PartnerIdObject which is the Partner/Organization Name 
+    var organizationsArray  = _.keys(partnerIdObject)
 
     // Divide the organization names by half since we have two columns                         
     var splitValue = organizationsArray.length/2;    
     
     // Using the split value, we divide the array evenly into two separate arrays 
-    // Results array = [ ['UNHCR', 'stuff '], ['stuff', 'stuff'] ]
-
+    // Resulting array = [ ['UNHCR', 'stuff '], ['stuff', 'stuff'] ]
     $scope.organizationsArray = _.chain(organizationsArray)
                                   // Converts the array into an even Split
                                  .groupBy(function(element, index){
@@ -53,7 +48,7 @@ controllers.controller('FilterCtrl', ['$scope', 'Search', 'ServicesList', '_', f
 
   // selected organizations
   var selection = [];
-  
+
   // toggle selection for a given organization by name
   $scope.toggleSelection = function toggleSelection(organization) {
    
