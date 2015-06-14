@@ -53,25 +53,28 @@ controllers.controller('FilterCtrl', ['$scope', 'Search', 'ServicesList', '_', f
 
   // selected organizations
   var selection = [];
+  
   // toggle selection for a given organization by name
   $scope.toggleSelection = function toggleSelection(organization) {
    
     // stores the index of the organization currently being click
     var idx = selection.indexOf(organization);
+    
     // is currently selected - splice that organization from selected array
     if (idx > -1) {
+      
       selection.splice(idx, 1);
 
       // A Hack Around to Re-render map when User Un-selectes items 
       // TODO: *** Better solution: Have a Un-filter method in the Search Services for SelectPartner *** 
       
-      // 1. Reset the Map
-      Search.clearAll();
+        // 1. Reset the Map
+        Search.clearAll();
 
-      // 2. Make Calls to select the remaining partners left in the selected Organization array defined 
-      _.each(selection, function(organizationSelected){
-        Search.selectPartner(organizationSelected);
-      })
+        // 2. Make Calls to select the remaining partners left in the selected Organization array defined 
+        _.each(selection, function(organizationSelected){
+          Search.selectPartner(organizationSelected);
+        })
       
     }
 
