@@ -69,6 +69,7 @@ controllers.controller('FilterCtrl', ['$scope', 'Search', 'ServicesList', '_', f
     
   };
 
+  // Apply filter function to trigger on click in the view 
   $scope.applyFilter = function(){
       // 1. Reset the Map
       Search.clearAll();
