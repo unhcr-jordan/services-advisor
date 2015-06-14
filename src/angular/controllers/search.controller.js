@@ -38,7 +38,6 @@ controllers.controller('SearchCtrl', ['$scope', '$http', '$location', '$rootScop
         $scope.categories = unsortedCategories.sort(function (categoryA, categoryB) {
             return categoryA.name.localeCompare(categoryB.name);
         });
-
         // use object here so we don't get duplicate keys
         var regions = {};
         polygonLayer.getLayers().forEach(function(f) {
@@ -52,12 +51,13 @@ controllers.controller('SearchCtrl', ['$scope', '$http', '$location', '$rootScop
         });
     };
 
+    // Had to put renderView() in a function callback otherwise Watch won't make changes 
     $rootScope.$on('FILTER_CHANGED',function(){
         renderView(Search.currResults());
-        // console.log('got here');
     });
 
-    $scope.$watch($scope.categories)
+    // // Set up the watch function to watches for changes in $scope.categories 
+    $scope.$watch($scope.categories);
 
     ServicesList.get(function (data) {
         Search.clearAll();
