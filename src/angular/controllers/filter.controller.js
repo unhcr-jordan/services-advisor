@@ -26,9 +26,17 @@ controllers.controller('FilterCtrl', ['$scope', 'Search', 'ServicesList', '_', f
                              // partnerName is same as 'Organization'
                              .pluck("partnerName")
                              .unique()
+                             .map(function(str){                    
+                               if(str === "IFH/NHF "){
+                                  return str.replace(/\//g,"-").replace(/\s/g, "");
+                               }else{
+                                  return str.replace(/\s/g, "")                                  
+                               }
+                             })
                              .value();
-  
 
+    
+    console.log(organizationsArray);
     // Divide the organization names by half since we have two columns                         
     var splitValue = organizationsArray.length/2;    
     
@@ -40,7 +48,8 @@ controllers.controller('FilterCtrl', ['$scope', 'Search', 'ServicesList', '_', f
                                     return Math.floor(index/splitValue);
                                   })
                                  .toArray()
-                                 .value();
+                                .value();
+                               
   }
  
   // calls the ServiceList function get which takes a call back function 
