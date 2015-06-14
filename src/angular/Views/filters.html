@@ -3,11 +3,11 @@
           <div class="col-xs-12 col-md-6 pull-right">
             <div class="pull-right">
               <button id="cancelFilter" type="button" class="btn btn-secondary"
-                    onclick="javascript:$('#filters').addClass('hidden');">
+                    onclick="javascript:$('#filters').addClass('hidden');" >
                 {{ 'CANCEL' | translate }}
               </button>
               <button id="applyFilter" type="button" class="btn btn-secondary"
-                    onclick="javascript:$('#filters').addClass('hidden');">
+                    onclick="javascript:$('#filters').addClass('hidden');" ng-click="applyFilter()">
                 {{ 'APPLY' | translate }}
               </button>
             </div>
