@@ -9,9 +9,10 @@
               {{ 'FILTERS' | translate }}
             </button>
           </div>
-          <div id="activeFilters" class="form-group col-xs-12 col-md-9">
-            <button type="button" class="btn btn-secondary">Financial assistance</button>
-            <button type="button" class="btn btn-secondary">Zaatari District 5</button>
+          <div ng-controller="FilterCtrl" id="activeFilters" class="form-group col-xs-12 col-md-9">
+              <div ng-repeat="filter in filterSelection">
+                <button type="button" class="pill btn btn-secondary" ng-click="removeSelection(filter)">{{ filter }}</button>
+              </div>
           </div>
           <div id="preferences" class="col-md-1">
             <select id="selectedLanguage" class="pull-right" ng-model="selectedLanguage" ng-change="changeLanguage(selectedLanguage)">
