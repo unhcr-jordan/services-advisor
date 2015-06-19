@@ -3,9 +3,10 @@ var controllers = angular.module('controllers');
 /**
  * For the category/region search view
  */
-controllers.controller('SearchCtrl', ['$scope', '$http', '$location', '$rootScope', 'ServicesList', 'Search', function ($scope, $http, $location, $rootScope, ServicesList, Search) {
+controllers.controller('SearchCtrl', ['$scope', '$http', '$location', '$rootScope', 'ServicesList', 'Search', '_', function ($scope, $http, $location, $rootScope, ServicesList, Search, _) {
 
     var renderView = function(services) {
+        
         // Here we're going to extract the list of categories and display them in a simple template
         // use an object to collect service information since object keys won't allow
         // for duplicates (this basically acts as a set)
@@ -37,7 +38,6 @@ controllers.controller('SearchCtrl', ['$scope', '$http', '$location', '$rootScop
         $scope.categories = unsortedCategories.sort(function (categoryA, categoryB) {
             return categoryA.name.localeCompare(categoryB.name);
         });
-
         // use object here so we don't get duplicate keys
         var regions = {};
         polygonLayer.getLayers().forEach(function(f) {
@@ -51,11 +51,16 @@ controllers.controller('SearchCtrl', ['$scope', '$http', '$location', '$rootScop
         });
     };
 
-    $rootScope.$on('FILTER_CHANGED', renderView(Search.currResults()));
+    // Had to put renderView() in a function callback otherwise Watch won't make changes 
+    $rootScope.$on('FILTER_CHANGED',function(){
+        renderView(Search.currResults());
+    });
+
+    // // Set up the watch function to watches for changes in $scope.categories 
+    $scope.$watch($scope.categories);
 
     ServicesList.get(function (data) {
         Search.clearAll();
-
         // TODO: right now we don't even use the 'data' result, we just use the current search results.
         // this is because if there are filters applied we want to only show data within those filters
         renderView(Search.currResults());
