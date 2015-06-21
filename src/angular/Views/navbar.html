@@ -2,23 +2,15 @@
     <div class="container-fluid">
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div id="navbar">
-        <form class="navbar-form" role="search">
-          <div id="filtersDiv" class="col-xs-12 col-md-2">
-            <button id="filtersButton" type="button" class="btn btn-secondary"
-                onclick="javascript:$('#filters').toggleClass('hidden');">
-              {{ 'FILTERS' | translate }}
-            </button>
-          </div>
-          <div id="activeFilters" class="form-group col-xs-12 col-md-9">
-            <button type="button" class="btn btn-secondary">Financial assistance</button>
-            <button type="button" class="btn btn-secondary">Zaatari District 5</button>
-          </div>
-          <div id="preferences" class="col-md-1">
-            <select id="selectedLanguage" class="pull-right" ng-model="selectedLanguage" ng-change="changeLanguage(selectedLanguage)">
-              <option ng-repeat="lang in languages">{{lang}}</option>
-            </select>
-          </div>
-        </form>
+        <div id="filterSummary" class="col-xs-12 col-md-11 well" onclick="javascript:$('#filters').toggleClass('hidden');">
+          <div id="filterPlaceholder" class="hidden pull-left">{{ 'FILTERS' | translate }}</div>
+          <button href="" class="btn label filter-pill pull-left">{{ 'REFERRAL_REQUIRED' | translate }}</button>
+        </div>
+        <div id="preferences" class="col-md-1">
+          <select id="selectedLanguage" class="pull-right" ng-model="selectedLanguage" ng-change="changeLanguage(selectedLanguage)">
+            <option ng-repeat="lang in languages">{{lang}}</option>
+          </select>
+        </div>
       </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
   </nav>

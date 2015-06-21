@@ -83,40 +83,60 @@ h3 {
   background-color: $dark-blue;
   min-height: $navbar-height;
 
-  @media (min-width: $screen-md-min) {
-    form.navbar-form {
-      padding-left: 0px;
-
-      #filtersDiv {        
-        margin-left: -18px; /* align to map zoom buttons */
-      }
-
-      #preferences {
-        top: 5px;
-      }
-
-      #selectedLanguage {
-        margin-right: -50px;
-      }
-    }
-  } 
-
-  @media (max-width: $screen-xs-max) {
-      #filtersButton {
-        width: 100%;
-      }
+  #filterSummary {    
+      background-color: white;
   }
 
-  #activeFilters button {
-    border-radius: 5px;
-    text-transform: inherit;
+  .filter-pill {
+    background-color: $teal;
+    color: white;
+    text-transform: none;
+  /* overwrite Bootstrap label styling*/
+    font-size: 120%;
+    font-weight: normal;
+    line-height: normal;
 
     &:after {
       font-family: "FontAwesome";
       content: "\f00d";
       margin-left: 6px;
     }
+
+    &:hover {
+      color: black;
+    }
+
+    &:focus {
+      padding-top: 2.9px;
+    }
   }
+
+  @media (min-width: $screen-md-min) {
+    #navbar {
+      padding-top: 8px
+    }
+
+    #filterSummary {        
+      margin-left: -3px; /* to align with map zoom buttons */
+      /* overwrite Bootstrap well styling*/
+      margin-bottom: 0px;
+      padding: 2px;
+      min-height: 30px;
+    }
+
+    #filterPlaceholder {
+      margin: 5px;
+      color: $grey-dark;
+    }
+
+    #preferences {
+      top: 5px;
+    }
+
+    #selectedLanguage {
+      margin-right: -15px;
+    }
+  } 
 }
 
 /* Filters */
