@@ -89,6 +89,7 @@ h3 {
 
       #filtersDiv {        
         margin-left: -18px; /* align to map zoom buttons */
+        margin-right: 18px;
       }
 
       #preferences {
@@ -96,7 +97,7 @@ h3 {
       }
 
       #selectedLanguage {
-        margin-right: -50px;
+        margin-right: -25px;
       }
     }
   } 
@@ -108,7 +109,7 @@ h3 {
   }
 
   #activeFilters button {
-    border-radius: 5px;
+    border-radius: 15px;
     text-transform: inherit;
 
     &:after {
@@ -117,6 +118,11 @@ h3 {
       margin-left: 6px;
     }
   }
+}
+
+.pill {
+  float:left;
+
 }
 
 /* Filters */
