@@ -11,7 +11,7 @@
           </div>
           <div ng-controller="FilterCtrl" id="activeFilters" class="form-group col-xs-12 col-md-9">
               <div ng-repeat="filter in filterSelection">
-                <button type="button" class="pill btn btn-secondary" ng-click="removeSelection(filter)">{{ filter }}</button>
+                <button type="button" class="pill btn btn-secondary" ng-click="toggleSelection(filter)">{{ filter }}</button>
               </div>
           </div>
           <div id="preferences" class="col-md-1">

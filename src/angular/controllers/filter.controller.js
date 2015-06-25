@@ -64,20 +64,5 @@ controllers.controller('FilterCtrl', ['$scope', '$rootScope', 'Search', 'Service
     }
     
   };
-
-  $scope.removeSelection = function removeSelection(organization){
-    // stores the index of the organization currently being click
-    var idx = $rootScope.filterSelection.indexOf(organization);
-
-    // is currently selected - splice that organization from selected array
-    if (idx > -1) {
-      $rootScope.filterSelection.splice(idx, 1);
-
-      // Call search service to toggle that a certain partner was * un-selected *
-      //Search.selectPartner(organization);
-    }
-  }
-
-
 }]);
 
