@@ -8,5 +8,11 @@ controllers.controller('NavbarCtrl', ['$scope', '$translate', function ($scope, 
     console.log('changeLanguage: ' + langKey);
     $translate.use(langKey.toLowerCase());
   };
+
+  $(".filter-pill").click(function(event) {
+    //TODO
+    console.log("Clicked filter pill");
+    event.stopPropagation();
+  })
 }]);
 

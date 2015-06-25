@@ -28,7 +28,11 @@ controllers.controller('ResultsCtrl', ['$scope', '$location', 'Search', 'Service
     // ServicesList.get will only load the services if they haven't been loaded already.
     ServicesList.get(
         function(services){
+            
+            // ****** RESULTS OBJECT ********* 
+
             $scope.results = getFilteredResults($location)
+            
         }
     )
 
