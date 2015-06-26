@@ -2,26 +2,6 @@
     <div class="container-fluid">
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div id="navbar">
-<!-- <<<<<<< HEAD -->
- <!--        <form class="navbar-form" role="search">
-          <div id="filtersDiv" class="col-xs-12 col-md-2">
-            <button id="filtersButton" type="button" class="btn btn-secondary"
-                onclick="javascript:$('#filters').toggleClass('hidden');">
-              {{ 'FILTERS' | translate }}
-            </button>
-          </div>
-          <div ng-controller="FilterCtrl" id="activeFilters" class="form-group col-xs-12 col-md-9">
-              <div ng-repeat="filter in filterSelection">
-                <button type="button" class="pill btn btn-secondary" ng-click="toggleSelection(filter)">{{ filter }}</button>
-              </div>
-          </div>
-          <div id="preferences" class="col-md-1">
-            <select id="selectedLanguage" class="pull-right" ng-model="selectedLanguage" ng-change="changeLanguage(selectedLanguage)">
-              <option ng-repeat="lang in languages">{{lang}}</option>
-            </select>
-          </div>
-        </form> -->
-<!-- ======= -->
         <div id="filterSummary" class="form-group col-xs-12 col-md-11 well">
           <div>
             <button id="filtersButton" type="button" class="btn btn-secondary pull-left"
@@ -43,7 +23,6 @@
             <option ng-repeat="lang in languages">{{lang}}</option>
           </select>
         </div>
-<!-- >>>>>>> search -->
       </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
   </nav>
