@@ -79,7 +79,7 @@ controllers.controller('FilterCtrl', ['$scope', '$rootScope', 'Search', 'Service
   $scope.toggleSelection = function toggleSelection(organization) {
     
     // stores the index of the organization currently being click
-    var idx = $rootScope.indexOf(organization);
+    var idx = $rootScope.filterSelection.indexOf(organization);
 
     // is currently selected - splice that organization from selected array
     if (idx > -1) {

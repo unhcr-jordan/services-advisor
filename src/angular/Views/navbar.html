@@ -22,9 +22,21 @@
           </div>
         </form> -->
 <!-- ======= -->
-        <div id="filterSummary" class="col-xs-12 col-md-11 well" onclick="javascript:$('#filters').toggleClass('hidden');">
+        <div id="filterSummary" class="form-group col-xs-12 col-md-11 well">
+          <div>
+            <button id="filtersButton" type="button" class="btn btn-secondary pull-left"
+                onclick="javascript:$('#filters').toggleClass('hidden');">
+              {{ 'FILTERS' | translate }}
+            </button>
+            <div class="arrow-right pull-left"></div>
+          </div>
           <div id="filterPlaceholder" class="hidden pull-left">{{ 'FILTERS' | translate }}</div>
-          <button href="" class="btn label filter-pill pull-left">{{ 'REFERRAL_REQUIRED' | translate }}</button>
+          <!-- <button href="" >{{ 'REFERRAL_REQUIRED' | translate }}</button> -->
+           <div ng-controller="FilterCtrl" id="activeFilters" class="col-xs-12 col-md-9">
+              <div ng-repeat="filter in filterSelection">
+                <button type="button" class="btn label filter-pill pull-left" ng-click="toggleSelection(filter)">{{ filter }}</button>
+              </div>
+          </div>
         </div>
         <div id="preferences" class="col-md-1">
           <select id="selectedLanguage" class="pull-right" ng-model="selectedLanguage" ng-change="changeLanguage(selectedLanguage)">
