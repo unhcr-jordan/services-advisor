@@ -6,7 +6,7 @@ var controllers = angular.module('controllers');
 
 */
 
-controllers.controller('FilterCtrl', ['$scope', 'Search', 'ServicesList', '_', function ($scope, Search, ServicesList, _) {
+controllers.controller('FilterCtrl', ['$scope', '$rootScope', 'Search', 'ServicesList', '_', function ($scope, $rootScope, Search, ServicesList, _) {
 
  // defines a function to callback function for filtering data 
   var collectOrganizations = function(data){
@@ -65,6 +65,8 @@ controllers.controller('FilterCtrl', ['$scope', 'Search', 'ServicesList', '_', f
     
                                
   }
+
+  $rootScope.filterSelection = []
  
   // calls the ServiceList function get which takes a call back function 
   // in this case we are collecting Organizations
@@ -75,32 +77,27 @@ controllers.controller('FilterCtrl', ['$scope', 'Search', 'ServicesList', '_', f
 
   // toggle selection for a given organization by name
   $scope.toggleSelection = function toggleSelection(organization) {
-   
-      // stores the index of the organization currently being click
-      var idx = selection.indexOf(organization);
     
-      if (idx > -1) {
-      // is currently selected - splice that organization from selected array
-        selection.splice(idx, 1);
-      }
+    // stores the index of the organization currently being click
+    var idx = $rootScope.filterSelection.indexOf(organization);
 
-      // is newly selected - push organization into the selection array
-      else {
-        selection.push(organization);
-        // Call search service to toggle that a certain partner was * selected * 
-      }
+    // is currently selected - splice that organization from selected array
+    if (idx > -1) {
+      $rootScope.filterSelection.splice(idx, 1);
+
+      // Call search service to toggle that a certain partner was * un-selected *
+      Search.selectPartner(organization);
+    }
+
+    // is newly selected - push organization into the selection array
+    else {
+      $rootScope.filterSelection.push(organization);
+
+      // Call search service to toggle that a certain partner was * selected * 
+      Search.selectPartner(organization);
+    }
     
   };
-
-  // Apply filter function to trigger on click in the view 
-  $scope.applyFilter = function(){
-      // 1. Reset the Map
-      Search.clearAll();
-      // 2. Make Calls to select the remaining partners left in the selected Organization array defined 
-      _.each(selection, function(organizationSelected){
-        Search.selectPartner(organizationSelected);
-      })
-  }
 
 
 }]);
