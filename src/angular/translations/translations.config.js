@@ -6,7 +6,6 @@ servicesAdvisorApp.config(['$translateProvider', function ($translateProvider) {
   $translateProvider.preferredLanguage(defaultLanguage);
 
   $translateProvider.translations('en', {
-    'APP_NAME': 'UNHCR Services Advisor',
     'CATEGORY': 'Category',
     'SEARCH_TEXT': 'To find a service, select from the category or region below. Use the filter button above to further refine your search.',
     'REGION': 'Region',
@@ -31,7 +30,6 @@ servicesAdvisorApp.config(['$translateProvider', function ($translateProvider) {
 
 
   $translateProvider.translations('ar', {
-    'APP_NAME': 'UNHCR Services Advisor',
     'CATEGORY': 'فئة',
     'SEARCH_TEXT': 'العثور على الخدمة، اختر من فئة أو منطقة أدناه. استخدم زر مرشح فوق لمزيد من تضييق نطاق البحث.',
     'REGION': 'منطقة',
