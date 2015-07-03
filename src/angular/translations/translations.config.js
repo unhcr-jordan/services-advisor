@@ -6,7 +6,6 @@ servicesAdvisorApp.config(['$translateProvider', function ($translateProvider) {
   $translateProvider.preferredLanguage(defaultLanguage);
 
   $translateProvider.translations('en', {
-    'APP_NAME': 'UNHCR Services Advisor',
     'CATEGORY': 'Category',
     'SEARCH_TEXT': 'To find a service, select from the category or region below. Use the filter button above to further refine your search.',
     'REGION': 'Region',
@@ -31,26 +30,25 @@ servicesAdvisorApp.config(['$translateProvider', function ($translateProvider) {
 
 
   $translateProvider.translations('ar', {
-    'APP_NAME': '[TRANSLATE] UNHCR Services Advisor',
-    'CATEGORY': '[TRANSLATE] Category',
-    'SEARCH_TEXT': '[TRANSLATE] To find a service, select from the category or region below. Use the filter button above to further refine your search.',
-    'REGION': '[TRANSLATE] Region',
-    'FILTERS': '[TRANSLATE] Filter your search',
-    'TOGGLE_MAP': '[TRANSLATE] Show/Hide Map',
-    'CLEAR': '[TRANSLATE] Clear',
-    'REFERRAL_REQUIRED': '[TRANSLATE] Referral Required',
-    'CANCEL': '[TRANSLATE] Cancel',
-    'APPLY': '[TRANSLATE] Apply',
-    'ORGANIZATIONS': '[TRANSLATE] Organizations',
-    'DISTANCE': '[TRANSLATE] Distance',
-    'BACK': '[TRANSLATE] Back',
-    'SEARCH_RESULTS': '[TRANSLATE] Search Results',
-    'HOURS': '[TRANSLATE] Hours',
-    'NA': '[TRANSLATE] N/A',
-    'ACTIVITY_DETAILS': '[TRANSLATE] Activity Details',
-    'START_DATE': '[TRANSLATE] Start Date',
-    'END_DATE': '[TRANSLATE] End Date',
-    'SHOW_ON_ ACTIVITYINFO': '[TRANSLATE] Show on ActivityInfo',
-    'SEARCH': '[TRANSLATE] search'
+    'CATEGORY': 'فئة',
+    'SEARCH_TEXT': 'العثور على الخدمة، اختر من فئة أو منطقة أدناه. استخدم زر مرشح فوق لمزيد من تضييق نطاق البحث.',
+    'REGION': 'منطقة',
+    'FILTERS': 'بحثك صفي',
+    'TOGGLE_MAP': 'الخريطة إخفاء / ظهار إ',
+    'CLEAR': 'امسح',
+    'REFERRAL_REQUIRED': 'إحالة مطلوب',
+    'CANCEL': 'إلغاء',
+    'APPLY': 'طبق',
+    'ORGANIZATIONS': 'المنظمات',
+    'DISTANCE': 'مسافه',
+    'BACK': 'ارجع',
+    'SEARCH_RESULTS': 'البحث نتائج',
+    'HOURS': 'ساعات',
+    'NA': 'ينطبق لا',
+    'ACTIVITY_DETAILS': 'النشاط تفاصيل',
+    'START_DATE': 'البداية تاريخ',
+    'END_DATE': 'النهاية تاريخ',
+    'SHOW_ON_ ACTIVITYINFO': 'ActivityInfo نشاط معلومات على أعرض',
+    'SEARCH': 'بحث'
   });
 }]);
