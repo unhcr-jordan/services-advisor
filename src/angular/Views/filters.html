@@ -30,26 +30,22 @@
           
             <!-- Looping first split array  -->
             <div ng-repeat="organization1 in organizationsArray[0]">
-              <label for="inputReferral" class="col-xs-12 col-md-6 control-label">
+              <label for="inputReferral" class="col-xs-12 col-md-6 control-label organization-label">
                 {{organization1}}
                 <div class="pull-right">
-                  
-                  <img ng-src="{{partnerLogoUrl[organization1]}}" onError="this.onerror=null;this.src='http://google.com/favicon.ico';"/>
+                  <img class="organization-logo" ng-src="{{partnerLogoUrl[organization1]}}" onError="this.onerror=null;this.src='http://google.com/favicon.ico';"/>
                   <input ng-checked="filterSelection.indexOf(organization1) > -1" ng-click="toggleSelection(organization1)" type="checkbox" id="inputReferral" value="">
-                </div>
                 </div>
               </label>  
             </div>
 
             <!-- Looping second split array  -->
             <div ng-repeat="organization2 in organizationsArray[1]">
-              <label for="inputReferral" class="col-xs-12 col-md-6 control-label">
+              <label for="inputReferral" class="col-xs-12 col-md-6 control-label organization-label">
                 {{organization2}}
                 <div class="pull-right">
-                  
-                   <img ng-src="{{partnerLogoUrl[organization2]}}" onError="this.onerror=null;this.src='http://google.com/favicon.ico';"/>
-                  <input ng-checked="filterSelection.indexOf(organization2) > -1" ng-click="toggleSelection(organization2)" type="checkbox" id="inputReferral" value="">
-                  
+                   <img class="organization-logo" ng-src="{{partnerLogoUrl[organization2]}}" onError="this.onerror=null;this.src='http://google.com/favicon.ico';"/>
+                  <input ng-checked="filterSelection.indexOf(organization2) > -1" ng-click="toggleSelection(organization2)" type="checkbox" id="inputReferral" value=""> 
                 </div>
               </label>  
             </div>
