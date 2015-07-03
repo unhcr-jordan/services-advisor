@@ -33,9 +33,8 @@
               <label for="inputReferral" class="col-xs-12 col-md-6 control-label organization-label">
                 {{organization1}}
                 <div class="pull-right">
-                  
                   <img class="organization-logo" ng-src="{{partnerLogoUrl[organization1]}}" onError="this.onerror=null;this.src='http://google.com/favicon.ico';"/>
-                  <input ng-checked="selection.indexOf(organization1) > -1" ng-click="toggleSelection(organization1)" type="checkbox" id="inputReferral" value="">
+                  <input ng-checked="filterSelection.indexOf(organization1) > -1" ng-click="toggleSelection(organization1)" type="checkbox" id="inputReferral" value="">
                 </div>
               </label>  
             </div>
@@ -45,10 +44,8 @@
               <label for="inputReferral" class="col-xs-12 col-md-6 control-label organization-label">
                 {{organization2}}
                 <div class="pull-right">
-                  
                    <img class="organization-logo" ng-src="{{partnerLogoUrl[organization2]}}" onError="this.onerror=null;this.src='http://google.com/favicon.ico';"/>
-                  <input ng-checked="selection.indexOf(organization2) > -1" ng-click="toggleSelection(organization2)" type="checkbox" id="inputReferral" value="">
-                  
+                  <input ng-checked="filterSelection.indexOf(organization2) > -1" ng-click="toggleSelection(organization2)" type="checkbox" id="inputReferral" value=""> 
                 </div>
               </label>  
             </div>
