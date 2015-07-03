@@ -14,6 +14,16 @@ services.factory('ServicesList', ['$http', 'PopupBuilder', function ($http, Popu
             } else {
                 $http.get('src/compiled.json', {cache: true})
                     .success(function (data, status, headers, config) {
+                        data = data.filter(function(feature, index, array) {
+                            // We want to remove features that are past the endDate.
+                            var featureEndDate = new Date(feature.properties.endDate);
+                            var featureEndDateUTC = new Date(featureEndDate.getUTCFullYear(), featureEndDate.getUTCMonth(), featureEndDate.getUTCDate());
+
+                            var today = new Date();
+                            var todayUTC = new Date(today.getUTCFullYear(), today.getUTCMonth(), today.getUTCDate());
+                            var result = featureEndDateUTC > todayUTC;
+                            return result;
+                        });
                         angular.forEach(data, function (feature) {
 
                             // TODO: adding markers to the map here is a hack. Should be done somewhere it makes sense
