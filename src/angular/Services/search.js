@@ -35,7 +35,7 @@ services.factory('Search', ['ServicesList', '$rootScope', function (ServicesList
     });
 
     var referralsDimension = crossfilter.dimension(function (f) {
-        return f.properties["Referral required"] || "N/A"; // Default to no referral required?
+        return f.properties["Referral required"];
     });
 
     /** Used to get list of currently filtered services rather than re-using an existing dimension **/
@@ -89,6 +89,15 @@ services.factory('Search', ['ServicesList', '$rootScope', function (ServicesList
                 return servicePartner == partner;
             })
         }),
+        selectPartners: withoutClearAndEmit(function(partners) {    
+            partnerDimension.filter(function(servicePartner) {
+                return partners.indexOf(servicePartner) > -1;
+            })
+        }),
+        clearPartners: function(){
+            $rootScope.$emit('FILTER_CHANGED');
+            partnerDimension.filterAll();
+        },
         selectRegion: withClearAndEmit(function(region) {
             var activeRegionLayer = null;
             polygonLayer.getLayers().forEach(function(f) {
@@ -121,8 +130,14 @@ services.factory('Search', ['ServicesList', '$rootScope', function (ServicesList
                 return gju.pointInPolygon(point, geoJson.geometry);
             })
         }),
-        selectReferrals: withClearAndEmit(function (yesOrNo) {
-            referralsDimension.filter(function(service) {
+        selectReferrals : withoutClearAndEmit(function (yesOrNo) {
+            referralsDimension.filter(function(service) {  
+                if (yesOrNo == true){
+                    yesOrNo = "Yes";
+                }
+                if (yesOrNo == false){
+                    yesOrNo = "No";
+                }
                 return service == yesOrNo;
             })
         }),
