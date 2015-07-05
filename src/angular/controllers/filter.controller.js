@@ -67,6 +67,7 @@ controllers.controller('FilterCtrl', ['$scope', '$rootScope', 'Search', 'Service
   }
 
   $rootScope.filterSelection = []
+  $scope.referrals = true;
  
   // calls the ServiceList function get which takes a call back function 
   // in this case we are collecting Organizations
@@ -74,6 +75,18 @@ controllers.controller('FilterCtrl', ['$scope', '$rootScope', 'Search', 'Service
 
   // selected organizations
   var selection = [];
+
+  $scope.toggleReferrals = function(element) {
+    var isChecked;
+    if (!$scope.referrals) {
+      isChecked = "Yes";
+      $scope.referrals = true;
+    } else {
+      isChecked = "No";
+      $scope.referrals = false
+    }
+    Search.selectReferrals(isChecked);
+  };
 
   // toggle selection for a given organization by name
   $scope.toggleSelection = function toggleSelection(organization) {

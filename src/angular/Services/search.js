@@ -34,15 +34,23 @@ services.factory('Search', ['ServicesList', '$rootScope', function (ServicesList
         return f.id;
     });
 
+    var referralsDimension = crossfilter.dimension(function (f) {
+        return f.properties["Referral required"] || "N/A"; // Default to no referral required?
+    });
+
     /** Used to get list of currently filtered services rather than re-using an existing dimension **/
     var metaDimension = crossfilter.dimension(function (f) { return f.properties.activityName; });
 
-    var allDimensions = [categoryDimension, partnerDimension, regionDimension, idDimension];
+    var allDimensions = [categoryDimension, partnerDimension, regionDimension, idDimension, referralsDimension];
 
     var clearAll = function () {
         angular.forEach(allDimensions, function(filter) {
             filter.filterAll();
         });
+    };
+
+    var clearReferralsFilter = function () {
+        referralsDimension.filterAll();
     };
 
     /** End crossfilter setup **/
@@ -54,6 +62,14 @@ services.factory('Search', ['ServicesList', '$rootScope', function (ServicesList
             var result = fn.apply(this, arguments);
             $rootScope.$emit('FILTER_CHANGED');
             return result;
+        };
+    };
+
+    var withoutClearAndEmit = function(fn) {
+        return function () {
+            var results = fn.apply(this, arguments);
+            $rootScope.$emit('FILTER_CHANGED');
+            return results;
         };
     };
 
@@ -103,6 +119,11 @@ services.factory('Search', ['ServicesList', '$rootScope', function (ServicesList
                 };
 
                 return gju.pointInPolygon(point, geoJson.geometry);
+            })
+        }),
+        selectReferrals: withClearAndEmit(function (yesOrNo) {
+            referralsDimension.filter(function(service) {
+                return service == yesOrNo;
             })
         }),
         clearAll: withClearAndEmit(function(){}),
