@@ -157,8 +157,26 @@ h3 {
       margin-right: -15px;
       min-height: 40px;
       padding: 10px;
+      float: right;
     }
   } 
+
+  @media (max-width: $screen-xs-max) {
+    #filterSummary {  
+      padding: 3px 3px 0px;
+      margin: 5px 0px 5px -3px; 
+    }
+
+    #preferences {
+      margin-top: 5px;
+    }
+
+    #selectedLanguage {
+      min-height: 41px;
+      min-width: 45px;
+      padding: 3px;
+    }
+  }
 }
 
 /* Filters */
