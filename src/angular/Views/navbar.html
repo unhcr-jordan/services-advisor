@@ -2,17 +2,14 @@
     <div class="container-fluid">
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div id="navbar">
-        <div id="filterSummary" class="form-group col-xs-10 col-md-11 well">
-          <div>
-            <button id="filtersButton" type="button" class="btn btn-secondary pull-left"
-                onclick="javascript:$('#filters').toggleClass('hidden');">
+        <div id="filterSummary" class="form-group col-xs-10 col-md-11 well" ng-click="toggleFilters();">
+          <div id="filterPlaceholder">
+            <button id="filtersButton" type="button" class="btn btn-secondary pull-left">
               {{ 'FILTERS' | translate }}
             </button>
             <div class="arrow-right pull-left"></div>
           </div>
-          <div id="filterPlaceholder" class="hidden pull-left">{{ 'FILTERS' | translate }}</div>
-          <!-- <button href="" >{{ 'REFERRAL_REQUIRED' | translate }}</button> -->
-           <div ng-controller="FilterCtrl" id="activeFilters" class="col-xs-12 col-md-9">
+          <div ng-controller="FilterCtrl" id="activeFilters" class="col-xs-12 col-md-9">
               <div ng-repeat="filter in filterSelection">
                 <button type="button" class="btn label filter-pill pull-left" ng-click="toggleSelection(filter)">{{ filter }}</button>
               </div>

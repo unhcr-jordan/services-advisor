@@ -13,6 +13,24 @@ controllers.controller('NavbarCtrl', ['$scope', '$translate', function ($scope, 
     //TODO
     console.log("Clicked filter pill");
     event.stopPropagation();
-  })
-}]);
+  });
 
+  $scope.toggleFilters = toggleFilters;
+}]); 
+
+// Global so that filters.controller can access this via its scope
+// TODO: Should probably put this somewhere else
+toggleFilters = function() {
+  $('#filters').toggleClass('hidden');
+
+  var filterPlaceholder = $('#filterPlaceholder');
+  if(! $('#filters').hasClass('hidden')) {
+    filterPlaceholder.hide();
+  }
+  else if ($('#filterSummary').find('button.filter-pill').length == 0) {
+    filterPlaceholder.show();
+  }
+  else {
+    filterPlaceholder.hide();
+  }
+};
