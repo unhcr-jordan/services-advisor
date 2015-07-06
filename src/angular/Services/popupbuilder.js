@@ -3,7 +3,7 @@ var services = angular.module('services');
 /**
  * Provides the list of services (compiled.json)
  */
-services.factory('PopupBuilder', [function () {
+services.factory('PopupBuilder', ['$translate', function ($translate) {
     return {
         buildPopup: function(feature) {
             // TODO: incredible hack here, just pasting in what's from the old app so we can render the popup
@@ -15,21 +15,22 @@ services.factory('PopupBuilder', [function () {
             var logo = '<img src="' + logoUrl + '" alt="' + partnerName + '" onError="this.onerror=null;this.style.display=\'none\'" />';
 
             // Prepare the office hours output.
-            var hours = '<strong>Hours:</strong> ';
+            var hours = '<strong>' + $translate.instant('HOURS') + ':</strong> ';
             var hourOpen = '';
             var hourClosed = '';
-            for (var hoItem in feature.properties["8. Office Open at"]) {
-                if (feature.properties["8. Office Open at"][hoItem] === true) {
+            for (var hoItem in feature.properties[$translate.instant('OFFICE_OPEN_AT')]) {
+                if (feature.properties[$translate.instant('OFFICE_OPEN_AT')][hoItem] === true) {
                     hourOpen = hoItem;
                 }
             }
-            for (var hcItem in feature.properties["9. Office close at"]) {
-                if (feature.properties["9. Office close at"][hcItem] === true) {
+            for (var hcItem in feature.properties[$translate.instant('OFFICE_CLOSE_AT')]) {
+                if (feature.properties[$translate.instant('OFFICE_CLOSE_AT')][hcItem] === true) {
                     hourClosed = hcItem;
                 }
             }
             // If we have hours, show them as compact as possible.
             if (hourOpen) {
+                // TODO: translate
                 // If we have open time but no close time, say "Open at X o'clock"; if we
                 // have both, show "X o'clock to X o'clock".
                 hours = hourClosed ?

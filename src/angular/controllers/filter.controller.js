@@ -74,8 +74,6 @@ controllers.controller('FilterCtrl', ['$scope', '$rootScope', 'Search', 'Service
   ServicesList.get(collectOrganizations);
 
   // selected organizations
-  var selection = [];
-
   $scope.toggleReferrals = function(element) {
     if (!$rootScope.referrals) {
       $rootScope.referrals = true;

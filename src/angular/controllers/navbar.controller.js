@@ -5,13 +5,11 @@ controllers.controller('NavbarCtrl', ['$scope', '$translate', function ($scope, 
   $scope.selectedLanguage = 'AR';
 
   $scope.changeLanguage = function (langKey) {
-    console.log('changeLanguage: ' + langKey);
     $translate.use(langKey.toLowerCase());
   };
 
   $(".filter-pill").click(function(event) {
     //TODO
-    console.log("Clicked filter pill");
     event.stopPropagation();
   });
 

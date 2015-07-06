@@ -24,8 +24,18 @@ servicesAdvisorApp.config(['$translateProvider', function ($translateProvider) {
     'ACTIVITY_DETAILS': 'Activity Details',
     'START_DATE': 'Start Date',
     'END_DATE': 'End Date',
-    'SHOW_ON_ ACTIVITYINFO': 'Show on ActivityInfo',
-    'SEARCH': 'search'
+    'SHOW_ON_ACTIVITYINFO': 'Show on ActivityInfo',
+    'SEARCH': 'search',
+    'OFFICE_OPEN_AT': '8. Office Open at',
+    'OFFICE_CLOSE_AT' : '9. Office close at',
+    'CASH': 'CASH',
+    'EDUCATION': 'EDUCATION',
+    'FOOD': 'FOOD',
+    'HEALTH': 'HEALTH',
+    'NFI': 'NFI',
+    'PROTECTION': 'PROTECTION',
+    'SHELTER': 'SHELTER',
+    'WASH': 'WASH'
   });
 
 
@@ -48,7 +58,17 @@ servicesAdvisorApp.config(['$translateProvider', function ($translateProvider) {
     'ACTIVITY_DETAILS': 'النشاط تفاصيل',
     'START_DATE': 'البداية تاريخ',
     'END_DATE': 'النهاية تاريخ',
-    'SHOW_ON_ ACTIVITYINFO': 'ActivityInfo نشاط معلومات على أعرض',
-    'SEARCH': 'بحث'
+    'SHOW_ON_ACTIVITYINFO': 'ActivityInfo نشاط معلومات على أعرض',
+    'SEARCH': 'بحث',
+    'OFFICE_OPEN_AT': '8. موعد فتح المكتب',
+    'OFFICE_CLOSE_AT' : '9. موعد إغلاق المكتب',
+    'CASH': 'نقد',
+    'EDUCATION': 'التعليم',
+    'FOOD': 'الغذاء',
+    'HEALTH': 'الصحة',
+    'NFI': 'المواد غير الغذائية',
+    'PROTECTION': 'الحماية',
+    'SHELTER': 'المأوى',
+    'WASH': 'المياه والصرف الصحي'
   });
 }]);
