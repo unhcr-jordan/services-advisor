@@ -2,7 +2,7 @@
     <div class="container-fluid">
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div id="navbar">
-        <div id="filterSummary" class="form-group col-xs-12 col-md-11 well">
+        <div id="filterSummary" class="form-group col-xs-10 col-md-11 well">
           <div>
             <button id="filtersButton" type="button" class="btn btn-secondary pull-left"
                 onclick="javascript:$('#filters').toggleClass('hidden');">
@@ -18,8 +18,8 @@
               </div>
           </div>
         </div>
-        <div id="preferences" class="col-md-1">
-          <select id="selectedLanguage" class="pull-right" ng-model="selectedLanguage" ng-change="changeLanguage(selectedLanguage)">
+        <div id="preferences" class="col-xs-2 col-md-1">
+          <select id="selectedLanguage" class="form-control" ng-model="selectedLanguage" ng-change="changeLanguage(selectedLanguage)">
             <option ng-repeat="lang in languages">{{lang}}</option>
           </select>
         </div>
