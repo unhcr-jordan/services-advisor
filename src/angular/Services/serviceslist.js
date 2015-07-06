@@ -3,7 +3,7 @@ var services = angular.module('services');
 /**
  * Provides the list of services (compiled.json)
  */
-services.factory('ServicesList', ['$http', 'PopupBuilder', function ($http, PopupBuilder) {
+services.factory('ServicesList', ['$http', '$translate', 'PopupBuilder', function ($http, $translate, PopupBuilder) {
     var services = null;
     var servicesById = null;
 
@@ -12,7 +12,8 @@ services.factory('ServicesList', ['$http', 'PopupBuilder', function ($http, Popu
             if (services) {
                 successCb(services);
             } else {
-                $http.get('src/compiled.json', {cache: true})
+                var servicesList = $translate.use() === 'ar' ? 'src/compiled_AR.json' : 'src/compiled.json';
+                $http.get(servicesList, {cache: true})
                     .success(function (data, status, headers, config) {
                         data = data.filter(function(feature, index, array) {
                             // We want to remove features that are past the endDate.
