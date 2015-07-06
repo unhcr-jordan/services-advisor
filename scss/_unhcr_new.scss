@@ -93,15 +93,17 @@ h3 {
 
 #activeFilters {
   margin-top:2px;
+  padding-left: 5px;
 }
+
 /* Header */
 #searchNav {
   background-color: $dark-blue;
   min-height: $navbar-height;
 
   #filterSummary {    
-      background-color: white;
-
+    background-color: white;
+    min-height: 40px;
   }
 
   .filter-pill {
@@ -130,7 +132,12 @@ h3 {
     }
   }
 
-  @media (min-width: $screen-md-min) {
+  #selectedLanguage {
+    font-weight: bold;
+  }
+
+
+  @media (min-width: $screen-xs-max) {
     #navbar {
       padding-top: 8px
     }
@@ -140,16 +147,10 @@ h3 {
       /* overwrite Bootstrap well styling*/
       margin-bottom: 5px;
       padding: 2px;
-      min-height: 30px;
-    }
-
-    #filterPlaceholder {
-      margin: 5px;
-      color: $grey-dark;
     }
 
     #preferences {
-      top: 5px;
+      margin-top: 5px;
     }
 
     #selectedLanguage {

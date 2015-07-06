@@ -111,6 +111,7 @@ controllers.controller('FilterCtrl', ['$scope', '$rootScope', 'Search', 'Service
     }
   };
 
+  $scope.toggleFilters = toggleFilters;
 
 }]);
 
