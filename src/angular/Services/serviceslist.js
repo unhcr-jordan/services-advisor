@@ -14,16 +14,15 @@ services.factory('ServicesList', ['$http', '$translate', 'PopupBuilder', functio
             } else {
                 var servicesList = $translate.use() === 'ar' ? 'src/compiled_AR.json' : 'src/compiled.json';
                 $http.get(servicesList, {cache: true})
-                    .success(function (data, status, headers, config) {
-                        data = data.filter(function(feature, index, array) {
+                    .success(function (data) {
+                        data = data.filter(function(feature) {
                             // We want to remove features that are past the endDate.
                             var featureEndDate = new Date(feature.properties.endDate);
                             var featureEndDateUTC = new Date(featureEndDate.getUTCFullYear(), featureEndDate.getUTCMonth(), featureEndDate.getUTCDate());
 
                             var today = new Date();
                             var todayUTC = new Date(today.getUTCFullYear(), today.getUTCMonth(), today.getUTCDate());
-                            var result = featureEndDateUTC > todayUTC;
-                            return result;
+                            return featureEndDateUTC > todayUTC;
                         });
                         angular.forEach(data, function (feature) {
 
