@@ -1,11 +1,7 @@
 var servicesAdvisorApp = angular.module('servicesAdvisorApp');
 
 servicesAdvisorApp.config(['$translateProvider', function ($translateProvider) {
-  // default language is Arabic
-  var defaultLanguage = 'ar';
-  $translateProvider.preferredLanguage(defaultLanguage);
-
-  $translateProvider.translations('en', {
+  $translateProvider.translations('EN', {
     'CATEGORY': 'Category',
     'SEARCH_TEXT': 'To find a service, select from the category or region below. Use the filter button above to further refine your search.',
     'REGION': 'Region',
@@ -38,8 +34,7 @@ servicesAdvisorApp.config(['$translateProvider', function ($translateProvider) {
     'WASH': 'WASH'
   });
 
-
-  $translateProvider.translations('ar', {
+  $translateProvider.translations('AR', {
     'CATEGORY': 'فئة',
     'SEARCH_TEXT': 'العثور على الخدمة، اختر من فئة أو منطقة أدناه. استخدم زر مرشح فوق لمزيد من تضييق نطاق البحث.',
     'REGION': 'منطقة',

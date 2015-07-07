@@ -3,7 +3,7 @@ var services = angular.module('services');
 /**
  * Provides the list of services (compiled.json)
  */
-services.factory('ServicesList', ['$http', '$translate', 'PopupBuilder', function ($http, $translate, PopupBuilder) {
+services.factory('ServicesList', ['$http', '$translate', 'PopupBuilder', 'Cookies', function ($http, $translate, PopupBuilder, Cookies) {
     var services = null;
     var servicesById = null;
 
@@ -12,7 +12,11 @@ services.factory('ServicesList', ['$http', '$translate', 'PopupBuilder', functio
             if (services) {
                 successCb(services);
             } else {
-                var servicesList = $translate.use() === 'ar' ? 'src/compiled_AR.json' : 'src/compiled.json';
+                // doing this here because we need it right before we load the data
+                var language = Cookies.getCookie('LANGUAGE') || 'AR';
+                $translate.use(language);
+
+                var servicesList = $translate.use() === 'AR' ? 'src/compiled_AR.json' : 'src/compiled.json';
                 $http.get(servicesList, {cache: true})
                     .success(function (data) {
                         data = data.filter(function(feature) {
