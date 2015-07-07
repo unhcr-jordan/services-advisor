@@ -56,8 +56,10 @@ controllers.controller('SearchCtrl', ['$scope', '$http', '$location', '$rootScop
         renderView(Search.currResults());
     });
 
-    // // Set up the watch function to watches for changes in $scope.categories 
-    $scope.$watch($scope.categories);
+    if ($scope.categories){
+        // // Set up the watch function to watches for changes in $scope.categories 
+        $scope.$watch($scope.categories);
+    }
 
     ServicesList.get(function (data) {
         Search.clearAll();

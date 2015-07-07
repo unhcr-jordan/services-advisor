@@ -23,14 +23,14 @@ controllers.controller('NavbarCtrl', ['$scope', 'Cookies', function ($scope, Coo
 toggleFilters = function() {
   $('#filters').toggleClass('hidden');
 
-  var filterPlaceholder = $('#filterPlaceholder');
-  if(! $('#filters').hasClass('hidden')) {
-    filterPlaceholder.hide();
-  }
-  else if ($('#filterSummary').find('button.filter-pill').length == 0) {
-    filterPlaceholder.show();
-  }
-  else {
-    filterPlaceholder.hide();
-  }
+  // var filterPlaceholder = $('#filterPlaceholder');
+  // if(! $('#filters').hasClass('hidden')) {
+  //   filterPlaceholder.hide();
+  // }
+  // else if ($('#filterSummary').find('button.filter-pill').length == 0) {
+  //   filterPlaceholder.show();
+  // }
+  // else {
+  //   filterPlaceholder.hide();
+  // }
 };
