@@ -59,7 +59,7 @@ controllers.controller('FilterCtrl', ['$scope', '$rootScope', 'Search', 'Service
                                 _.map(organizationsArray,function(partnerName){
                                   // Maps to an array to be converted to an Object
                                   // Sample: ["IOCC", ".src/images/partner/IOCC.jpg"]
-                                  return [partnerName, './src/images/partner/' + partnerName.replace(/\//g,"-").replace(/\s/g, "") + '.jpg']
+                                  return [partnerName, './src/images/partner/' + partnerName.replace(/\//g,"-").replace(/\s/g, "").toLowerCase() + '.jpg']
                                 })
                             )                             
     
