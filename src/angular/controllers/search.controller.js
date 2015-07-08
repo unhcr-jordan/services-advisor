@@ -68,8 +68,7 @@ controllers.controller('SearchCtrl', ['$scope', '$http', '$location', '$rootScop
         renderView(Search.currResults());
     });
 
-    $scope.toggleCategory = function(categoryName) {
-        var categoryDivId = categoryName + 'Activities';
-        $( '#' + categoryDivId ).toggleClass('hidden');
+    $scope.toggleCategory = function(categoryId) {
+        $( '#' + categoryId + ' .activities').toggleClass('hidden');
     }
 }]);
