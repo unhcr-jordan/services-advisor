@@ -314,6 +314,7 @@ h3 {
     :first-child, 
     :last-child {  
       border-radius: 0px;
+      margin-top: 5px;
     }
   }
   .list-group-item {
@@ -335,7 +336,14 @@ h3 {
   }
 
   button {
-    margin-top: 10px;
+    margin: 25px 0px 20px -15px;
+    padding: 7px 15px 6px 10px;
+    font-size: 1em;
+    border: 1px solid $grey-medium;
+  }
+
+  button:hover{
+    background-color: $grey-medium;
   }
 
   .instructions {
