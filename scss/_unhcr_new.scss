@@ -283,6 +283,33 @@ h3 {
   height: 94vh; /* compensate for the scroll buttons */
   overflow-y: scroll;
 
+  div.col-xs-5 {
+    background-color: white;
+    padding: 5px;
+
+    &:first-child {
+      border-left: 10px solid $grey-medium;
+      border-right: 10px solid $grey-medium;
+    }
+    &:last-child {
+      border-right: 10px solid $grey-medium;
+      margin-bottom: 20px;
+    }
+  }
+
+   div.col-xs-7 {
+    background-color: white;
+    padding: 5px;
+
+    &:first-child {
+      border-left: 10px solid $grey-medium;
+    }
+    &:last-child {
+      border-right: 10px solid $grey-medium;
+      margin-bottom: 20px;
+    }
+  }
+
   .list-group {
     :first-child, 
     :last-child {  
