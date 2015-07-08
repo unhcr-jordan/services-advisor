@@ -31,7 +31,22 @@ servicesAdvisorApp.config(['$translateProvider', function ($translateProvider) {
     'NFI': 'NFI',
     'PROTECTION': 'PROTECTION',
     'SHELTER': 'SHELTER',
-    'WASH': 'WASH'
+    'WASH': 'WASH',
+    "REFERRAL_METHOD": "Referral Method",
+    "ACTIVITY_DETAIL": "Activity Detail",
+    "SHOW_DETAILS": "Show details",
+    "AJLUN_GOVERNORATE": "Ajlun Governorate",
+    "AL_AQABAH_GOVERNORATE": "Al Aqabah Governorate",
+    "AL_BALQA_GOVERNORATE": "Al Balqa Governorate",
+    "AL_KARAK_GOVERNORATE": "Al Karak Governorate",
+    "AL_MAFRAQ_GOVERNORATE": "Al Mafraq Governorate",
+    "AMMAN_GOVERNORATE": "Amman Governorate",
+    "AT_TAFILAH_GOVERNORATE": "At Tafilah Governorate",
+    "AZ_zARQA_GOVERNORATE": "Az Zarqa Governorate",
+    "IRBID_GOVERNORATE": "Irbid Governorate",
+    "JARASH_GOVERNORATE": "Jarash Governorate",
+    "MA_AN_GOVERNORATE": "Ma'an Governorate",
+    "MADABA_GOVERNORATE": "Madaba Governorate"
   });
 
   $translateProvider.translations('AR', {
@@ -64,6 +79,21 @@ servicesAdvisorApp.config(['$translateProvider', function ($translateProvider) {
     'NFI': 'المواد غير الغذائية',
     'PROTECTION': 'الحماية',
     'SHELTER': 'المأوى',
-    'WASH': 'المياه والصرف الصحي'
+    'WASH': 'المياه والصرف الصحي',
+    "REFERRAL_METHOD": "الإحالة أسلوب",
+    "ACTIVITY_DETAIL": "النشاط تفاصيل",
+    "SHOW_DETAILS": "التفاصيل عرض",
+    "AJLUN_GOVERNORATE": "عجلون محافظة",
+    "AL_AQABAH_GOVERNORATE": "العقبة محافظة",
+    "AL_BALQA_GOVERNORATE": "البلقاء محافظة",
+    "AL_KARAK_GOVERNORATE": "الكرك محافظة",
+    "AL_MAFRAQ_GOVERNORATE": "المفرق محافظة",
+    "AMMAN_GOVERNORATE": "عمان محافظة",
+    "AT_TAFILAH_GOVERNORATE": "الطفيلة محافظة",
+    "AZ_zARQA_GOVERNORATE": "الزرقاء محافظة",
+    "IRBID_GOVERNORATE": "اربد محافظة",
+    "JARASH_GOVERNORATE": "جرش محافظة",
+    "MA_AN_GOVERNORATE": "معان محافظة",
+    "MADABA_GOVERNORATE": "مادبا محافظة"
   });
 }]);
