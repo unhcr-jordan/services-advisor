@@ -32,6 +32,7 @@ main
 body {
   font: 12px "Open Sans", "Helvetica", "Arial", sans-serif;
   padding-top: $navbar-height; /* to compensate for fixed navbar */
+  background-color: $grey-light;
 }
 
 h1 {
@@ -188,18 +189,18 @@ h3 {
 #filters {
   @media (min-width: $screen-md-min) {
     position: absolute;
-    top: 8px;
+    top: 12px;
     left: 15vw;
     z-index: 9999;
     background-color: white;
-    box-shadow: 2px 5px 5px #CCCCCC;
+    box-shadow: 0px 5px 15px rgba(0,0,0,.15);
   }
 
   label {
     text-align: left;
     font-size: 12px;
-    background-color: $grey-light;
-    border: 2px solid white;
+    background-color: $grey-medium;
+    border: 2px solid $grey-light;
 
     padding: 12px;
 
@@ -282,15 +283,43 @@ h3 {
   height: 94vh; /* compensate for the scroll buttons */
   overflow-y: scroll;
 
+  div.col-xs-5 {
+    background-color: white;
+    padding: 5px;
+
+    &:first-child {
+      border-left: 20px solid $grey-medium;
+      border-right: 20px solid $grey-medium;
+    }
+    &:last-child {
+      border-right: 20px solid $grey-medium;
+      margin-bottom: 10px;
+    }
+  }
+
+   div.col-xs-7 {
+    background-color: white;
+    padding: 5px;
+
+    &:first-child {
+      border-left: 20px solid $grey-medium;
+    }
+    &:last-child {
+      border-right: 20px solid $grey-medium;
+      margin-bottom: 10px;
+    }
+  }
+
   .list-group {
     :first-child, 
     :last-child {  
       border-radius: 0px;
+      margin-top: 5px;
     }
   }
   .list-group-item {
-    background-color: $grey-light;
-    border: 1px solid white;
+    background-color: $grey-medium;
+    border: 1px solid $grey-light;
     font-weight: bold;
     color: black;
     cursor: pointer;
@@ -304,10 +333,29 @@ h3 {
     font-weight: normal;
     color: black;
     }
+
+    .media-heading{
+      margin-bottom: 5px;
+      padding: 5px 5px 0px 5px;
+    }
+
+    .media-object {
+      display: block;
+      padding-right: 5px;
+    }
+
+
   }
 
   button {
-    margin-top: 10px;
+    margin: 25px 0px 20px -15px;
+    padding: 7px 15px 6px 10px;
+    font-size: 1em;
+    border: 1px solid $grey-medium;
+  }
+
+  button:hover{
+    background-color: $grey-medium;
   }
 
   .instructions {
@@ -316,7 +364,7 @@ h3 {
 }
 
 #serviceDetails {
-  background-color: $grey-light;
+  background-color: $grey-medium;
   border-radius: 0px;
   border: 0px;
   padding: 10px;
@@ -326,17 +374,17 @@ h3 {
     padding: 5px;
 
     &:first-child {
-      border-right: 10px solid $grey-light;
+      border-right: 10px solid $grey-medium;
     }
     &:last-child {
-      border-left: 10px solid $grey-light;
+      border-left: 10px solid $grey-medium;
       margin-bottom: 20px;
     }
   }
 
   .row {
     margin: 0px;
-    background-color: $grey-light;
+    background-color: $grey-medium;
   }  
 
   table {
@@ -408,7 +456,7 @@ h3 {
 }
 
 .serviceText {
-  border-bottom: 1px solid darken($grey-light, 20%);
+  border-bottom: 1px solid darken($grey-medium, 20%);
 
   &.expand {
     .content {
