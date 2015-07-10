@@ -29,6 +29,11 @@ body,
 main
 { height: 100%; }
 
+/* this class is added to the body once we determine our language */
+body.lang-AR {
+  direction: rtl;
+}
+
 body {
   font: 12px "Open Sans", "Helvetica", "Arial", sans-serif;
   padding-top: $navbar-height; /* to compensate for fixed navbar */
