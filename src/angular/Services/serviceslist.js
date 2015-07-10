@@ -15,6 +15,7 @@ services.factory('ServicesList', ['$http', '$translate', 'PopupBuilder', 'Cookie
                 // doing this here because we need it right before we load the data
                 var language = Cookies.getCookie('LANGUAGE') || 'AR';
                 $translate.use(language);
+                $('body').addClass('lang-' + language);
 
                 var servicesList = $translate.use() === 'AR' ? 'src/compiled_AR.json' : 'src/compiled.json';
                 $http.get(servicesList, {cache: true})
