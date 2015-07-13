@@ -12,14 +12,15 @@
 
 // Register App Modules
 require('./register.module.js');
- 
+
 // Routes
 require('./Routes/routes.js');
 // Services 
 require('./Services/serviceslist.js');
 require('./Services/search.js');
 require('./Services/popupbuilder.js');
-require('./Services/underscore.js')
+require('./Services/underscore.js');
+require('./Services/cookies.js');
 
 // Controllers 
 require('./controllers/search.controller.js');
@@ -30,4 +31,4 @@ require('./controllers/service.controller.js');
 require('./controllers/filter.controller.js');
 
 // Translations
-require('./translations/translations.config.js')
+require('./translations/translations.config.js');

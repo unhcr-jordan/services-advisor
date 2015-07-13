@@ -2,12 +2,10 @@
         <div class="form-group">
           <div class="col-xs-12 col-md-6 pull-right">
             <div class="pull-right">
-              <button id="cancelFilter" type="button" class="btn btn-secondary"
-                    onclick="javascript:$('#filters').addClass('hidden');" >
+              <button id="cancelFilter" type="button" class="btn btn-secondary" ng-click="toggleFilters();" >
                 {{ 'CANCEL' | translate }}
               </button>
-              <button id="applyFilter" type="button" class="btn btn-secondary"
-                    onclick="javascript:$('#filters').addClass('hidden');" ng-click="applyFilter()">
+              <button id="applyFilter" type="button" class="btn btn-secondary" ng-click="toggleFilters(); applyFilter();">
                 {{ 'APPLY' | translate }}
               </button>
             </div>
@@ -15,7 +13,7 @@
           <label for="inputReferral" class="col-xs-12 col-md-6 control-label">
             {{ 'REFERRAL_REQUIRED' | translate }}?
             <div class="pull-right">
-              <input type="checkbox" ng-click="check()" id="inputReferral" value="">
+              <input type="checkbox" ng-checked="referrals" ng-click="toggleReferrals(this)" id="inputReferral" value="">
             </div>
           </label>
         </div>
@@ -30,26 +28,22 @@
           
             <!-- Looping first split array  -->
             <div ng-repeat="organization1 in organizationsArray[0]">
-              <label for="inputReferral" class="col-xs-12 col-md-6 control-label">
+              <label class="col-xs-12 col-md-6 control-label organization-label">
                 {{organization1}}
                 <div class="pull-right">
-                  
-                  <img ng-src="{{partnerLogoUrl[organization1]}}" onError="this.onerror=null;this.src='http://google.com/favicon.ico';"/>
-                  <input ng-checked="selection.indexOf(organization1) > -1" ng-click="toggleSelection(organization1)" type="checkbox" id="inputReferral" value="">
-                </div>
+                  <img class="organization-logo" ng-src="{{partnerLogoUrl[organization1]}}" onError="this.onerror=null;this.src='http://google.com/favicon.ico';"/>
+                  <input ng-checked="filterSelection.indexOf(organization1) > -1" ng-click="toggleSelection(organization1)" type="checkbox" value="">
                 </div>
               </label>  
             </div>
 
             <!-- Looping second split array  -->
             <div ng-repeat="organization2 in organizationsArray[1]">
-              <label for="inputReferral" class="col-xs-12 col-md-6 control-label">
+              <label class="col-xs-12 col-md-6 control-label organization-label">
                 {{organization2}}
                 <div class="pull-right">
-                  
-                   <img ng-src="{{partnerLogoUrl[organization2]}}" onError="this.onerror=null;this.src='http://google.com/favicon.ico';"/>
-                  <input ng-checked="selection.indexOf(organization2) > -1" ng-click="toggleSelection(organization2)" type="checkbox" id="inputReferral" value="">
-                  
+                   <img class="organization-logo" ng-src="{{partnerLogoUrl[organization2]}}" onError="this.onerror=null;this.src='http://google.com/favicon.ico';"/>
+                  <input ng-checked="filterSelection.indexOf(organization2) > -1" ng-click="toggleSelection(organization2)" type="checkbox" value=""> 
                 </div>
               </label>  
             </div>
@@ -58,10 +52,10 @@
 
         <h3>{{ 'DISTANCE' | translate }}</h3>
         <div class="form-group">    
-          <label for="inputReferral" class="col-xs-12 col-md-6 control-label">
+          <label class="col-xs-12 col-md-6 control-label">
             Unicef
             <div class="pull-right">
-              <input type="checkbox" id="inputReferral" value="">
+              <input type="checkbox" value="">
             </div>
           </label>
         </div>

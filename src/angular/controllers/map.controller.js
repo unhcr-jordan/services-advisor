@@ -1,6 +1,6 @@
 var controllers = angular.module('controllers');
 
-controllers.controller('MapCtrl', ['$scope', '$rootScope', '$location', 'Search', function ($scope, $rootScope, $location, Search) {
+controllers.controller('MapCtrl', ['$scope', '$rootScope', '$location', '$translate', 'Search', function ($scope, $rootScope, $location, $translate, Search) {
     var mapCtrl = this;
 
     mapCtrl.onRegionClick = function(event) {
@@ -94,16 +94,15 @@ controllers.controller('MapCtrl', ['$scope', '$rootScope', '$location', 'Search'
 
     // Match possible Activity Categories to Humanitarian Font icons.
     // TODO: this is global right now so we can use it in the ServicesList service
-    iconGlyphs = {
-        'CASH': {glyph: 'ocha-sector-cash', markerColor: '#a48658' },
-        'EDUCATION': {glyph: 'ocha-sector-education', markerColor: '#c00000' },
-        'FOOD': {glyph: 'ocha-sector-foodsecurity', markerColor: '#006600' },
-        'HEALTH': {glyph: 'ocha-sector-health', markerColor: '#08a1d9' },
-        'NFI': {glyph: 'ocha-item-reliefgood', markerColor: '#f96a1b' },
-        'PROTECTION': {glyph: 'ocha-sector-protection', markerColor: '#1f497d' },
-        'SHELTER': {glyph: 'ocha-sector-shelter', markerColor: '#989aac' },
-        'WASH': {glyph: 'ocha-sector-wash', markerColor: '#7030a0' }
-    };
+    iconGlyphs = {};
+    iconGlyphs[$translate.instant('CASH')] = {glyph: 'ocha-sector-cash', markerColor: '#a48658' };
+    iconGlyphs[$translate.instant('EDUCATION')] = {glyph: 'ocha-sector-education', markerColor: '#c00000' };
+    iconGlyphs[$translate.instant('FOOD')] = {glyph: 'ocha-sector-foodsecurity', markerColor: '#006600' };
+    iconGlyphs[$translate.instant('HEALTH')] = {glyph: 'ocha-sector-health', markerColor: '#08a1d9' };
+    iconGlyphs[$translate.instant('NFI')] = {glyph: 'ocha-item-reliefgood', markerColor: '#f96a1b' };
+    iconGlyphs[$translate.instant('PROTECTION')] = {glyph: 'ocha-sector-protection', markerColor: '#1f497d' };
+    iconGlyphs[$translate.instant('SHELTER')] = {glyph: 'ocha-sector-shelter', markerColor: '#989aac' };
+    iconGlyphs[$translate.instant('WASH')] = {glyph: 'ocha-sector-wash', markerColor: '#7030a0' };
 
     // TODO: remove global
     iconObjects = {};

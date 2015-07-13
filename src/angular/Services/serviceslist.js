@@ -3,7 +3,7 @@ var services = angular.module('services');
 /**
  * Provides the list of services (compiled.json)
  */
-services.factory('ServicesList', ['$http', 'PopupBuilder', function ($http, PopupBuilder) {
+services.factory('ServicesList', ['$http', '$translate', 'PopupBuilder', 'Cookies', function ($http, $translate, PopupBuilder, Cookies) {
     var services = null;
     var servicesById = null;
 
@@ -12,8 +12,23 @@ services.factory('ServicesList', ['$http', 'PopupBuilder', function ($http, Popu
             if (services) {
                 successCb(services);
             } else {
-                $http.get('src/compiled.json', {cache: true})
-                    .success(function (data, status, headers, config) {
+                // doing this here because we need it right before we load the data
+                var language = Cookies.getCookie('LANGUAGE') || 'AR';
+                $translate.use(language);
+                $('body').addClass('lang-' + language);
+
+                var servicesList = $translate.use() === 'AR' ? 'src/compiled_AR.json' : 'src/compiled.json';
+                $http.get(servicesList, {cache: true})
+                    .success(function (data) {
+                        data = data.filter(function(feature) {
+                            // We want to remove features that are past the endDate.
+                            var featureEndDate = new Date(feature.properties.endDate);
+                            var featureEndDateUTC = new Date(featureEndDate.getUTCFullYear(), featureEndDate.getUTCMonth(), featureEndDate.getUTCDate());
+
+                            var today = new Date();
+                            var todayUTC = new Date(today.getUTCFullYear(), today.getUTCMonth(), today.getUTCDate());
+                            return featureEndDateUTC > todayUTC;
+                        });
                         angular.forEach(data, function (feature) {
 
                             // TODO: adding markers to the map here is a hack. Should be done somewhere it makes sense

@@ -51,12 +51,12 @@ Files:
 
 # How Services Data Is Loaded and Translated
 
-- `cat src/sources.txt | src/getJSON.js`
+- `cd src`
+- `cat sources.txt | getJSON.js`
   - this will call all the urls in `sources.txt` and then concatenate all the json responses into `compiled.json`
-  - NOTE: right now all those urls 500
-- `node src/LoadJSON.js`
+- `node LoadJSON.js`
   - this takes the json from `compiled.json` and removes all the `comments` fields (which aren't translated) to output `compileTruncated.json`
-- `node src/ParseEn_AR_JSON.js`
+- `node ParseEn_AR_JSON.js`
   - uses `data.csv` to regex replace the English strings in `compileTruncated.json` with their Arabic translations. This outputs `compiled_AR.json`.
 
 ## Arabic Site (http://data.unhcr.org/jordan/services-advisor/index_AR.html)
