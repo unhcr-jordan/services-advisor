@@ -29,9 +29,15 @@ body,
 main
 { height: 100%; }
 
+/* this class is added to the body once we determine our language */
+body.lang-AR {
+  direction: rtl;
+}
+
 body {
   font: 12px "Open Sans", "Helvetica", "Arial", sans-serif;
   padding-top: $navbar-height; /* to compensate for fixed navbar */
+  background-color: $grey-light;
 }
 
 h1 {
@@ -50,6 +56,11 @@ h3 {
 
 .btn {
   text-transform: uppercase;
+  -webkit-transition: color 0.2s;
+   -moz-transition: color 0.2s;
+    -ms-transition: color 0.2s;
+     -o-transition: color 0.2s;
+        transition: color 0.2s;
 }
 
 .btn-secondary {
@@ -78,43 +89,99 @@ h3 {
   }
 }
 
+.arrow-right {
+  width: 0; 
+  height: 0; 
+  border-top: 17px solid transparent;
+  border-bottom: 16px solid transparent;
+  border-left: 12px solid #5ED9DB;
+}
+
+#activeFilters {
+  margin-top:2px;
+  padding-left: 5px;
+}
+
 /* Header */
 #searchNav {
   background-color: $dark-blue;
   min-height: $navbar-height;
 
-  @media (min-width: $screen-md-min) {
-    form.navbar-form {
-      padding-left: 0px;
-
-      #filtersDiv {        
-        margin-left: -18px; /* align to map zoom buttons */
-      }
-
-      #preferences {
-        top: 5px;
-      }
-
-      #selectedLanguage {
-        margin-right: -50px;
-      }
-    }
-  } 
-
-  @media (max-width: $screen-xs-max) {
-      #filtersButton {
-        width: 100%;
-      }
+  #filterSummary {    
+    background-color: white;
+    min-height: 40px;
   }
 
-  #activeFilters button {
-    border-radius: 5px;
-    text-transform: inherit;
+  .filter-pill {
+    background-color: $teal;
+    color: white;
+    text-transform: none;
+  /* overwrite Bootstrap label styling*/
+    font-size: 120%;
+    font-weight: normal;
+    line-height: normal;
+    margin-right: 5px;
+    border-radius: 15px;
 
     &:after {
       font-family: "FontAwesome";
       content: "\f00d";
       margin-left: 6px;
+    }
+
+    &:hover {
+      color: black;
+    }
+
+    &:focus {
+      padding-top: 2.9px;
+    }
+  }
+
+  #selectedLanguage {
+    font-weight: bold;
+  }
+
+
+  @media (min-width: $screen-xs-max) {
+    #navbar {
+      padding-top: 8px
+    }
+
+    #filterSummary {        
+      margin-left: -3px; /* to align with map zoom buttons */
+      /* overwrite Bootstrap well styling*/
+      margin-bottom: 5px;
+      padding: 2px;
+    }
+
+    #preferences {
+      margin-top: 5px;
+    }
+
+    #selectedLanguage {
+      margin-top: -1px;
+      margin-right: -15px;
+      min-height: 40px;
+      padding: 10px;
+      float: right;
+    }
+  } 
+
+  @media (max-width: $screen-xs-max) {
+    #filterSummary {  
+      padding: 3px 3px 0px;
+      margin: 5px 0px 5px -3px; 
+    }
+
+    #preferences {
+      margin-top: 5px;
+    }
+
+    #selectedLanguage {
+      min-height: 41px;
+      min-width: 45px;
+      padding: 3px;
     }
   }
 }
@@ -127,17 +194,18 @@ h3 {
 #filters {
   @media (min-width: $screen-md-min) {
     position: absolute;
-    top: 8px;
+    top: 12px;
     left: 15vw;
     z-index: 9999;
     background-color: white;
+    box-shadow: 0px 5px 15px rgba(0,0,0,.15);
   }
 
   label {
     text-align: left;
     font-size: 12px;
-    background-color: $grey-light;
-    border: 2px solid white;
+    background-color: $grey-medium;
+    border: 2px solid $grey-light;
 
     padding: 12px;
 
@@ -165,6 +233,12 @@ h3 {
   }
 }
 
+.organization-label {
+  height: 50px;
+}
+.organization-logo {
+  height: 30px;
+}
 
 
 /* Map styles */
@@ -214,15 +288,43 @@ h3 {
   height: 94vh; /* compensate for the scroll buttons */
   overflow-y: scroll;
 
+  div.col-xs-5 {
+    background-color: white;
+    padding: 5px;
+
+    &:first-child {
+      border-left: 20px solid $grey-medium;
+      border-right: 20px solid $grey-medium;
+    }
+    &:last-child {
+      border-right: 20px solid $grey-medium;
+      margin-bottom: 10px;
+    }
+  }
+
+   div.col-xs-7 {
+    background-color: white;
+    padding: 5px;
+
+    &:first-child {
+      border-left: 20px solid $grey-medium;
+    }
+    &:last-child {
+      border-right: 20px solid $grey-medium;
+      margin-bottom: 10px;
+    }
+  }
+
   .list-group {
     :first-child, 
     :last-child {  
       border-radius: 0px;
+      margin-top: 5px;
     }
   }
   .list-group-item {
-    background-color: $grey-light;
-    border: 1px solid white;
+    background-color: $grey-medium;
+    border: 1px solid $grey-light;
     font-weight: bold;
     color: black;
     cursor: pointer;
@@ -236,38 +338,74 @@ h3 {
     font-weight: normal;
     color: black;
     }
+
+    .media-heading{
+      margin-bottom: 5px;
+      padding: 5px 5px 0px 5px;
+    }
+
+    .media-object {
+      display: block;
+      padding-right: 5px;
+    }
+
+
   }
 
   button {
-    margin-top: 10px;
+    margin: 25px 0px 20px -15px;
+    padding: 7px 15px 6px 10px;
+    font-size: 1em;
+    border: 1px solid $grey-medium;
+  }
+
+  button:hover{
+    background-color: $grey-medium;
+  }
+
+  .instructions {
+    margin-top: 20px;
   }
 }
 
+
+
+.service-details-partner-logo {
+  float:right !important;
+  margin:1em !important;
+}
+
 #serviceDetails {
-  background-color: $grey-light;
+  background-color: $grey-medium;
   border-radius: 0px;
   border: 0px;
   padding: 10px;
+
+  .service-details-container-row-1 {
+    padding:5px; 
+    height:100px;
+  }
 
   div.col-xs-6 {
     background-color: white;
     padding: 5px;
 
     &:first-child {
-      border-right: 10px solid $grey-light;
+      border-right: 10px solid $grey-medium;
     }
     &:last-child {
-      border-left: 10px solid $grey-light;
+      border-left: 10px solid $grey-medium;
       margin-bottom: 20px;
     }
   }
 
   .row {
     margin: 0px;
-    background-color: $grey-light;
+    background-color: $grey-medium;
   }  
 
   table {
+    margin-top:1em;
     margin-bottom: 0px; 
 
     td {
@@ -282,9 +420,12 @@ h3 {
       background-color: white;
     }
   }
+
+  div {
+    padding-top:10px;
+    text-align:center;
+  }
 }
-
-
 
 
 
@@ -336,7 +477,7 @@ h3 {
 }
 
 .serviceText {
-  border-bottom: 1px solid darken($grey-light, 20%);
+  border-bottom: 1px solid darken($grey-medium, 20%);
 
   &.expand {
     .content {
