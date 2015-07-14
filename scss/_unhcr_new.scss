@@ -368,11 +368,23 @@ h3 {
   }
 }
 
+
+
+.service-details-partner-logo {
+  float:right !important;
+  margin:1em !important;
+}
+
 #serviceDetails {
   background-color: $grey-medium;
   border-radius: 0px;
   border: 0px;
   padding: 10px;
+
+  .service-details-container-row-1 {
+    padding:5px; 
+    height:100px;
+  }
 
   div.col-xs-6 {
     background-color: white;
@@ -393,6 +405,7 @@ h3 {
   }  
 
   table {
+    margin-top:1em;
     margin-bottom: 0px; 
 
     td {
@@ -407,9 +420,12 @@ h3 {
       background-color: white;
     }
   }
+
+  div {
+    padding-top:10px;
+    text-align:center;
+  }
 }
-
-
 
 
 
