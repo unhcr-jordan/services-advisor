@@ -32,6 +32,9 @@ main
 /* this class is added to the body once we determine our language */
 body.lang-AR {
   direction: rtl;
+  @media (min-width: $screen-xs-max) {
+    font-size: 16px;
+  }
 }
 
 body {
