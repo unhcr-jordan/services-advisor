@@ -34,6 +34,9 @@ body.lang-AR {
   direction: rtl;
   @media (min-width: $screen-xs-max) {
     font-size: 16px;
+    h3 {
+      font-size: 16px;
+    }
   }
 }
 
@@ -252,6 +255,7 @@ h3 {
 #mapContainer {
   height: 100%;
   clear: both;
+  direction: ltr;
 
   @media (max-width: $screen-md-min) {
     height: 75%;
