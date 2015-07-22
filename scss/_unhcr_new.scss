@@ -32,6 +32,9 @@ main
 /* this class is added to the body once we determine our language */
 body.lang-AR {
   direction: rtl;
+  @media (min-width: $screen-xs-max) {
+    font-size: 16px;
+  }
 }
 
 body {
@@ -176,12 +179,16 @@ h3 {
 
     #preferences {
       margin-top: 5px;
+
+      // override padding from grid because the select box for language was squished against the filters
+      padding: 0;
     }
 
     #selectedLanguage {
       min-height: 41px;
       min-width: 45px;
       padding: 3px;
+      width: auto;
     }
   }
 }
