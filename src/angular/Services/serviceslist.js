@@ -29,7 +29,6 @@ services.factory('ServicesList', ['$http', '$translate', 'PopupBuilder', 'Cookie
                             var todayUTC = new Date(today.getUTCFullYear(), today.getUTCMonth(), today.getUTCDate());
                             return featureEndDateUTC > todayUTC;
                         });
-                        console.log(data.length);
                         angular.forEach(data, function (feature) {
 
                             // TODO: adding markers to the map here is a hack. Should be done somewhere it makes sense

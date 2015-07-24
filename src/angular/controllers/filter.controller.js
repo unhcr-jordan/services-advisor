@@ -98,11 +98,11 @@ controllers.controller('FilterCtrl', ['$scope', '$rootScope', 'Search', 'Service
 
     if ($rootScope.filterSelection.length == 0){
       Search.clearPartners();
-      Search.selectReferrals($rootScope.referrals);
+      Search.selectReferrals($scope.referral.selection);
     } else{
       //reapply the referrals filters
-      Search.clearPartners()
-      Search.selectReferrals($rootScope.referrals);
+      Search.clearPartners();
+      Search.selectReferrals($scope.referral.selection);
       Search.selectPartners($rootScope.filterSelection);
     }
   };
