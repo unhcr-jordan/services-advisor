@@ -48,7 +48,9 @@ servicesAdvisorApp.config(['$translateProvider', function ($translateProvider) {
     "Irbid Governorate": "Irbid Governorate",
     "Jarash Governorate": "Jarash Governorate",
     "Ma'an Governorate": "Ma'an Governorate",
-    "Madaba Governorate": "Madaba Governorate"
+    "Madaba Governorate": "Madaba Governorate",
+    'ALL': "All",
+    'REFERRAL_NOT_REQUIRED': "Referral Not Required"
   });
 
   $translateProvider.translations('AR', {
@@ -98,6 +100,8 @@ servicesAdvisorApp.config(['$translateProvider', function ($translateProvider) {
     "Irbid Governorate": "اربد محافظة",
     "Jarash Governorate": "جرش محافظة",
     "Ma'an Governorate": "معان محافظة",
-    "Madaba Governorate": "مادبا محافظةا"
+    "Madaba Governorate": "مادبا محافظةا",
+    'ALL': "كل",
+    'REFERRAL_NOT_REQUIRED': "إحالة غير مطلوب"
   });
 }]);
