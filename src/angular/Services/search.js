@@ -130,15 +130,10 @@ services.factory('Search', ['ServicesList', '$rootScope', function (ServicesList
                 return gju.pointInPolygon(point, geoJson.geometry);
             })
         }),
-        selectReferrals : withoutClearAndEmit(function (yesOrNo) {
-            referralsDimension.filter(function(service) {  
-                if (yesOrNo == true){
-                    yesOrNo = "Yes";
-                }
-                if (yesOrNo == false){
-                    yesOrNo = "No";
-                }
-                return service == yesOrNo;
+        selectReferrals : withoutClearAndEmit(function (selection) {
+            referralsDimension.filter(function(service) {
+                // if they've selected all, then we return everything, otherwise we try to match
+                return selection == 'all' ? true : service == selection;
             })
         }),
         clearAll: withClearAndEmit(function(){}),

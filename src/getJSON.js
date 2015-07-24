@@ -38,14 +38,29 @@ var jsonSources = [],
                 if (!processed[featureID]) {
                     // Check if this feature has referral method "No Referral" 
                     referralData = data.features[i].properties["10. Referral Method"];
-                    var referralRequired = true;
+
+
+                    /*
+                     * There are 7 possible values:
+                     *  "Email on a per case basis"
+                     *  "Referrals not accepted"       <-- marked as referral-not-required
+                     *  "IA Form"
+                     *  "Telephone on a per case basis"
+                     *  "RAIS"
+                     *  "Referral is not required"     <-- marked as referral-not-required
+                     *  And not defined at all         <-- marked as referral-not-required
+                     *
+                     *  The rest are marked as referral-required
+                     */
+                    var referralStatus = 'referral-not-required';
                     if (referralData) {
-                        if (referralData["No Referral"] === true) {
-                            referralRequired = false;
+                        if (referralData["Referrals not accepted"] !== true || referralData["Referral is not required"] !== true) {
+                            referralStatus = 'referral-required';
                         }
                     }
+
                     // Create the "noreferral" field with the value of noreferral
-                    data.features[i].properties["Referral required"] = referralRequired ? 'Yes' : 'No';
+                    data.features[i].properties["Referral required"] = referralStatus;
                     processed[featureID] = true;
                 }
             }

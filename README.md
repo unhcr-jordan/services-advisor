@@ -52,7 +52,7 @@ Files:
 # How Services Data Is Loaded and Translated
 
 - `cd src`
-- `cat sources.txt | getJSON.js`
+- `cat sources.txt | node getJSON.js`
   - this will call all the urls in `sources.txt` and then concatenate all the json responses into `compiled.json`
 - `node LoadJSON.js`
   - this takes the json from `compiled.json` and removes all the `comments` fields (which aren't translated) to output `compileTruncated.json`
