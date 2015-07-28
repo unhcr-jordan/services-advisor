@@ -77,7 +77,7 @@ controllers.controller('SearchCtrl', ['$scope', '$http', '$location', '$rootScop
             var c = s.charCodeAt(0);
             if (c == 32) return '-';
             if (c >= 65 && c <= 90) return s.toLowerCase();
-            return '';
+            return s;
         });
     }
 }]);
