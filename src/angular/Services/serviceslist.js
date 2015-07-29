@@ -41,6 +41,11 @@ services.factory('ServicesList', ['$http', '$translate', 'PopupBuilder', 'Cookie
                             //serviceMarker.bindPopup(renderServiceText(feature, "marker"), {className:feature.id});
                             serviceMarker.bindPopup(PopupBuilder.buildPopup(feature));
 
+                            // when a user clicks on a map marker, show the service in the sidebar
+                            serviceMarker.on('click', function() {
+                                window.location = '/#/services/' + feature.id + '?hideOthers=false';
+                            });
+
                             // Add the marker to the feature object, so we can re-use the same marker during render().
                             feature.properties.marker = serviceMarker;
                             // TODO: end TODO
