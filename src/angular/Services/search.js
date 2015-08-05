@@ -4,7 +4,7 @@ var services = angular.module('services');
 /**
  * Holds the state of the current search and the current results of that search
  */
-services.factory('Search', ['ServicesList', '$rootScope', function (ServicesList, $rootScope) {
+services.factory('Search', ['$location', 'ServicesList', '$rootScope', function ($location, ServicesList, $rootScope) {
     var gju = require('../../../node_modules/geojson-utils');
 
     // asynchronously initialize crossfilter
@@ -73,6 +73,16 @@ services.factory('Search', ['ServicesList', '$rootScope', function (ServicesList
         };
     };
 
+    var _clearOrganizations = function() {
+        partnerDimension.filterAll();
+    };
+
+    var _selectOrganizations = function(organizations) {
+        partnerDimension.filter(function(serviceOrganization) {
+            return organizations.indexOf(serviceOrganization) > -1;
+        });
+    };
+
     return {
         selectCategory: withClearAndEmit(function (category) {
             categoryDimension.filter(function(service) {
@@ -89,15 +99,8 @@ services.factory('Search', ['ServicesList', '$rootScope', function (ServicesList
                 return servicePartner == partner;
             })
         }),
-        selectPartners: withoutClearAndEmit(function(partners) {    
-            partnerDimension.filter(function(servicePartner) {
-                return partners.indexOf(servicePartner) > -1;
-            })
-        }),
-        clearPartners: function(){
-            $rootScope.$emit('FILTER_CHANGED');
-            partnerDimension.filterAll();
-        },
+        selectPartners: _selectOrganizations,
+        clearOrganizations: _clearOrganizations,
         selectRegion: withClearAndEmit(function(region) {
             var activeRegionLayer = null;
             polygonLayer.getLayers().forEach(function(f) {
@@ -139,6 +142,16 @@ services.factory('Search', ['ServicesList', '$rootScope', function (ServicesList
         clearAll: withClearAndEmit(function(){}),
         currResults: function () {
             return metaDimension.top(Infinity);
+        },
+        filterByUrlParameters: function() {
+            var parameters = $location.search();
+
+            _clearOrganizations();
+            if (_.has(parameters, 'organization')){
+                _selectOrganizations(parameters.organization);
+            }
+
+            $rootScope.$emit('FILTER_CHANGED');
         }
     }
 }]);
