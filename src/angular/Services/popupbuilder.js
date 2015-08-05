@@ -54,7 +54,6 @@ services.factory('PopupBuilder', ['$translate', function ($translate) {
 
             // Loop through our list of fields, preparing output for display.
             var headerOutput = '';
-            var contentOutput = '';
             for (var field in fields) {
                 // Get the field items
                 values = feature.properties[field];
@@ -86,8 +85,6 @@ services.factory('PopupBuilder', ['$translate', function ($translate) {
                 // Add the field output to the appropriate section.
                 if (fields[field].section == 'header') {
                     headerOutput += fieldOutput;
-                } else {
-                    contentOutput += fieldOutput;
                 }
             }
 
@@ -98,10 +95,9 @@ services.factory('PopupBuilder', ['$translate', function ($translate) {
             // In the list view only, the articles must have unique IDs so that we can scroll directly to them
             // when someone clicks the "Show details" link in a map marker.
             var articleIDattribute = '';
-            var toggleLinks = '<a id="show-details-' + feature.id + '" href="#/services/' + feature.id + '?hideOthers=false">Show details</a>';
 
             // Assemble the article header.
-            var header = '<header>' + logo + '<h3>' + glyph + feature.properties.locationName + ': ' + feature.properties.activityName + '</h3>' + toggleLinks + '<p class="hours">' + hours + '</p>' + headerOutput + '</header>';
+            var header = '<header>' + logo + '<h3>' + glyph + feature.properties.locationName + ': ' + feature.properties.activityName + '</h3>' + '<p class="hours">' + hours + '</p>' + headerOutput + '</header>';
 
             return '<article class="serviceText"' + articleIDattribute + '>' + header + '</article>';
         }
