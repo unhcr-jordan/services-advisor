@@ -62,7 +62,6 @@ controllers.controller('SearchCtrl', ['$scope', '$http', '$location', '$rootScop
     }
 
     ServicesList.get(function (data) {
-        Search.clearAll();
         // TODO: right now we don't even use the 'data' result, we just use the current search results.
         // this is because if there are filters applied we want to only show data within those filters
         renderView(Search.currResults());

@@ -143,15 +143,14 @@ services.factory('Search', ['$location', 'ServicesList', '$rootScope', function 
         currResults: function () {
             return metaDimension.top(Infinity);
         },
-        filterByUrlParameters: function() {
+        filterByUrlParameters: withClearAndEmit(function() {
             var parameters = $location.search();
 
-            _clearOrganizations();
-            if (_.has(parameters, 'organization')){
+            if (_.has(parameters, 'organization') && parameters.organization.length > 0){
                 _selectOrganizations(parameters.organization);
             }
 
-            $rootScope.$emit('FILTER_CHANGED');
-        }
+            console.log("Filtered results : " + metaDimension.top(Infinity).length);
+        })
     }
 }]);

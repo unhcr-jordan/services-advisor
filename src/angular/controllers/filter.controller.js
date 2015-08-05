@@ -105,6 +105,7 @@ controllers.controller('FilterCtrl', ['$scope', '$rootScope', '$location', 'Sear
     $rootScope.filterSelection = parameters.organization;
 
     $location.search(parameters);
+
     Search.filterByUrlParameters();
     // $rootScope.$emit('FILTER_CHANGED');
 
