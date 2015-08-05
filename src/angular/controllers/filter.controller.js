@@ -73,13 +73,24 @@ controllers.controller('FilterCtrl', ['$scope', '$rootScope', '$location', 'Sear
   ServicesList.get(collectOrganizations);
 
   // selected organizations
-  $scope.toggleReferral = function() {
-    Search.selectReferrals($scope.referral.selection);
+  $scope.toggleReferral = function(value) {
+    var parameters = $location.search();
+    if ($scope.referral.selection == 'all') {
+      //Don't display the 'all' filter
+      if (_.has(parameters, 'referrals')){
+        delete parameters.referrals
+      }
+    } else {
+      parameters.referrals = $scope.referral.selection;
+    }
+    $location.search(parameters);
+    Search.filterByUrlParameters();
+    // Search.selectReferrals($scope.referral.selection);
   };
 
-    $scope.referral = {
-        selection: 'all'
-    };
+  $scope.referral = {
+      selection: 'all'
+  };
 
   // toggle selection for a given organization by name
   $scope.toggleSelection = function toggleSelection(organization) {
@@ -107,17 +118,6 @@ controllers.controller('FilterCtrl', ['$scope', '$rootScope', '$location', 'Sear
     $location.search(parameters);
 
     Search.filterByUrlParameters();
-    // $rootScope.$emit('FILTER_CHANGED');
-
-    // if ($rootScope.filterSelection.length == 0){
-    //   Search.clearPartners();
-    //   Search.selectReferrals($scope.referral.selection);
-    // } else{
-    //   //reapply the referrals filters
-    //   Search.clearPartners();
-    //   Search.selectReferrals($scope.referral.selection);
-    //   Search.selectPartners($rootScope.filterSelection);
-    // }
   };
 
   $scope.toggleFilters = toggleFilters;

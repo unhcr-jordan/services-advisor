@@ -83,6 +83,13 @@ services.factory('Search', ['$location', 'ServicesList', '$rootScope', function 
         });
     };
 
+    var _selectReferrals = function (selection) {
+        referralsDimension.filter(function(service) {
+            // if they've selected all, then we return everything, otherwise we try to match
+            return selection == 'all' ? true : service == selection;
+        });
+    }
+
     return {
         selectCategory: withClearAndEmit(function (category) {
             categoryDimension.filter(function(service) {
@@ -99,7 +106,7 @@ services.factory('Search', ['$location', 'ServicesList', '$rootScope', function 
                 return servicePartner == partner;
             })
         }),
-        selectPartners: _selectOrganizations,
+        selectOrganizations: _selectOrganizations,
         clearOrganizations: _clearOrganizations,
         selectRegion: withClearAndEmit(function(region) {
             var activeRegionLayer = null;
@@ -133,12 +140,7 @@ services.factory('Search', ['$location', 'ServicesList', '$rootScope', function 
                 return gju.pointInPolygon(point, geoJson.geometry);
             })
         }),
-        selectReferrals : withoutClearAndEmit(function (selection) {
-            referralsDimension.filter(function(service) {
-                // if they've selected all, then we return everything, otherwise we try to match
-                return selection == 'all' ? true : service == selection;
-            })
-        }),
+        selectReferrals : _selectReferrals,
         clearAll: withClearAndEmit(function(){}),
         currResults: function () {
             return metaDimension.top(Infinity);
@@ -148,6 +150,10 @@ services.factory('Search', ['$location', 'ServicesList', '$rootScope', function 
 
             if (_.has(parameters, 'organization') && parameters.organization.length > 0){
                 _selectOrganizations(parameters.organization);
+            }
+
+            if (_.has(parameters, 'referrals')) {
+                _selectReferrals(parameters.referrals);
             }
 
             console.log("Filtered results : " + metaDimension.top(Infinity).length);
