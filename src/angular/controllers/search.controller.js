@@ -79,4 +79,18 @@ controllers.controller('SearchCtrl', ['$scope', '$http', '$location', '$rootScop
             return s;
         });
     }
+
+    $scope.showCategoryResults = function(category_name) {
+        var parameters = $location.search();
+        parameters.category = category_name;
+        $location.path('results').search(parameters);
+        Search.filterByUrlParameters();
+    }
+
+    $scope.goBack = function() {
+        // $('#mapContainer').trigger('toggleMapEvent'); 
+        // history.back(); 
+        Search.filterByUrlParameters(); 
+        return false;
+    }
 }]);

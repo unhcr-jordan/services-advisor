@@ -61,4 +61,11 @@ controllers.controller('ServiceCtrl', ['$scope', '$routeParams', '$location', 'S
     });
     $scope.service.properties = propList;
 
+    $scope.goBack = function() {
+        // $('#mapContainer').trigger('toggleMapEvent'); 
+        // hitory.back(); 
+        Search.filterByUrlParameters(); 
+        return false;
+    }
+
 }]);

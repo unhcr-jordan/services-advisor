@@ -90,6 +90,12 @@ services.factory('Search', ['$location', 'ServicesList', '$rootScope', function 
         });
     }
 
+    var _selectCategory = function(category){
+        categoryDimension.filter(function(service) {
+            return service == category;
+        });
+    }
+
     return {
         selectCategory: withClearAndEmit(function (category) {
             categoryDimension.filter(function(service) {
@@ -154,6 +160,10 @@ services.factory('Search', ['$location', 'ServicesList', '$rootScope', function 
 
             if (_.has(parameters, 'referrals')) {
                 _selectReferrals(parameters.referrals);
+            }
+
+            if (_.has(parameters, 'category')) {
+                _selectCategory(parameters.category);
             }
 
             console.log("Filtered results : " + metaDimension.top(Infinity).length);
