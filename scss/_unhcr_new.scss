@@ -185,6 +185,8 @@ h3 {
 
       // override padding from grid because the select box for language was squished against the filters
       padding: 0;
+      position: fixed;
+      right: 5px;
     }
 
     #selectedLanguage {
