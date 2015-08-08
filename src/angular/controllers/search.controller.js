@@ -69,6 +69,14 @@ controllers.controller('SearchCtrl', ['$scope', '$http', '$location', '$rootScop
 
     $scope.toggleCategory = function(categoryId) {
         $( '#' + categoryId + ' .activities').toggleClass('hidden');
+        var classes = $( '#' + categoryId + ' .glyphicon').attr('class').split(/\s+/);
+        if($.inArray('glyphicon-chevron-down', classes) > -1) {
+            $( '#' + categoryId + ' .glyphicon').addClass('glyphicon-chevron-right');
+            $( '#' + categoryId + ' .glyphicon').removeClass('glyphicon-chevron-down');
+        } else if($.inArray('glyphicon-chevron-right', classes) > -1) {
+            $( '#' + categoryId + ' .glyphicon').addClass('glyphicon-chevron-down');
+            $( '#' + categoryId + ' .glyphicon').removeClass('glyphicon-chevron-right');
+        }
     }
 
     $scope.toCssClass = function (str) {
