@@ -118,6 +118,11 @@ controllers.controller('FilterCtrl', ['$scope', '$rootScope', '$location', 'Sear
     $location.search(parameters);
 
     Search.filterByUrlParameters();
+
+    // hack to reset body padding height so if the size of the filter bar grows we can
+    // still see the rest of the UI. Need to scope.apply so the ui gets updated before we check the height
+    $scope.$apply();
+    $("body").css("padding-top", $("#searchNav").height() + "px");
   };
 
   $scope.toggleFilters = toggleFilters;
