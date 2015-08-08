@@ -10,8 +10,8 @@
           </div>          
             <div class="col-xs-6">
               <!-- TODO: huge hack here using global variable to be able to call map.invalidateSize() on map so it resizes -->
-            <button id="toggleMapButton" type="button" class="btn btn-default visible-xs pull-right" 
-                onclick="$('#mapContainer').toggleClass('map-hide'); map.invalidateSize();">
+            <button id="toggleMapButton" type="button" class="btn btn-default visible-xs pull-right"
+                onclick="toggleMap()">
               {{ 'TOGGLE_MAP' | translate }}
             </button>
           </div>
