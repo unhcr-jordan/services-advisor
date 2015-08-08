@@ -54,6 +54,7 @@ services.factory('PopupBuilder', ['$translate', function ($translate) {
 
             // Loop through our list of fields, preparing output for display.
             var headerOutput = '';
+            var contentOutput = '';
             for (var field in fields) {
                 // Get the field items
                 values = feature.properties[field];
@@ -85,6 +86,8 @@ services.factory('PopupBuilder', ['$translate', function ($translate) {
                 // Add the field output to the appropriate section.
                 if (fields[field].section == 'header') {
                     headerOutput += fieldOutput;
+                } else {
+                    contentOutput += fieldOutput;
                 }
             }
 

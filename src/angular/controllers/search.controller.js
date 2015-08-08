@@ -62,7 +62,6 @@ controllers.controller('SearchCtrl', ['$scope', '$http', '$location', '$rootScop
     }
 
     ServicesList.get(function (data) {
-        Search.clearAll();
         // TODO: right now we don't even use the 'data' result, we just use the current search results.
         // this is because if there are filters applied we want to only show data within those filters
         renderView(Search.currResults());
@@ -79,5 +78,19 @@ controllers.controller('SearchCtrl', ['$scope', '$http', '$location', '$rootScop
             if (c >= 65 && c <= 90) return s.toLowerCase();
             return s;
         });
+    }
+
+    $scope.showCategoryResults = function(category_name) {
+        var parameters = $location.search();
+        parameters.category = category_name;
+        $location.path('results').search(parameters);
+        Search.filterByUrlParameters();
+    }
+
+    $scope.showRegionResults = function(regionName) {
+        var parameters = $location.search();
+        parameters.region = regionName;
+        $location.path('results').search(parameters);
+        Search.filterByUrlParameters();
     }
 }]);

@@ -4,7 +4,7 @@ var services = angular.module('services');
 /**
  * Holds the state of the current search and the current results of that search
  */
-services.factory('Search', ['ServicesList', '$rootScope', function (ServicesList, $rootScope) {
+services.factory('Search', ['$location', 'ServicesList', '$rootScope', function ($location, ServicesList, $rootScope) {
     var gju = require('../../../node_modules/geojson-utils');
 
     // asynchronously initialize crossfilter
@@ -73,6 +73,50 @@ services.factory('Search', ['ServicesList', '$rootScope', function (ServicesList
         };
     };
 
+    var _clearOrganizations = function() {
+        partnerDimension.filterAll();
+    };
+
+    var _selectOrganizations = function(organizations) {
+        partnerDimension.filter(function(serviceOrganization) {
+            return organizations.indexOf(serviceOrganization) > -1;
+        });
+    };
+
+    var _selectReferrals = function (selection) {
+        referralsDimension.filter(function(service) {
+            // if they've selected all, then we return everything, otherwise we try to match
+            return selection == 'all' ? true : service == selection;
+        });
+    }
+
+    var _selectCategory = function(category){
+        categoryDimension.filter(function(service) {
+            return service == category;
+        });
+    }
+
+    var _selectRegion = function (region) {
+        var activeRegionLayer = null;
+        polygonLayer.getLayers().forEach(function(f) {
+            if (f.feature.properties.adm1_name == region) {
+                activeRegionLayer = f;
+            }
+        });
+
+        if (activeRegionLayer) {
+            regionDimension.filter(function(servicePoint) {
+                var pp = servicePoint.split(',');
+                var point = {
+                    type: "Point",
+                    coordinates: [parseFloat(pp[1]), parseFloat(pp[0])]
+                };
+
+                return gju.pointInPolygon(point, activeRegionLayer.toGeoJSON().geometry);
+            })
+        }
+    };
+
     return {
         selectCategory: withClearAndEmit(function (category) {
             categoryDimension.filter(function(service) {
@@ -89,15 +133,8 @@ services.factory('Search', ['ServicesList', '$rootScope', function (ServicesList
                 return servicePartner == partner;
             })
         }),
-        selectPartners: withoutClearAndEmit(function(partners) {    
-            partnerDimension.filter(function(servicePartner) {
-                return partners.indexOf(servicePartner) > -1;
-            })
-        }),
-        clearPartners: function(){
-            $rootScope.$emit('FILTER_CHANGED');
-            partnerDimension.filterAll();
-        },
+        selectOrganizations: _selectOrganizations,
+        clearOrganizations: _clearOrganizations,
         selectRegion: withClearAndEmit(function(region) {
             var activeRegionLayer = null;
             polygonLayer.getLayers().forEach(function(f) {
@@ -117,28 +154,31 @@ services.factory('Search', ['ServicesList', '$rootScope', function (ServicesList
                 })
             }
         }),
-        selectRegionByLayerId: withClearAndEmit(function (layerId) {
-            var geoJson = polygonLayer.getLayer(layerId).toGeoJSON();
-
-            regionDimension.filter(function(servicePoint) {
-                var pp = servicePoint.split(',');
-                var point = {
-                    type: "Point",
-                    coordinates: [parseFloat(pp[1]), parseFloat(pp[0])]
-                };
-
-                return gju.pointInPolygon(point, geoJson.geometry);
-            })
-        }),
-        selectReferrals : withoutClearAndEmit(function (selection) {
-            referralsDimension.filter(function(service) {
-                // if they've selected all, then we return everything, otherwise we try to match
-                return selection == 'all' ? true : service == selection;
-            })
-        }),
+        selectReferrals : _selectReferrals,
         clearAll: withClearAndEmit(function(){}),
         currResults: function () {
             return metaDimension.top(Infinity);
-        }
+        },
+        filterByUrlParameters: withClearAndEmit(function() {
+            var parameters = $location.search();
+
+            if (_.has(parameters, 'organization') && parameters.organization.length > 0){
+                _selectOrganizations(parameters.organization);
+            }
+
+            if (_.has(parameters, 'referrals')) {
+                _selectReferrals(parameters.referrals);
+            }
+
+            if (_.has(parameters, 'category')) {
+                _selectCategory(parameters.category);
+            } 
+
+            if (_.has(parameters, 'region')){
+                _selectRegion(parameters.region);
+            }
+
+            return metaDimension.top(Infinity);
+        })
     }
 }]);
