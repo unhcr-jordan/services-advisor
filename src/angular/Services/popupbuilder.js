@@ -98,7 +98,6 @@ services.factory('PopupBuilder', ['$translate', function ($translate) {
             // In the list view only, the articles must have unique IDs so that we can scroll directly to them
             // when someone clicks the "Show details" link in a map marker.
             var articleIDattribute = '';
-            //var toggleLinks = '<a id="show-details-' + feature.id + '" href="#/services/' + feature.id + '?hideOthers=false">Show details</a>';
 
             // Assemble the article header.
             var header = '<header>' + logo + '<h3>' + glyph + feature.properties.locationName + ': ' + feature.properties.activityName + '</h3>' + '<p class="hours">' + hours + '</p>' + headerOutput + '</header>';

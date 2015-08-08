@@ -1,22 +1,6 @@
 var controllers = angular.module('controllers');
 
 controllers.controller('MapCtrl', ['$scope', '$rootScope', '$location', '$translate', 'Search', function ($scope, $rootScope, $location, $translate, Search) {
-    var mapCtrl = this;
-
-    mapCtrl.onRegionClick = function(event) {
-        var layerId = polygonLayer.getLayerId(event.target);
-
-        event.target.setStyle({
-            opacity: 0.7
-        });
-
-        var parameters = $location.search();
-        parameters.regionLayerId = layerId
-        $location.path("/results").search(parameters);
-        Search.filterByUrlParameters();
-	$scope.$apply();
-    };
-
     // Mapbox doesn't need its own var - it automatically attaches to Leaflet's L.
     require('mapbox.js');
     // Use Awesome Markers lib to produce font-icon map markers
@@ -112,6 +96,8 @@ controllers.controller('MapCtrl', ['$scope', '$rootScope', '$location', '$transl
             extraClasses: category
         });
     }
+
+    // add map icons
 
 
     var onChange = function(event) {
