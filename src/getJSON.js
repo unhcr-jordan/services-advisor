@@ -12,6 +12,7 @@ var split = require('split');
 
 // Array to hold the incoming JSON
 var jsonSources = [],
+    originalSources = [];
 
     // Given an http GET request, handle the incoming data stream.
     onSuccess = function (res) {
@@ -32,20 +33,37 @@ var jsonSources = [],
             // Parse the JSON objects: create a "Directly accessible" vs "Referral
             // required" field based on "Referral Method"
             var processed = [];
+            originalSources = originalSources.concat(originalSources);
+            fs.writeFile('originals.json', JSON.stringify(originalSources));
+
             for (var i in data.features) {
                 // Check if this feature is already in the list.
                 featureID = data.features[i].id;
+
                 if (!processed[featureID]) {
                     // Check if this feature has referral method "No Referral" 
                     referralData = data.features[i].properties["10. Referral Method"];
-                    var referralRequired = true;
-                    if (referralData) {
-                        if (referralData["No Referral"] === true) {
-                            referralRequired = false;
-                        }
+
+
+                    /*
+                     * There are 7 possible values:
+                     *  "Email on a per case basis"
+                     *  "Referrals not accepted"       <-- marked as referral-not-required
+                     *  "IA Form"
+                     *  "Telephone on a per case basis"
+                     *  "RAIS"
+                     *  "Referral is not required"     <-- marked as referral-not-required
+                     *  And not defined at all         <-- marked as referral-not-required
+                     *
+                     *  The rest are marked as referral-required
+                     */
+                    var referralStatus = 'referral-required';
+                    if (!referralData || referralData["Referrals not accepted"] === true || referralData["Referral is not required"] === true) {
+                        referralStatus = 'referral-not-required';
                     }
+
                     // Create the "noreferral" field with the value of noreferral
-                    data.features[i].properties["Referral required"] = referralRequired ? 'Yes' : 'No';
+                    data.features[i].properties["Referral required"] = referralStatus;
                     processed[featureID] = true;
                 }
             }
