@@ -14,7 +14,7 @@ controllers.controller('MapCtrl', ['$scope', '$rootScope', '$location', '$transl
         parameters.regionLayerId = layerId
         $location.path("/results").search(parameters);
         Search.filterByUrlParameters();
-        $scope.$apply();
+	$scope.$apply();
     };
 
     // Mapbox doesn't need its own var - it automatically attaches to Leaflet's L.
@@ -83,14 +83,6 @@ controllers.controller('MapCtrl', ['$scope', '$rootScope', '$location', '$transl
                     });
                 //}
             }, this);
-
-            L.DomEvent.addListener(f, 'click', mapCtrl.onRegionClick);
-
-            //var key = this._getFeatureId(f);
-            //if (!this._filters[key]) {
-            //    this._numItems++;
-            //    this._filters[key] = this._addItem(f);
-            //}
         });
     });
 
