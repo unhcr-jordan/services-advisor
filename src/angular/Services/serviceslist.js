@@ -3,7 +3,7 @@ var services = angular.module('services');
 /**
  * Provides the list of services (compiled.json)
  */
-services.factory('ServicesList', ['$http', '$translate', 'PopupBuilder', 'Cookies', function ($http, $translate, PopupBuilder, Cookies) {
+services.factory('ServicesList', ['$http', '$translate', '$location', 'PopupBuilder', 'Cookies', function ($http, $translate, $location, PopupBuilder, Cookies) {
     var services = null;
     var servicesById = null;
 
@@ -43,7 +43,8 @@ services.factory('ServicesList', ['$http', '$translate', 'PopupBuilder', 'Cookie
 
                             // when a user clicks on a map marker, show the service in the sidebar
                             serviceMarker.on('click', function() {
-                                window.location = '/#/services/' + feature.id + '?hideOthers=false';
+                                var parameters = $location.search();
+                                $location.path('services/'+feature.id).search(parameters);
                             });
 
                             // Add the marker to the feature object, so we can re-use the same marker during render().

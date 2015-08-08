@@ -96,6 +96,20 @@ services.factory('Search', ['$location', 'ServicesList', '$rootScope', function 
         });
     }
 
+    var _selectRegionByLayerId = function (layerId) {
+        var geoJson = polygonLayer.getLayer(layerId).toGeoJSON();
+
+        regionDimension.filter(function(servicePoint) {
+            var pp = servicePoint.split(',');
+            var point = {
+                type: "Point",
+                coordinates: [parseFloat(pp[1]), parseFloat(pp[0])]
+            };
+
+            return gju.pointInPolygon(point, geoJson.geometry);
+        });
+    }
+
     return {
         selectCategory: withClearAndEmit(function (category) {
             categoryDimension.filter(function(service) {
@@ -133,19 +147,7 @@ services.factory('Search', ['$location', 'ServicesList', '$rootScope', function 
                 })
             }
         }),
-        selectRegionByLayerId: withClearAndEmit(function (layerId) {
-            var geoJson = polygonLayer.getLayer(layerId).toGeoJSON();
-
-            regionDimension.filter(function(servicePoint) {
-                var pp = servicePoint.split(',');
-                var point = {
-                    type: "Point",
-                    coordinates: [parseFloat(pp[1]), parseFloat(pp[0])]
-                };
-
-                return gju.pointInPolygon(point, geoJson.geometry);
-            })
-        }),
+        selectRegionByLayerId: withClearAndEmit(_selectRegionByLayerId),
         selectReferrals : _selectReferrals,
         clearAll: withClearAndEmit(function(){}),
         currResults: function () {
@@ -164,9 +166,13 @@ services.factory('Search', ['$location', 'ServicesList', '$rootScope', function 
 
             if (_.has(parameters, 'category')) {
                 _selectCategory(parameters.category);
+            } 
+
+            if (_.has(parameters, 'regionLayerId')){
+                _selectRegionByLayerId(parameters.regionLayerId);
             }
 
-            console.log("Filtered results : " + metaDimension.top(Infinity).length);
+            return metaDimension.top(Infinity);
         })
     }
 }]);

@@ -86,11 +86,4 @@ controllers.controller('SearchCtrl', ['$scope', '$http', '$location', '$rootScop
         $location.path('results').search(parameters);
         Search.filterByUrlParameters();
     }
-
-    $scope.goBack = function() {
-        // $('#mapContainer').trigger('toggleMapEvent'); 
-        // history.back(); 
-        Search.filterByUrlParameters(); 
-        return false;
-    }
 }]);

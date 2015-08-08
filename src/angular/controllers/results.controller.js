@@ -5,34 +5,12 @@ var controllers = angular.module('controllers');
  */
 controllers.controller('ResultsCtrl', ['$scope', '$location', '$translate', 'Search', 'ServicesList', function ($scope, $location, $translate, Search, ServicesList) {
 
-    // Filtered object based on the categories/regions in the query string
-    var getFilteredResults = function ($location) {
-        var filters = $location.search();
-
-        if (filters.region !== undefined) {
-            Search.selectRegion(filters.region)
-        }
-
-        if (filters.category !== undefined) {
-            Search.selectCategory(filters.category)
-        }
-
-        if (filters.regionLayerId !== undefined) {
-            Search.selectRegionByLayerId(filters.regionLayerId);
-        }
-
-        return Search.currResults();
-    };
-
     // A bit of a hack to get the services to load before we apply any filter on,
     // ServicesList.get will only load the services if they haven't been loaded already.
     ServicesList.get(
         function(services){
-            
             // ****** RESULTS OBJECT ********* 
-
-            $scope.results = getFilteredResults($location)
-            
+            $scope.results = Search.filterByUrlParameters();
         }
     )
 
@@ -90,5 +68,24 @@ controllers.controller('ResultsCtrl', ['$scope', '$location', '$translate', 'Sea
         } 
 
         return activityDetails;
+    }
+
+    $scope.selectService = function(service_id) {
+        var parameters = $location.search();
+        $location.path('services/'+service_id).search(parameters);
+    }
+
+    $scope.goBackFromResults = function() {
+        var parameters = $location.search();
+        if (_.has(parameters, 'category')){
+            delete parameters.category;
+            // refilter as we changed the parameters.
+            Search.filterByUrlParameters();
+        } else if (_.has(parameters, 'regionLayerId')){
+            delete parameters.regionLayerId;
+            // refilter as we changed the parameters.
+            Search.filterByUrlParameters();
+        }
+        $location.path('').search(parameters);
     }
 }]);

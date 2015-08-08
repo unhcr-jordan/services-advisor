@@ -10,7 +10,10 @@ controllers.controller('MapCtrl', ['$scope', '$rootScope', '$location', '$transl
             opacity: 0.7
         });
 
-        $location.path("/results").search({regionLayerId: layerId});
+        var parameters = $location.search();
+        parameters.regionLayerId = layerId
+        $location.path("/results").search(parameters);
+        Search.filterByUrlParameters();
         $scope.$apply();
     };
 

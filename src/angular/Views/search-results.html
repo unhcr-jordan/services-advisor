@@ -3,8 +3,7 @@
       <div data-ng-controller="ResultsCtrl">
         <div class="row">
           <div class="col-xs-6">
-            <button id="backButton" type="button" class="btn btn-default" href="#"
-                onclick="goBack();">
+            <button id="backButton" type="button" class="btn btn-default" ng-click="goBackFromResults();">
               <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> 
               {{ 'BACK' | translate }}
             </button>
@@ -22,7 +21,7 @@
           <ul class="list-group">
 
             <div ng-repeat="result in results">
-              <a href="#" class="list-group-item" ng-href="#/services/{{result.id}}">
+              <a class="list-group-item" ng-click="selectService(result.id);">
                 
                 <!-- location name section -->
                 <div class="row media-body">

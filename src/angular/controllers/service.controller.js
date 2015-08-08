@@ -7,8 +7,12 @@ controllers.controller('ServiceCtrl', ['$scope', '$routeParams', '$location', 'S
     if ($location.search().hideOthers !== "false") {
         // only called when coming from a list view
         Search.selectId($routeParams.serviceId);
+    }  
+    if (!ServicesList.services) {
+        ServicesList.get(function(){
+            console.log("Services loaded.")
+        });
     }
-
     var service = ServicesList.findById($routeParams.serviceId);
     $scope.service = {};
     $scope.service.id = service.id;
@@ -61,11 +65,13 @@ controllers.controller('ServiceCtrl', ['$scope', '$routeParams', '$location', 'S
     });
     $scope.service.properties = propList;
 
-    $scope.goBack = function() {
-        // $('#mapContainer').trigger('toggleMapEvent'); 
-        // hitory.back(); 
-        Search.filterByUrlParameters(); 
-        return false;
+    $scope.goBackFromService = function() {
+        var parameters = $location.search();
+        if (_.has(parameters, 'category') || _.has(parameters, 'regionLayerId')){
+            $location.path('results').search(parameters);
+        } else {
+            $location.path('').search(parameters);
+        }
     }
 
 }]);

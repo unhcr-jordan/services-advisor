@@ -3,7 +3,7 @@ var services = angular.module('services');
 /**
  * Provides the list of services (compiled.json)
  */
-services.factory('PopupBuilder', ['$translate', function ($translate) {
+services.factory('PopupBuilder', ['$translate', '$location', function ($translate, $location) {
     return {
         buildPopup: function(feature) {
             // TODO: incredible hack here, just pasting in what's from the old app so we can render the popup
@@ -98,7 +98,17 @@ services.factory('PopupBuilder', ['$translate', function ($translate) {
             // In the list view only, the articles must have unique IDs so that we can scroll directly to them
             // when someone clicks the "Show details" link in a map marker.
             var articleIDattribute = '';
-            var toggleLinks = '<a id="show-details-' + feature.id + '" href="#/services/' + feature.id + '?hideOthers=false">Show details</a>';
+            var showDetailsLink = document.createElement("a");
+            showDetailsLink.setAttribute('id', "show-details-" + feature.id);
+            showDetailsLink.innerText = "Show details"
+            var clickFunction = function() {
+                var parameters = $location.search();
+                $location.path('services/'+service_id).search(parameters);
+            }
+            // showDetailsLink.addEventListener("click", clickFunction);
+            $(showDetailsLink).click(clickFunction);
+            var toggleLinks = showDetailsLink.outerHTML;
+            // var toggleLinks = '<a id="show-details-' + feature.id + '" href="#/services/' + feature.id + '?hideOthers=false">Show details</a>';
 
             // Assemble the article header.
             var header = '<header>' + logo + '<h3>' + glyph + feature.properties.locationName + ': ' + feature.properties.activityName + '</h3>' + toggleLinks + '<p class="hours">' + hours + '</p>' + headerOutput + '</header>';
