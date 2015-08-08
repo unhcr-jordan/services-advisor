@@ -1,5 +1,12 @@
 <div class="row">
-  <h1>{{ 'SERVICES_ADVISOR' | translate }}</h1>
+  <h1 class="services-advisor-title">{{ 'SERVICES_ADVISOR' | translate }}</h1>
+  <!-- TODO: huge hack here using global variable to be able to call map.invalidateSize() on map so it resizes -->
+  <button id="toggleMapButton" type="button" class="btn btn-default visible-xs toggle-map-search"
+          onclick="$('#mapContainer').toggleClass('map-hide'); map.invalidateSize();">
+    {{ 'TOGGLE_MAP' | translate }}
+  </button>
+</div>
+<div class="row">
   <p class="instructions">{{'SEARCH_TEXT' | translate}}</p>
 </div>
 <div class="row">
