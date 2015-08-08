@@ -25,7 +25,7 @@
   <!-- populating the catgories from the SearchCtrl  -->
   <div class="list-group">
     <div ng-repeat="region in regions">
-      <a href="#/results?region={{region}}" class="list-group-item">
+      <a ng-click="showRegionResults(region);" class="list-group-item">
         <span class="-map-icon">&#xf041;</span> {{region | translate}}
       </a>
     </div>

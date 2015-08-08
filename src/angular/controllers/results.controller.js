@@ -68,12 +68,13 @@ controllers.controller('ResultsCtrl', ['$scope', '$location', '$translate', 'Sea
         } 
 
         return activityDetails;
-    }
+    };
 
     $scope.selectService = function(service_id) {
         var parameters = $location.search();
+        parameters.hideOthers = "true";
         $location.path('services/'+service_id).search(parameters);
-    }
+    };
 
     $scope.goBackFromResults = function() {
         var parameters = $location.search();
@@ -81,8 +82,8 @@ controllers.controller('ResultsCtrl', ['$scope', '$location', '$translate', 'Sea
             delete parameters.category;
             // refilter as we changed the parameters.
             Search.filterByUrlParameters();
-        } else if (_.has(parameters, 'regionLayerId')){
-            delete parameters.regionLayerId;
+        } else if (_.has(parameters, 'region')){
+            delete parameters.region;
             // refilter as we changed the parameters.
             Search.filterByUrlParameters();
         }

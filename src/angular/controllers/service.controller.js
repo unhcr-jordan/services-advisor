@@ -8,70 +8,65 @@ controllers.controller('ServiceCtrl', ['$scope', '$routeParams', '$location', 'S
         // only called when coming from a list view
         Search.selectId($routeParams.serviceId);
     }  
-    if (!ServicesList.services) {
-        ServicesList.get(function(){
-            console.log("Services loaded.")
+    ServicesList.findById($routeParams.serviceId).then(function(service) {
+        $scope.service = {};
+        $scope.service.id = service.id;
+        $scope.service.locationName = service.properties.locationName;
+        $scope.service.partnerName = service.properties.partnerName;
+        $scope.service.comments = service.properties.comments;
+        $scope.service.activityCategory = service.properties.activityCategory;
+        $scope.service.activityName = service.properties.activityName;
+        $scope.service.startDate = service.properties.startDate;
+        $scope.service.endDate = service.properties.endDate;
+
+        // TODO: reuse functionality in results controller to parse this info
+        var partnerName = service.properties.partnerName.toLowerCase().replace(' ', '');
+        $scope.service.partnerLogoUrl = './src/images/partner/' + partnerName + '.jpg';
+
+        $.each(service.properties.indicators, function (index, value) {
+            if (value) {
+                $scope.service.activityDetails = index;
+            }
         });
-    }
-    var service = ServicesList.findById($routeParams.serviceId);
-    $scope.service = {};
-    $scope.service.id = service.id;
-    $scope.service.locationName = service.properties.locationName;
-    $scope.service.partnerName = service.properties.partnerName;
-    $scope.service.comments = service.properties.comments;
-    $scope.service.activityCategory = service.properties.activityCategory;
-    $scope.service.activityName = service.properties.activityName;
-    $scope.service.startDate = service.properties.startDate;
-    $scope.service.endDate = service.properties.endDate;
-
-    // TODO: reuse functionality in results controller to parse this info
-    var partnerName = service.properties.partnerName.toLowerCase().replace(' ', '');
-    $scope.service.partnerLogoUrl = './src/images/partner/' + partnerName + '.jpg';
-
-    $.each(service.properties.indicators, function (index, value) {
-        if (value) {
-            $scope.service.activityDetails = index;
-        }
-    });
-    var propList = [];
-    $scope.hours = [];
-    $.each(service.properties, function (index) {
-        var tempArray = index.split(".");
-        if (index != 'comments' && tempArray.length > 1) {
-            if ($.isNumeric(tempArray[0])) {
-                //TODO: Let's see if we can print it from index rather than creating new object for it again.
-                var obj = {};
-                var level = parseInt(tempArray[0], 10);
-                if (level != 8) {
-                    obj.key = $.trim(tempArray[1]);
-                    $.each(service.properties[index], function (index, value) {
-                        if (value) {
-                            obj.value = index;
-                        }
-                    });
-                    propList[level] = obj;
-                } else {
-                    $.each(service.properties[index], function (index, value) {
-                        if (value) {
-                            $scope.hours.push(index);
-                        }
-                    });
+        var propList = [];
+        $scope.hours = [];
+        $.each(service.properties, function (index) {
+            var tempArray = index.split(".");
+            if (index != 'comments' && tempArray.length > 1) {
+                if ($.isNumeric(tempArray[0])) {
+                    //TODO: Let's see if we can print it from index rather than creating new object for it again.
+                    var obj = {};
+                    var level = parseInt(tempArray[0], 10);
+                    if (level != 8) {
+                        obj.key = $.trim(tempArray[1]);
+                        $.each(service.properties[index], function (index, value) {
+                            if (value) {
+                                obj.value = index;
+                            }
+                        });
+                        propList[level] = obj;
+                    } else {
+                        $.each(service.properties[index], function (index, value) {
+                            if (value) {
+                                $scope.hours.push(index);
+                            }
+                        });
+                    }
                 }
+            }
+        });
+        propList = $.grep(propList, function (n) {
+            return (n)
+        });
+        $scope.service.properties = propList;
+
+        $scope.goBackFromService = function() {
+            var parameters = $location.search();
+            if (_.has(parameters, 'category') || _.has(parameters, 'region')){
+                $location.path('results').search(parameters);
+            } else {
+                $location.path('').search(parameters);
             }
         }
     });
-    propList = $.grep(propList, function (n) {
-        return (n)
-    });
-    $scope.service.properties = propList;
-
-    $scope.goBackFromService = function() {
-        var parameters = $location.search();
-        if (_.has(parameters, 'category') || _.has(parameters, 'regionLayerId')){
-            $location.path('results').search(parameters);
-        } else {
-            $location.path('').search(parameters);
-        }
-    }
-
 }]);

@@ -37,8 +37,21 @@ services.factory('ServicesList', ['$http', '$translate', '$location', 'PopupBuil
 
                 // when a user clicks on a map marker, show the service in the sidebar
                 serviceMarker.on('click', function () {
+
+                    // can't use $location here since it doesn't update the location (out of the digest cycle or something)
+                    // so we're using window.location but we need to parse the current query string
                     var parameters = $location.search();
-                    $location.path('services/' + feature.id).search(parameters);
+                    parameters.hideOthers = false;
+                    var serialize = function(obj) {
+                        var str = [];
+                        for(var p in obj)
+                            if (obj.hasOwnProperty(p)) {
+                                str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                            }
+                        return str.join("&");
+                    };
+
+                    window.location = "/#/services/" + feature.id + "?" + serialize(parameters);
                 });
 
                 // Add the marker to the feature object, so we can re-use the same marker during render().
@@ -54,14 +67,15 @@ services.factory('ServicesList', ['$http', '$translate', '$location', 'PopupBuil
             services.then(successCb);
         },
         findById: function (id) {
-            // TODO: this is a hack since we don't know if services has been initialized yet
-            if (servicesById === null) {
-                servicesById = {};
-                angular.forEach(services, function (service) {
-                    servicesById[service.id] = service;
-                })
-            }
-            return servicesById[id];
+            return services.then(function(services) {
+                if (servicesById === null) {
+                    servicesById = {};
+                    angular.forEach(services, function (service) {
+                        servicesById[service.id] = service;
+                    });
+                }
+                return servicesById[id];
+            })
         }
     }
 }]);
