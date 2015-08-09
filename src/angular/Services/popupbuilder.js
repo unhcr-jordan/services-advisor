@@ -39,7 +39,7 @@ services.factory('PopupBuilder', ['$translate', function ($translate) {
             } else {
                 // If we have no open time but yes close time, show close time only; if we have
                 // neither, say "unknown".
-                hours = hourClosed ? hours += hourClosed : hours + 'unknown';
+                hours = hourClosed ? hours += hourClosed : hours + $translate.instant('UNKNOWN');
             }
 
             // Create meta-field for better display of indicators.
@@ -81,8 +81,8 @@ services.factory('PopupBuilder', ['$translate', function ($translate) {
                     }
                 }
                 // Wrap the output with a label.  If no output, say unknown.
-                if (fieldOutput === '') { fieldOutput = "unknown"; }
-                fieldOutput = '<p><strong>' + fieldName + ':</strong> ' + fieldOutput + '</p>';
+                if (fieldOutput === '') { fieldOutput = $translate.instant('UNKNOWN'); }
+                fieldOutput = '<p><strong>' + $translate.instant(fieldName) + ':</strong> ' + fieldOutput + '</p>';
                 // Add the field output to the appropriate section.
                 if (fields[field].section == 'header') {
                     headerOutput += fieldOutput;

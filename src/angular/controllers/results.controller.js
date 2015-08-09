@@ -54,7 +54,7 @@ controllers.controller('ResultsCtrl', ['$scope', '$location', '$translate', 'Sea
     // gets the activity details of the service 
     $scope.getActivityDetails = function(result){
         // Define a default variable value for activity details
-        var activityDetails = ["Unknown"];
+        var activityDetails = [$translate.instant("UNKNOWN")];
         var activities = result.properties["indicators"];
         // filters out the activites with zero count first
         for(key in activities){
