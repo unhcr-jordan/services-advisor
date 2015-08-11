@@ -4,7 +4,7 @@ var lazy = require("lazy"),
 var result;
 
 // Read Service Advisor JSON File 
-fs.readFile('compileTruncated.json', 'utf8', function (err, data) {
+fs.readFile('../js/services_EN.json', 'utf8', function (err, data) {
     if (err) {
         return console.log(err);
     }
@@ -23,7 +23,7 @@ fs.readFile('compileTruncated.json', 'utf8', function (err, data) {
             result = data.replace(re, partStr[1].trim());
             data = result;
 
-            fs.writeFile('compiled_AR.json', result, 'utf8', function (err) {
+            fs.writeFile('../js/services_AR.json', result, 'utf8', function (err) {
                 if (err) return console.log(err);
             });
         });

@@ -51,7 +51,7 @@ Files:
 
 # How Services Data Is Loaded and Translated
 
-- `cd src`
+- `cd service-list-retrieval`
 - `cat sources.txt | node getJSON.js`
   - this will call all the urls in `sources.txt` and then concatenate all the json responses into `compiled.json`
 - `node LoadJSON.js`

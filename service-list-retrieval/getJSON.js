@@ -12,8 +12,6 @@ var split = require('split');
 
 // Array to hold the incoming JSON
 var jsonSources = [],
-    originalSources = [];
-
     // Given an http GET request, handle the incoming data stream.
     onSuccess = function (res) {
         var buffers = [];
@@ -33,8 +31,6 @@ var jsonSources = [],
             // Parse the JSON objects: create a "Directly accessible" vs "Referral
             // required" field based on "Referral Method"
             var processed = [];
-            originalSources = originalSources.concat(originalSources);
-            fs.writeFile('originals.json', JSON.stringify(originalSources));
 
             for (var i in data.features) {
                 // Check if this feature is already in the list.
@@ -70,9 +66,9 @@ var jsonSources = [],
 
             // Put all the JSON objects into the jsonSources array.
             jsonSources = jsonSources.concat(data.features);
-            // console.log('Received: ', data.features.length, ' features');
-            // Write the JSON to the output file compiled.json.
-            fs.writeFile('compiled.json', JSON.stringify(jsonSources));
+
+            // Write the JSON to the output file
+            fs.writeFile('services.json', JSON.stringify(jsonSources));
         });
     },
     onError = function (err) {

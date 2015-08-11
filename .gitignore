@@ -6,5 +6,4 @@ css/main.css
 *.iml
 bower_components/
 js/app.js
-js/app.min.js
 .DS_Store

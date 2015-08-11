@@ -11,7 +11,7 @@ services.factory('ServicesList', ['$http', '$translate', '$location', 'PopupBuil
     $translate.use(language);
     $('body').addClass('lang-' + language);
 
-    var servicesList = $translate.use() === 'AR' ? 'src/compiled_AR.json' : 'src/compiled.json';
+    var servicesList = $translate.use() === 'AR' ? 'js/services_AR.json' : 'js/services_EN.json';
 
     var services = $http.get(servicesList, {cache: true}).then(function (data) {
             data = data.data.filter(function (feature) {
