@@ -53,11 +53,11 @@ Files:
 
 - `cd service-list-retrieval`
 - `cat sources.txt | node getJSON.js`
-  - this will call all the urls in `sources.txt` and then concatenate all the json responses into `compiled.json`
+  - this will call all the urls in `sources.txt` and then concatenate all the json responses into `services.json`
 - `node LoadJSON.js`
-  - this takes the json from `compiled.json` and removes all the `comments` fields (which aren't translated) to output `compileTruncated.json`
+  - this takes the json from `services.json` and removes all the `comments` fields (which aren't translated) to output `js/services_EN.json`
 - `node ParseEn_AR_JSON.js`
-  - uses `data.csv` to regex replace the English strings in `compileTruncated.json` with their Arabic translations. This outputs `compiled_AR.json`.
+  - uses `data.csv` to regex replace the English strings in `js/services_EN.json` with their Arabic translations. This outputs `js/services_AR.json`.
 
 ## Arabic Site (http://data.unhcr.org/jordan/services-advisor/index_AR.html)
 
