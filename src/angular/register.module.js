@@ -2,7 +2,7 @@
 // with their dependencies
 
 /*** Routes ***/
-angular.module('servicesAdvisorApp', ['ngRoute', 'controllers', 'services', 'pascalprecht.translate']);
+angular.module('servicesAdvisorApp', ['ngRoute', 'controllers', 'services', 'directives', 'pascalprecht.translate']);
 
 /*** Services ***/
 angular.module('services', ['ngResource','underscore']);
@@ -10,6 +10,8 @@ angular.module('services', ['ngResource','underscore']);
 /*** controllers ***/
 angular.module('controllers', ['underscore']);
 
+/*** directives ***/
+angular.module('directives', []);
 
 /*** registering  underscore.js helper ***/ 
 

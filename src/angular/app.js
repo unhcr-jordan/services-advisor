@@ -30,5 +30,8 @@ require('./controllers/map.controller.js');
 require('./controllers/service.controller.js');
 require('./controllers/filter.controller.js');
 
+// Directives
+require('./Directives/starrating.directive.js');
+
 // Translations
 require('./translations/translations.config.js');
