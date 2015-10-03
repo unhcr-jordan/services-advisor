@@ -9,7 +9,7 @@ function starRatingTemplate() {
   		// console.log("hello");
   		console.log($scope.rating);
   		$scope.getNumber = function(number){
-  			
+
   			var ratings = [];
 
   			for (var i = 0; i < number; i++){
@@ -22,6 +22,7 @@ function starRatingTemplate() {
   	scope: {
   		rating: "="
   	},
-    template: '<div ng-repeat="numStars in getNumber(rating)" class="glyphicon glyphicon-star"></div>'
+    template: '<div ng-repeat="numStars in getNumber(rating)" class="glyphicon glyphicon-star"></div>' +
+    '<div ng-repeat="numStars in getNumber(5 - rating)" class="glyphicon glyphicon-star-empty"></div>'
   };
 };

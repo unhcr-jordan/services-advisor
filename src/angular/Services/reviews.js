@@ -81,6 +81,8 @@ services.factory('Reviews', function() {
             id: 5
         };
 
+        console.log(review);
+
         return review;
     };
 

@@ -25,6 +25,7 @@
 
                 <!-- location name section -->
                 <div class="row media-body">
+                  <star-rating rating="result.rating"></star-rating>
                   <h2 class="media-heading">{{result.properties.locationName}}: {{result.properties.activityName}}</h2>
                   <img class="media-object pull-right" ng-src="{{getPartnerLogoUrl(result)}}" onError="this.onerror=null;this.style.display='none'">
                 </div>

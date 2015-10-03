@@ -51,8 +51,15 @@
                 </div>
                 <div class="modal-body">
                     <div class="star-rating"
-                      ng-model="message.rating">
-                        Enter Stars
+                      ng-model="message.userRating">
+                      <a ng-repeat="numStars in getNumber(userRating)"
+                        class="glyphicon glyphicon-star"
+                        ng-click="setRating(numStars)">
+                      </a>
+                      <a ng-repeat="numStars in getNumber(5 - userRating)"
+                        class="glyphicon glyphicon-star-empty"
+                        ng-click="setRating(numStars + userRating)">
+                      </a>
                     </div>
 
                     <div class="comment">

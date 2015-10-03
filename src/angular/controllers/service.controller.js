@@ -6,7 +6,8 @@ controllers.controller('ServiceCtrl', ['$scope', '$routeParams', '$location', 'S
     rating: 0,
     comment: '',
   };
-  $scope.rating = 5;
+  $scope.userRating = 0;
+  $scope.rating = Reviews.getAverageRatingByServiceId($routeParams.serviceId) || 0;
 
   // console.log('hello');
   // when a user clicks on "Show Details" from a map popup, we don't want all the icons on the map to suddenly be hidden
@@ -77,11 +78,28 @@ controllers.controller('ServiceCtrl', ['$scope', '$routeParams', '$location', 'S
       }
     };
 
+    $scope.getNumber = function(number){
+
+      var ratings = [];
+
+      for (var i = 0; i < number; i++){
+        ratings.push(i);
+      }
+
+      return ratings;
+    };
+
+    $scope.setRating = function(numStars) {
+      $scope.userRating = numStars + 1;
+    }
+
     $scope.sendReview = function() {
-      if ($scope.messages.comment) {
-        Reviews.addReview($scope.service.id, $scope.message.rating, $scope.message.comment);
-      } else {
-        Reviews.addReview($scope.service.id, $scope.message.rating);
+      if(!_.isUndefined($scope.userRating)) {
+        if ($scope.message) {
+          Reviews.addReview($scope.service.id, $scope.userRating, $scope.message.comment);
+        } else {
+          Reviews.addReview($scope.service.id, $scope.userRating);
+        }
       }
     };
   });
