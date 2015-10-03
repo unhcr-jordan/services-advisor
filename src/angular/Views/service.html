@@ -35,12 +35,14 @@
         <!-- First row  -->
         <div class="col-xs-6 service-details-container-row-1">
           <h2>{{ 'HOURS' | translate }}</h2>
+          <star-rating rating="rating" />
           <p data-ng-repeat="hour in hours">{{hour}} {{ 'OPEN_AT' | translate }}</p>
         </div>
         <div class="col-xs-6 service-details-container-row-1">
           <h2>{{ 'ACTIVITY_DETAILS' | translate }}</h2>
           <p>{{service.activityDetails}}</p>
         </div>
+
 
         
         <!-- Second row (Table display) -->  
