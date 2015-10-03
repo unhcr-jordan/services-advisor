@@ -6,8 +6,6 @@ function starRatingTemplate() {
   return {
   	restrict: 'E',
   	controller: function($scope){
-  		// console.log("hello");
-  		console.log($scope.rating);
   		$scope.getNumber = function(number){
 
   			var ratings = [];

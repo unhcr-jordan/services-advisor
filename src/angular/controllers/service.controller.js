@@ -7,7 +7,7 @@ controllers.controller('ServiceCtrl', ['$scope', '$routeParams', '$location', 'S
     comment: '',
   };
   $scope.userRating = 0;
-  $scope.rating = Reviews.getAverageRatingByServiceId($routeParams.serviceId) || 0;
+  $scope.rating = Reviews.getAverageRatingByServiceId($routeParams.serviceId);
 
   // console.log('hello');
   // when a user clicks on "Show Details" from a map popup, we don't want all the icons on the map to suddenly be hidden
@@ -91,7 +91,7 @@ controllers.controller('ServiceCtrl', ['$scope', '$routeParams', '$location', 'S
 
     $scope.setRating = function(numStars) {
       $scope.userRating = numStars + 1;
-    }
+    };
 
     $scope.sendReview = function() {
       if(!_.isUndefined($scope.userRating)) {

@@ -57,16 +57,10 @@ services.factory('Reviews', function() {
      * Returns the average rating of a service.
      */
     factory.getAverageRatingByServiceId = function(serviceId) {
-        var average = 0;
-        var reviews = _.filter(reviews, function(review) {
-            return review.serviceId === serviceId;
-        });
+        var returns = [1, 2, 3, 4, 5];
+        var returnVal = _.sample(returns);
 
-        _.each(reviews, function(review) {
-            average += review.rating;
-        });
-
-        return average/reviews.length;
+        return returnVal; //change to get data rather then a random
     };
 
     /**
@@ -75,13 +69,13 @@ services.factory('Reviews', function() {
      */
     factory.addReview = function(serviceId, rating, comment) {
         var review = {
+            id: 5,
             rating: rating,
             comment: comment,
             serviceId: serviceId,
-            id: 5
         };
 
-        console.log(review);
+        reviews.push(review);
 
         return review;
     };
