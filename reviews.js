@@ -57,7 +57,16 @@ services.factory('Reviews', function() {
      * Returns the average rating of a service.
      */
     factory.getAverageRatingByServiceId = function(serviceId) {
-        return 3;
+        var average = 0;
+        var reviews = _.filter(reviews, function(review) {
+            return review.serviceId == serviceId;
+        });
+
+        _.each(reviews, function(review) {
+            average += review.rating;
+        });
+        
+        return average/reviews.length;
     };
 
     /**
