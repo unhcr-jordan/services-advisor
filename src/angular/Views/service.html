@@ -29,9 +29,12 @@
         <p> {{service.activityName}}</p>
       </div>
     </div>
-    <!-- <div class="col-xs-12 center text-center">
+    <div class="col-xs-12 center text-center">
+      <star-rating rating="rating" ></star-rating>
+      <div>
         <a class="btn btn-secondary" data-toggle="modal" data-target="#myModal" >{{ 'CREATE_REVIEW' | translate }}</a>
-    </div> -->
+      </div>
+    </div>
 
     <!-- Modal -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -48,8 +51,15 @@
                 </div>
                 <div class="modal-body">
                     <div class="star-rating"
-                      ng-model="message.rating">
-                        Enter Stars
+                      ng-model="message.userRating">
+                      <a ng-repeat="numStars in getNumber(userRating)"
+                        class="glyphicon glyphicon-star"
+                        ng-click="setRating(numStars)">
+                      </a>
+                      <a ng-repeat="numStars in getNumber(5 - userRating)"
+                        class="glyphicon glyphicon-star-empty"
+                        ng-click="setRating(numStars + userRating)">
+                      </a>
                     </div>
 
                     <div class="comment">
@@ -69,7 +79,6 @@
         <!-- First row  -->
         <div class="col-xs-6 service-details-container-row-1">
           <h2>{{ 'HOURS' | translate }}</h2>
-          <star-rating rating="rating" />
           <p data-ng-repeat="hour in hours">{{hour}} {{ 'OPEN_AT' | translate }}</p>
         </div>
         <div class="col-xs-6 service-details-container-row-1">

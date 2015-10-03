@@ -13,11 +13,11 @@ angular.module('controllers', ['underscore']);
 /*** directives ***/
 angular.module('directives', []);
 
-/*** registering  underscore.js helper ***/ 
 
-// Just inject into where you need it like a service 
+/*** registering  underscore.js helper ***/
+
+// Just inject into where you need it like a service
 
 // documentation: http://underscorejs.org/
 
 angular.module('underscore', []);
-
