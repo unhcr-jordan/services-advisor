@@ -11,7 +11,7 @@ controllers.controller('ServiceCtrl', ['$scope', '$routeParams', '$location', 'S
     if ($location.search().hideOthers !== "false") {
         // only called when coming from a list view
         Search.selectId($routeParams.serviceId);
-    }  
+    }
     ServicesList.findById($routeParams.serviceId).then(function(service) {
         $scope.service = {};
         $scope.service.id = service.id;
