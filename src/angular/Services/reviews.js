@@ -75,7 +75,7 @@ services.factory('Reviews', function() {
      */
     factory.addReview = function(serviceId, rating, comment) {
         var review = {
-            id: 5
+            id: 5,
             rating: rating,
             comment: comment,
             serviceId: serviceId,
