@@ -4,25 +4,25 @@ services.factory('Reviews', function() {
     var factory = {};
     var reviews = [
         {
-            id: 1
+            id: 1,
             rating: 4,
             comment: 'This place rocks!!',
             serviceId: 949606869,
         },
         {
-            id: 2
+            id: 2,
             rating: 1,
             comment: 'This place sucks!!',
             serviceId: 213577289,
         },
         {
-            id: 3
+            id: 3,
             rating: 5,
             comment: 'This place rocks!!',
             serviceId: 949606869,
         },
         {
-            id: 4
+            id: 4,
             rating: 2,
             comment: 'This place sucks!!',
             serviceId: 213577289,
@@ -36,7 +36,7 @@ services.factory('Reviews', function() {
      */
     factory.getReview = function(reviewId) {
         var review = _.find(reviews, function(review) {
-            return review.id == reviewId;
+            return review.id === reviewId;
         });
         return review;
     };
@@ -47,7 +47,7 @@ services.factory('Reviews', function() {
      */
     factory.getReviewsByServiceId = function(serviceId) {
         var reviews = _.filter(reviews, function(review) {
-            return review.serviceId == serviceId;
+            return review.serviceId === serviceId;
         });
 
         return reviews;
@@ -59,13 +59,13 @@ services.factory('Reviews', function() {
     factory.getAverageRatingByServiceId = function(serviceId) {
         var average = 0;
         var reviews = _.filter(reviews, function(review) {
-            return review.serviceId == serviceId;
+            return review.serviceId === serviceId;
         });
 
         _.each(reviews, function(review) {
             average += review.rating;
         });
-        
+
         return average/reviews.length;
     };
 

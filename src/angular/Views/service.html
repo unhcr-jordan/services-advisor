@@ -30,7 +30,10 @@
       </div>
     </div>
     <div class="col-xs-12 center text-center">
+      <star-rating rating="rating" ></star-rating>
+      <div>
         <a class="btn btn-secondary" data-toggle="modal" data-target="#myModal" >{{ 'CREATE_REVIEW' | translate }}</a>
+      </div>
     </div>
 
     <!-- Modal -->
@@ -69,7 +72,6 @@
         <!-- First row  -->
         <div class="col-xs-6 service-details-container-row-1">
           <h2>{{ 'HOURS' | translate }}</h2>
-          <star-rating rating="rating" />
           <p data-ng-repeat="hour in hours">{{hour}} {{ 'OPEN_AT' | translate }}</p>
         </div>
         <div class="col-xs-6 service-details-container-row-1">

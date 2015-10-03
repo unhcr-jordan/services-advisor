@@ -21,6 +21,7 @@ require('./Services/search.js');
 require('./Services/popupbuilder.js');
 require('./Services/underscore.js');
 require('./Services/cookies.js');
+require('./Services/reviews.js');
 
 // Controllers
 require('./controllers/search.controller.js');
