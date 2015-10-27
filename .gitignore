@@ -7,3 +7,4 @@ css/main.css
 bower_components/
 js/app.js
 .DS_Store
+*.log
